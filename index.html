@@ -326,6 +326,14 @@ table.grades td.n{text-align:right;font-weight:700}
 .nadd input:focus{outline:2px solid var(--pen);outline-offset:-1px;background:var(--sheet)}
 .ntotal{text-align:right}
 @media (max-width:900px){.ntotal{text-align:left}}
+.shpick{display:inline-flex;cursor:pointer}
+.shpick input{position:absolute;opacity:0;pointer-events:none}
+.shpick span{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--sheet);border-radius:20px;padding:6px 12px;font-weight:600;font-size:13.5px;color:var(--ink-2)}
+.shpick span svg{width:14px;height:14px}
+.shpick input:checked+span{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.shpick input:focus-visible+span{outline:2px solid var(--pen);outline-offset:2px}
+.autosh{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-weight:500}
+.autosh .chk{width:18px;height:18px}
 /* Menú contextual, búsqueda, reloj */
 .ctx{position:fixed;z-index:80;min-width:224px;max-width:290px;background:var(--sheet);border:1px solid var(--line);border-radius:13px;padding:5px;box-shadow:0 22px 60px -14px rgba(0,0,0,.65),0 0 0 1px rgba(0,0,0,.04);animation:fade .1s ease}
 .ctx button{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;padding:7px 10px;border-radius:8px;font-size:13.5px;font-weight:500;text-align:left;color:var(--ink)}
@@ -355,7 +363,45 @@ table.grades td.n{text-align:right;font-weight:700}
 @keyframes flash{0%{box-shadow:0 0 0 3px var(--ink)}100%{box-shadow:0 0 0 0 transparent}}
 @media (max-width:900px){.hero-r{align-items:flex-start}.clock{display:none}}
 
+/* Cuestionario */
+.onb{position:fixed;inset:0;z-index:92;background-color:var(--paper);overflow-y:auto;display:flex;justify-content:center;padding:calc(28px + env(safe-area-inset-top,0px)) 18px 0}
+.onb[hidden]{display:none}
+.obox{width:min(580px,100%);display:flex;flex-direction:column;gap:20px;min-height:100%}
+.oprog{display:flex;gap:6px}
+.oprog i{flex:1;height:4px;border-radius:4px;background:var(--line)}
+.oprog i.on{background:var(--ink)}
+.oq{font-family:var(--display);font-weight:800;font-size:clamp(30px,7.5vw,42px);letter-spacing:-.035em;line-height:1.02}
+.ohelp{color:var(--ink-2);font-size:15.5px;margin-top:-10px;line-height:1.45}
+.ogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.opt{border:1px solid var(--line);background:var(--sheet);border-radius:14px;padding:13px 14px;text-align:left;font-weight:650;font-size:15px;color:var(--ink);min-height:58px;line-height:1.25}
+.opt small{display:block;font-weight:500;color:var(--ink-3);font-size:12.5px;margin-top:3px}
+.opt.on{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.opt.on small{color:color-mix(in srgb,var(--sheet) 65%,transparent)}
+.ogrid.small{grid-template-columns:repeat(auto-fill,minmax(64px,1fr))}
+.ogrid.small .opt{text-align:center;font-family:var(--display);font-size:20px;font-weight:800}
+.olabel{font-size:13px;font-weight:700;color:var(--ink-2);margin-bottom:-12px}
+.onb .field{width:100%;padding:13px 14px;font-size:16px;border-radius:12px;color:var(--ink)}
+.odates{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.odates .field{min-width:0;-webkit-appearance:none;appearance:none}
+.odates label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;color:var(--ink-2)}
+.ochips{display:flex;flex-wrap:wrap;gap:8px}
+.ochip{border:1px solid var(--line);background:var(--sheet);border-radius:22px;padding:9px 14px;font-weight:600;font-size:14px;color:var(--ink-2)}
+.ochip.on{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.oadd{display:flex;gap:8px}
+.oadd .field{flex:1}
+.okeep{display:flex;gap:12px;align-items:center;border:1px solid var(--line);background:var(--sheet);border-radius:14px;padding:14px;font-weight:600;cursor:pointer}
+.osum{border:1px solid var(--line);background:var(--sheet);border-radius:16px;padding:6px 16px}
+.osum div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:15px}
+.osum div:first-child{border-top:0}
+.osum span{color:var(--ink-2)}
+.osum b{text-align:right}
+.ofoot{display:flex;gap:10px;margin-top:auto;position:sticky;bottom:0;padding:18px 0 calc(18px + env(safe-area-inset-bottom,0px));background:linear-gradient(to bottom,transparent,var(--paper) 35%)}
+.ofoot .btn{flex:1;justify-content:center;padding:14px;font-size:15.5px;border-radius:14px}
+.btn:disabled{opacity:.35;cursor:default}
+/* Botón flotante */
+.fab{display:none}
 /* Carga */
+.alogo{font-size:clamp(30px,9vw,40px)!important;white-space:nowrap}
 .alogo{display:flex;align-items:center;gap:10px}
 .alogo .plane{width:.8em;height:.8em;flex:none}
 .boot{position:fixed;inset:0;z-index:95;display:grid;place-content:center;justify-items:center;gap:22px;background:var(--paper);transition:opacity .25s ease}
@@ -450,6 +496,57 @@ table.grades td.n{text-align:right;font-weight:700}
   .tabbar button svg{width:21px;height:21px}
   .tabbar button[aria-current="page"]{color:var(--pen)}
   .mobile-pomo{display:block!important}
+  body{font-size:15.5px}
+  .fab{display:grid;place-items:center;position:fixed;right:16px;bottom:calc(78px + env(safe-area-inset-bottom,0px));z-index:41;width:56px;height:56px;border-radius:18px;border:0;background:var(--ink);color:var(--sheet);box-shadow:0 10px 26px -8px rgba(0,0,0,.6)}
+  .fab[hidden]{display:none}
+  .fab svg{width:26px;height:26px}
+  .topbar>.btn,.topbar .hero-r,.wk-nav .primary{display:none!important}
+  .topbar{margin-bottom:14px}
+  h1{font-size:28px;letter-spacing:-.03em}
+  h1 .sub{font-size:14px;line-height:1.45;margin-top:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  h2{font-size:18px;margin-bottom:10px}
+  .main>section,.main>div{margin-bottom:14px}
+  .grid2,.stack{gap:14px}
+  .panel{padding:16px;border-radius:18px}
+  .filters{flex-wrap:nowrap;overflow-x:auto;margin:0 -12px 14px;padding:2px 12px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .filters::-webkit-scrollbar,.strip::-webkit-scrollbar{display:none}
+  .fbtn{flex:none;padding:7px 13px;font-size:13.5px}
+  .strip{grid-template-columns:repeat(14,58px);gap:8px;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -16px;padding:4px 16px 10px}
+  .day{scroll-snap-align:start;min-height:112px;border-radius:14px}
+  .legend{font-size:12px;gap:12px}
+  .item{padding:13px 0;gap:12px}
+  .item .title{font-size:15.5px}
+  .actions{opacity:1}
+  .meta{font-size:13px;gap:6px 8px}
+  .quick{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .quick input[type=text]{grid-column:1/-1}
+  .quick select{grid-column:1/-1}
+  .tl{padding-left:52px}
+  .tl-row{padding:10px 12px 11px 14px;border-radius:12px}
+  .tl-row .tm,.nowline span{left:-52px;width:44px}
+  .cards{grid-template-columns:1fr;gap:12px}
+  .ecard{padding:16px 16px 14px 20px;border-radius:18px}
+  .ecard .title{font-size:19px}
+  .ecard .row .btn{flex:1;justify-content:center;padding:9px}
+  .kpis{grid-template-columns:1fr 1fr;gap:10px}
+  .kpi{padding:14px;border-radius:16px}
+  .kpi b{font-size:30px}
+  .ngrid{grid-template-columns:1fr;gap:12px}
+  .ntotal{text-align:left}
+  .ph .d{display:none}
+  .ph{padding:6px;min-height:0;gap:5px}
+  .ph:first-child{display:none}
+  .planner{grid-template-columns:46px minmax(0,1fr)!important}
+  .ph:nth-child(2){grid-column:1/-1;border-left:0}
+  .dpick{gap:5px;margin-bottom:12px}
+  .dpick button{border-radius:14px;padding:8px 0 6px}
+  .blk{font-size:13px;border-radius:10px}
+  .wk-nav{justify-content:space-between}
+  .srow{padding:12px 0}
+  .bar{grid-template-columns:96px 1fr 58px;font-size:13.5px}
+  .course{gap:18px}
+  .tabbar{padding-top:8px}
+  .tabbar button{gap:4px}
   .mtop{display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:30;padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px;margin-top:calc(-1 * env(safe-area-inset-top,0px));background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   .mbrand{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.03em}
   .mspacer{flex:1}
@@ -485,11 +582,11 @@ table.grades td.n{text-align:right;font-weight:700}
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 </head>
 <body>
-<header class="mtop" id="mtop"><div class="mbrand">2BATX</div><i class="dot" id="mSync"></i><div class="mspacer"></div><button class="iconbtn" data-search aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button><button class="iconbtn" data-admin aria-label="Administrador"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6.3 7 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 7-1z"/></svg></button><button class="mav" data-more aria-label="Más opciones" id="mAv"></button></header>
+<header class="mtop" id="mtop"><div class="mbrand" id="mBrand">MCF</div><i class="dot" id="mSync"></i><div class="mspacer"></div><button class="iconbtn" data-search aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button><button class="iconbtn" data-admin aria-label="Administrador"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6.3 7 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 7-1z"/></svg></button><button class="mav" data-more aria-label="Más opciones" id="mAv"></button></header>
 <button class="adminstar" data-admin aria-label="Administrador" title="Administrador"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6.3 7 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 7-1z"/></svg></button>
 <div class="app">
   <aside class="side" aria-label="Menú">
-    <div class="brand">2BATX<small id="sideDate"></small></div>
+    <div class="brand"><span id="brandTxt">MCF Calendar</span><small id="sideDate"></small></div>
     <nav class="nav" id="nav"></nav>
         <div class="whoami" id="whoami"></div>
     <div class="side-tools"><button class="btn sm" data-search>Buscar<span class="kbd">Ctrl K</span></button><button class="btn sm" data-help>Atajos</button></div>
@@ -499,13 +596,13 @@ table.grades td.n{text-align:right;font-weight:700}
   <main class="main" id="main"></main>
 </div>
 <nav class="tabbar" id="tabbar" aria-label="Menú"></nav>
-<div class="boot" id="boot" aria-label="Cargando"><div class="alogo"><svg class="plane" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(45 12 12)"><path fill="currentColor" d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></g></svg>2BATX</div><div class="spin"></div></div>
+<div class="boot" id="boot" aria-label="Cargando"><div class="alogo"><svg class="plane" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(45 12 12)"><path fill="currentColor" d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></g></svg>MCF Calendar</div><div class="spin"></div></div>
 <div class="auth" id="auth" hidden>
   <form class="abox" id="authForm" method="post" action="" novalidate>
-    <div class="alogo"><svg class="plane" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(45 12 12)"><path fill="currentColor" d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></g></svg>2BATX</div>
+    <div class="alogo"><svg class="plane" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(45 12 12)"><path fill="currentColor" d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></g></svg>MCF Calendar</div>
     <div class="asub" id="authSub">Inicia sesión para ver tu agenda.</div>
     <div class="atabs"><button type="button" class="on" data-amode="login">Iniciar sesión</button><button type="button" data-amode="signup">Crear cuenta</button></div>
-    <label>Nombre de usuario<input class="field" name="user" id="username" autocomplete="username" autocapitalize="off" spellcheck="false" placeholder="Ej.: mario" required></label>
+    <label>Nombre de usuario<input class="field" name="user" id="username" autocomplete="username" autocapitalize="off" spellcheck="false" placeholder="Tu nombre de usuario" required></label>
     <label>Contraseña<input class="field" type="password" name="pass" autocomplete="current-password" required></label>
     <label id="pass2Row" hidden>Repite la contraseña<input class="field" type="password" name="pass2" autocomplete="new-password"></label>
     <div class="ahint" id="authHint" hidden>Mínimo 6 caracteres. Usa letras, números, puntos o guiones en el nombre.</div>
@@ -513,6 +610,8 @@ table.grades td.n{text-align:right;font-weight:700}
     <div class="aerr" id="authErr" role="alert"></div>
   </form>
 </div>
+<div class="onb" id="onb" hidden><div class="obox" id="onbBox"></div></div>
+<button class="fab" data-fab aria-label="Añadir" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
 <div id="modalRoot"></div>
 <div id="toastRoot"></div>
 
@@ -613,7 +712,7 @@ function setAuthMode(m){AMODE=m;document.querySelectorAll('[data-amode]').forEac
 document.addEventListener('click',e=>{const b=e.target.closest('[data-amode]');if(b)setAuthMode(b.dataset.amode);if(e.target.closest('[data-logout]'))logout()});
 const AUTH_MSG={'auth/email-already-in-use':'Ese nombre de usuario ya existe. Elige otro o inicia sesión.','auth/invalid-credential':'Nombre o contraseña incorrectos.','auth/wrong-password':'Nombre o contraseña incorrectos.','auth/user-not-found':'Ese usuario no existe. Pulsa "Crear cuenta".','auth/weak-password':'La contraseña necesita al menos 6 caracteres.','auth/too-many-requests':'Demasiados intentos. Espera un momento y vuelve a probar.','auth/network-request-failed':'Sin conexión. Revisa tu internet.','auth/operation-not-allowed':'Falta activar "Correo electrónico/contraseña" en Firebase Authentication.','auth/invalid-email':'Ese nombre de usuario no es válido.'};
 $('#authForm').addEventListener('submit',async e=>{
-  e.preventDefault();authErr('');
+  e.preventDefault();authErr('');FRESH_LOGIN=true;
   if(!fbReady){authErr('Falta pegar la configuración de Firebase en el código.');return}
   const f=e.target,u=f.elements.user.value.trim(),p=f.elements.pass.value;
   if(!/^[a-zA-Z0-9._-]{3,20}$/.test(u)){authErr('El nombre debe tener entre 3 y 20 letras, números, puntos o guiones.');return}
@@ -646,15 +745,15 @@ async function onLogin(user){
     remoteRef=ref;const remote=readState(snap);ref.child('ultimoAcceso').set(new Date().toISOString()).catch(()=>{});
     if(remote&&(remote.updatedAt||0)>(S.updatedAt||0)){S=migrate(remote);try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}}
     else await pushRemote();
-    render();hideBoot();setSync(true);socialStart();
+    render();hideBoot();setSync(true);socialStart();kickWatch();if(!S.perfil)setTimeout(()=>openOnb(false),300);
     const onVal=sn=>{const r=readState(sn);if(r&&(r.updatedAt||0)>(S.updatedAt||0)){S=migrate(r);try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}if(!document.querySelector('.dragging'))render()}};
     ref.on('value',onVal);unsubSnap=()=>ref.off('value',onVal);
-  }catch(e){remoteRef=ref;render();hideBoot();setSync(false);toast('No se ha podido conectar con el servidor. Se guarda en este dispositivo y se subirá al volver la conexión.')}
+  }catch(e){remoteRef=ref;render();hideBoot();setSync(false);kickWatch();if(!S.perfil)setTimeout(()=>openOnb(false),300);toast('No se ha podido conectar con el servidor. Se guarda en este dispositivo y se subirá al volver la conexión.')}
 }
 async function logout(){
   if(!confirm('¿Cerrar sesión en este dispositivo?'))return;
   clearTimeout(saveT);await pushRemote();if(unsubSnap)unsubSnap();unsubSnap=null;remoteRef=null;CUR=null;
-  socialStop();showBoot();await firebase.auth().signOut();
+  socialStop();if(kickOff)kickOff();kickOff=null;$('#onb').hidden=true;ONB=null;showBoot();await firebase.auth().signOut();
 }
 function startAuth(){
   if(!fbReady){hideBoot();$('#auth').hidden=false;authErr('Falta pegar la apiKey de Firebase en el código.');return}
@@ -693,7 +792,8 @@ document.addEventListener('click',e=>{if(!e.target.closest('[data-more]'))return
 
 let lastView=null;
 function render(){
-  if(!CUR)return;
+  if(!CUR){const f=document.querySelector('.fab');if(f)f.hidden=true;return}
+  {const f=document.querySelector('.fab');if(f)f.hidden=false;const lb=S.perfil&&S.perfil.corta?S.perfil.corta:'MCF';const bt=$('#brandTxt');if(bt)bt.textContent=S.perfil&&S.perfil.etiqueta?S.perfil.etiqueta.split(' · ')[0]:'MCF Calendar';const mb=$('#mBrand');if(mb)mb.textContent=lb}
   const wa=$('#whoami');if(wa){const nm=CUR.displayName||CUR.email.split('@')[0];wa.innerHTML=`<span class="av">${esc(nm.charAt(0).toUpperCase())}</span><b>${esc(nm)}</b><button class="btn sm ghost" data-logout>Salir</button>`}
   applyTheme();renderNav();
   const m=$('#main');
@@ -780,7 +880,7 @@ function vHoy(){
 document.addEventListener('click',e=>{const g=e.target.closest('[data-goview]');const inn=e.target.closest('button,input');if(g&&(!inn||inn===g)){UI.view=g.dataset.goview;render()}});
 document.addEventListener('keydown',e=>{
   if(e.target.id==='qTitle'&&e.key==='Enter'){const v=e.target.value.trim();if(!v)return;
-    S.tasks.push({id:uid(),subj:$('#qSubj').value,title:v,due:$('#qDate').value||todayS(),time:$('#qTime').value||'08:00',prio:1,notes:'',done:false});save();render();toast('Deber apuntado');setTimeout(()=>$('#qTitle')?.focus(),0)}
+    const qo={id:uid(),subj:$('#qSubj').value,title:v,due:$('#qDate').value||todayS(),time:$('#qTime').value||'08:00',prio:1,notes:'',done:false};S.tasks.push(qo);save();render();autoShareNew('task',qo);toast('Deber apuntado');setTimeout(()=>$('#qTitle')?.focus(),0)}
 });
 
 /* ---------- Deberes ---------- */
@@ -1006,6 +1106,7 @@ function vAjustes(){
   <section class="panel"><h2>Copia de seguridad</h2><p class="hint" style="margin-top:0">Copia este texto y guárdalo; pégalo aquí para recuperar todo. También sirve para traer tus datos de la versión de Claude.</p><textarea class="field" id="backup" style="width:100%;min-height:90px;font-size:12px" aria-label="Copia de seguridad"></textarea>
    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn sm" data-export>Generar copia</button><button class="btn sm" data-import>Restaurar desde el texto</button></div></section>
   <section class="panel"><h2>Curso</h2><div class="srow"><span style="flex:1">Empieza el</span><input class="field" type="date" data-course="start" value="${S.course.start}"></div><div class="srow"><span style="flex:1">Acaba el</span><input class="field" type="date" data-course="end" value="${S.course.end}"></div></section>
+  <section class="panel"><h2>Tus estudios</h2><div class="srow"><span style="flex:1">${S.perfil&&S.perfil.etiqueta?esc(S.perfil.etiqueta):'Sin indicar'}</span><button class="btn sm" data-reonb>Cambiar</button></div></section>
   <section class="panel"><h2>Cuenta</h2><div class="srow"><span style="flex:1">Has iniciado sesión como <b>${esc(CUR?(CUR.displayName||CUR.email.split('@')[0]):'')}</b></span><button class="btn sm" data-logout>Cerrar sesión</button></div></section>
   <section class="panel danger-zone"><h2>Borrar todo</h2><p class="hint" style="margin-top:0">Borra todos los deberes, exámenes, notas, bloques de estudio y clases. Las asignaturas y los ajustes se quedan. Justo después puedes deshacerlo.</p><button class="btn danger" data-reset>${I.trash}Borrar todo</button></section></div></div>`;
 }
@@ -1058,6 +1159,13 @@ function subjPick(cur){cur=cur||S.subjects[0]?.id;return `<div class="full"><spa
 function bindPick(f){f.querySelectorAll('[data-pick]').forEach(b=>b.addEventListener('click',()=>{f.querySelectorAll('[data-pick]').forEach(x=>x.classList.remove('on'));b.classList.add('on');f.elements.subj.value=b.dataset.pick}))}
 const foot=(del)=>`<div class="mfoot">${del?`<button type="button" class="btn danger left" data-del>${I.trash}Borrar</button>`:''}<button type="button" class="btn ghost" data-close>Cancelar</button><button class="btn primary" type="submit">Guardar</button></div>`;
 
+
+/* ---------- Compartir desde el formulario ---------- */
+const friendsOk=()=>Object.entries(SOC.amigos||{}).filter(([,v])=>v.estado==='ok');
+function sharePickHTML(o,isNew){const fr=friendsOk();if(!fr.length)return'';const auto=S.autoShare||{};
+  return `<div class="full"><span style="font-size:13px;font-weight:600;color:var(--ink-2)">Compartir con</span><div class="subjpick" style="margin-top:6px">${fr.map(([u,v])=>`<label class="shpick"><input type="checkbox" name="shareTo" value="${u}" ${isNew&&auto[u]?'checked':''}><span>${I.users}${esc(v.nombre)}</span></label>`).join('')}</div>${o&&o.shareId?'<div class="hint" style="margin-top:6px">Ya está compartido. Marca a alguien más si quieres añadirlo.</div>':''}</div>`}
+function autoShareNew(type,o){const a=Object.keys(S.autoShare||{}).filter(u=>S.autoShare[u]&&friendsOk().some(([x])=>x===u));if(a.length)shareItem(type,o,a)}
+
 function openTaskModal(t){
   const n=!t;t=t||{subj:UI.taskFilter!=='all'?UI.taskFilter:S.subjects[0]?.id,title:'',due:ds(addDays(new Date(),1)),time:'08:00',prio:1,notes:''};
   modal(`<h3>${n?'Nuevo deber':'Editar deber'}</h3><div class="form">
@@ -1068,10 +1176,12 @@ function openTaskModal(t){
    <label>Hora de entrega<input class="field" type="time" name="time" value="${t.time||'08:00'}"></label>
    <label class="full">Prioridad<select class="field" name="prio"><option value="1" ${t.prio==1?'selected':''}>Normal</option><option value="2" ${t.prio==2?'selected':''}>Importante</option><option value="3" ${t.prio==3?'selected':''}>Urgente</option></select></label>
    <label class="full">Notas<textarea class="field" name="notes" placeholder="Dónde entregarlo, en qué formato, material…">${esc(t.notes)}</textarea></label>
+   ${sharePickHTML(t,n)}
   </div>${foot(!n)}`,fd=>{
     const title=fd.get('title').trim();if(!title){toast('Escribe qué hay que hacer');return false}
     const o={kind:fd.get('kind')||'',subj:fd.get('subj'),title,due:fd.get('due')||todayS(),time:fd.get('time')||'23:59',prio:+fd.get('prio'),notes:fd.get('notes').trim()};
-    if(n)S.tasks.push({id:uid(),done:false,...o});else Object.assign(t,o);save();render();toast(n?'Deber apuntado':'Deber guardado');
+    let obj;if(n){obj={id:uid(),done:false,...o};S.tasks.push(obj)}else{Object.assign(t,o);obj=t}save();render();toast(n?'Deber apuntado':'Deber guardado');
+    const sh=fd.getAll('shareTo');if(sh.length)shareItem('task',obj,sh);
   },(f,close)=>{bindPick(f);const d=f.querySelector('[data-del]');d&&d.addEventListener('click',()=>{S.tasks=S.tasks.filter(x=>x!==t);save();close();render();toast('Deber borrado',()=>{S.tasks.push(t);save();render()})})});
 }
 function openExamModal(e){
@@ -1084,12 +1194,14 @@ function openExamModal(e){
    <label>Hora (opcional)<input class="field" type="time" name="time" value="${e.time||''}"></label>
    <label class="full">Temario, un punto por línea<textarea class="field" name="topics" placeholder="Camp gravitatori&#10;Lleis de Kepler&#10;Problemes de satèl·lits">${esc(e.topics.map(t=>t.t).join('\n'))}</textarea></label>
    <label class="full">Notas<textarea class="field" name="notes" placeholder="Qué entra, qué dijo el profe…">${esc(e.notes)}</textarea></label>
+   ${sharePickHTML(e,n)}
   </div>${foot(!n)}`,fd=>{
     const title=fd.get('title').trim()||('Examen '+subj(fd.get('subj')).name);
     const lines=fd.get('topics').split('\n').map(x=>x.trim()).filter(Boolean);
     const topics=lines.map(t=>({t,done:!!e.topics.find(o=>o.t===t&&o.done)}));
     const o={kind:fd.get('kind')||'',subj:fd.get('subj'),title,date:fd.get('date')||null,time:fd.get('time')||null,topics,notes:fd.get('notes').trim()};
-    if(n)S.exams.push({id:uid(),grade:null,...o});else Object.assign(e,o);save();render();toast(n?'Examen añadido':'Examen guardado');
+    let obj;if(n){obj={id:uid(),grade:null,...o};S.exams.push(obj)}else{Object.assign(e,o);obj=e}save();render();toast(n?'Examen añadido':'Examen guardado');
+    const sh=fd.getAll('shareTo');if(sh.length)shareItem('exam',obj,sh);
   },(f,close)=>{bindPick(f);const d=f.querySelector('[data-del]');d&&d.addEventListener('click',()=>{S.exams=S.exams.filter(x=>x!==e);save();close();render();toast('Examen borrado',()=>{S.exams.push(e);save();render()})})});
 }
 function openBlockModal(b){
@@ -1196,13 +1308,13 @@ function vNotas(){
     const g=all.filter(x=>x.subj===s.id),a=avgOf(g);
     return `<article class="ncard" style="--c:${s.color}">
       <div class="nhead"><div><div class="nname">${esc(s.name)}</div><div class="clabel" style="margin-top:2px">${g.length?`${g.length} ${g.length===1?'nota':'notas'}`:'Sin notas'}</div></div>
-      <div class="navg num ${a!=null&&a<5?'low':''}">${a!=null?a.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}):'–'}</div></div>
+      <div class="navg num ${a!=null&&a<5?'low':''}">${a!=null?a.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}):''}</div></div>
       ${a!=null?`<div class="nbar"><i style="width:${a*10}%"></i></div>`:''}
       <div class="nlist">${g.map(x=>`<div class="nrow" data-ctx="${x.src}:${x.id}" title="Clic derecho para editar o borrar"><span class="nt">${esc(x.title)}</span><span class="nd">${x.date?fmtDate(x.date):''}</span><b class="num ${x.grade<5?'low':''}">${fmtG(x.grade)}</b></div>`).join('')}</div>
       <div class="nadd"><input type="text" data-gt="${s.id}" placeholder="Examen" aria-label="Examen de ${esc(s.name)}"><input type="text" inputmode="decimal" data-gv="${s.id}" placeholder="Nota" aria-label="Nota de ${esc(s.name)}"><button type="button" class="iconbtn" data-gaddc="${s.id}" aria-label="Añadir nota">${I.plus}</button></div>
     </article>`}).join('');
   return `<div class="topbar"><h1>Notas<span class="sub">Una casilla por asignatura. Escribe el examen y la nota abajo y pulsa Enter. Clic derecho sobre una nota para editarla o borrarla.</span></h1>
-   <div class="ntotal"><div class="avgbig num" style="${avg!=null&&avg<5?'color:var(--red)':''}">${avg!=null?avg.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}):'–'}</div><div class="clabel">media general, ${all.length} ${all.length===1?'nota':'notas'}</div></div></div>
+   <div class="ntotal"><div class="avgbig num" style="${avg!=null&&avg<5?'color:var(--red)':''}">${avg!=null?avg.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}):'<span style="font-size:20px;color:var(--ink-3);letter-spacing:0">Aún sin notas</span>'}</div><div class="clabel">media general, ${all.length} ${all.length===1?'nota':'notas'}</div></div></div>
   <div class="ngrid">${cards}</div>`;
 }
 function addGradeCard(id){
@@ -1511,7 +1623,7 @@ function reqHTML(){
   const fr=Object.entries(SOC.amigos).filter(([,v])=>v.estado==='recibida'),sh=Object.entries(SOC.bandeja);
   if(!fr.length&&!sh.length)return '';
   const KN={task:'un deber',exam:'un examen'},kn=x=>x.kind==='recordatorio'?'un recordatorio':x.kind==='presentacion'?'una presentación':KN[x.tipo]||'algo';
-  return `<section class="panel reqpanel"><h2>Solicitudes<span class="count">${fr.length+sh.length}</span></h2>
+  return `<section class="panel reqpanel"><h2>Solicitudes<span class="count">${fr.length+sh.length}</span>${sh.length>1?`<button class="btn sm primary" data-shall style="margin-left:auto">Aceptar todo</button>`:''}</h2>
    ${fr.map(([u,v])=>`<div class="req"><span class="av">${esc(v.nombre.charAt(0).toUpperCase())}</span><div class="tx"><b>${esc(v.nombre)}</b> quiere ser tu amigo<small>Podréis compartiros deberes y exámenes</small></div><div class="bt"><button class="btn sm primary" data-fryes="${u}">Sí</button><button class="btn sm" data-frno="${u}">No</button></div></div>`).join('')}
    ${sh.map(([id,x])=>`<div class="req"><span class="av">${esc(String(x.de||'?').charAt(0).toUpperCase())}</span><div class="tx"><b>${esc(x.de)}</b> quiere compartir ${kn(x)} contigo<small>${esc(x.titulo)}</small></div><div class="bt"><button class="btn sm primary" data-shyes="${id}">Sí</button><button class="btn sm" data-shno="${id}">No</button></div></div>`).join('')}
   </section>`;
@@ -1523,7 +1635,7 @@ function vAmigos(){
   ${reqHTML()}
   <div class="grid2"><section class="panel"><h2>Tus amigos<span class="count">${ok.length}</span></h2>
     <div class="fradd"><input id="frName" placeholder="Nombre de usuario de tu amigo" autocapitalize="off" spellcheck="false" aria-label="Nombre de usuario"><button class="btn primary" data-fradd>${I.plus}Añadir</button></div>
-    <div class="list">${ok.map(([u,v])=>`<div class="item"><div class="body"><div class="title">${esc(v.nombre)}</div><div class="meta">Amigo</div></div><button class="iconbtn" data-frno="${u}" aria-label="Quitar a ${esc(v.nombre)}" title="Quitar">${I.trash}</button></div>`).join('')}
+    <div class="list">${ok.map(([u,v])=>`<div class="item"><div class="body"><div class="title">${esc(v.nombre)}</div><div class="meta"><label class="autosh"><input type="checkbox" class="chk" data-autosh="${u}" ${(S.autoShare||{})[u]?'checked':''}>Compartir siempre lo nuevo</label></div></div><button class="iconbtn" data-frno="${u}" aria-label="Quitar a ${esc(v.nombre)}" title="Quitar">${I.trash}</button></div>`).join('')}
     ${env.map(([u,v])=>`<div class="item"><div class="body"><div class="title">${esc(v.nombre)}</div><div class="meta">Esperando a que acepte</div></div><button class="iconbtn" data-frno="${u}" aria-label="Cancelar solicitud" title="Cancelar">${I.trash}</button></div>`).join('')}
     ${!ok.length&&!env.length?'<div class="empty">Escribe el nombre de usuario de un amigo para enviarle una solicitud.</div>':''}</div></section>
   <section class="panel"><h2>Compartido<span class="count">${shared.length}</span></h2>
@@ -1538,7 +1650,33 @@ document.addEventListener('click',e=>{
   else if(t.dataset.shyes)answerShare(t.dataset.shyes,true);
   else if(t.dataset.shno)answerShare(t.dataset.shno,false);
 });
+document.addEventListener('change',e=>{const u=e.target.dataset&&e.target.dataset.autosh;if(!u)return;S.autoShare=S.autoShare||{};if(e.target.checked)S.autoShare[u]=true;else delete S.autoShare[u];save();
+  toast(e.target.checked?'Todo lo nuevo se compartirá con '+(SOC.amigos[u]?.nombre||'tu amigo'):'Ya no se comparte automáticamente')});
+document.addEventListener('click',async e=>{if(!e.target.closest('[data-shall]'))return;const ids=Object.keys(SOC.bandeja);for(const id of ids){await answerShare(id,true)}toast(ids.length+' cosas añadidas')});
 document.addEventListener('keydown',e=>{if(e.target.id==='frName'&&e.key==='Enter'){e.preventDefault();addFriend()}});
+
+
+/* ---------- Expulsión por el administrador ---------- */
+let FRESH_LOGIN=false,kickOff=null;
+const kickKey=()=>'2batx.kickAck.'+CUR.uid;
+async function kickWatch(){
+  if(!CUR)return;const me=CUR.uid,r=firebase.database().ref('expulsados/'+me);
+  if(FRESH_LOGIN){FRESH_LOGIN=false;try{const v=(await r.get()).val();localStorage.setItem(kickKey(),String(v&&v.t||0))}catch(e){}}
+  const f=sn=>{const v=sn.val();if(!v||!CUR||CUR.uid!==me)return;const ack=+localStorage.getItem('2batx.kickAck.'+me)||0;if((+v.t||0)<=ack)return;
+    localStorage.setItem('2batx.kickAck.'+me,String(v.t));kicked()};
+  r.on('value',f,()=>{});kickOff=()=>r.off('value',f);
+}
+async function kicked(){
+  clearTimeout(saveT);remoteRef=null;if(unsubSnap)unsubSnap();unsubSnap=null;
+  try{localStorage.removeItem(LS)}catch(e){}
+  if(kickOff)kickOff();kickOff=null;socialStop();$('#onb').hidden=true;ONB=null;
+  $('#modalRoot').innerHTML='';
+  const d=document.createElement('div');d.className='scrim';d.style.zIndex='99';
+  d.innerHTML=`<div class="modal" style="text-align:center"><div style="font-size:42px;line-height:1">⛔</div><h3 style="margin:10px 0 8px">Te han expulsado</h3><p style="color:var(--ink-2);margin:0 0 18px">El administrador ha cerrado tu cuenta y ha borrado tus datos. Puedes volver a entrar cuando quieras, pero empezarás de cero.</p><button class="btn primary" style="width:100%;justify-content:center" id="kickOk">Entendido</button></div>`;
+  document.body.appendChild(d);
+  await firebase.auth().signOut().catch(()=>{});
+  d.querySelector('#kickOk').onclick=()=>d.remove();
+}
 
 /* ---------- Administrador ---------- */
 const ADMIN_PASS='350900';
@@ -1566,15 +1704,133 @@ async function openAdmin(){
   const body=$('#admBody');if(!body)return;
   body.innerHTML=`<div class="adm-sum"><div><b class="num">${rows.length}</b><span>cuentas</span></div><div><b class="num">${act}</b><span>activas</span></div><div><b class="num">${inact.length}</b><span>inactivas (+${INACTIVO_DIAS} días)</span></div></div>
    <div class="adm-list">${rows.map(r=>`<div class="adm-row"><span class="av">${esc(r.nombre.charAt(0).toUpperCase())}</span><div class="nm"><b>${esc(r.nombre)}</b><small>Última vez ${agoTxt(r.ls)}, ${r.n} ${r.n===1?'cosa apuntada':'cosas apuntadas'}</small></div>
-     ${r.me?'<span class="pill me">Tú</span>':`<span class="pill ${r.activo?'on':'off'}">${r.activo?'Activa':'Inactiva'}</span><button type="button" class="iconbtn" data-admdel="${r.uid}" data-admname="${esc(r.nombre)}" aria-label="Eliminar ${esc(r.nombre)}" title="Eliminar">${I.trash}</button>`}</div>`).join('')||'<div class="empty">No hay cuentas.</div>'}</div>
-   ${inact.length?`<button type="button" class="btn danger" data-admdelall style="margin-top:12px;width:100%;justify-content:center">${I.trash}Eliminar las ${inact.length} cuentas inactivas</button>`:''}
-   <p class="hint">Eliminar borra todos los datos de esa cuenta. El usuario y la contraseña siguen existiendo en Firebase Authentication; si entra otra vez, empezará de cero.</p>`;
-  body.querySelectorAll('[data-admdel]').forEach(b=>b.onclick=async()=>{if(!confirm(`¿Eliminar los datos de ${b.dataset.admname}? No se puede deshacer.`))return;
-    try{await firebase.database().ref('dietari/'+b.dataset.admdel).remove();toast('Cuenta eliminada');openAdmin()}catch(e){toast('No se ha podido eliminar')}});
-  const da=body.querySelector('[data-admdelall]');if(da)da.onclick=async()=>{if(!confirm(`¿Eliminar las ${inact.length} cuentas inactivas? No se puede deshacer.`))return;
-    try{const upd={};inact.forEach(r=>upd[r.uid]=null);await firebase.database().ref('dietari').update(upd);toast(`${inact.length} cuentas eliminadas`);openAdmin()}catch(e){toast('No se ha podido eliminar')}};
+     ${r.me?'<span class="pill me">Tú</span>':`<span class="pill ${r.activo?'on':'off'}">${r.activo?'Activa':'Inactiva'}</span><button type="button" class="btn sm danger" data-admdel="${r.uid}" data-admname="${esc(r.nombre)}" aria-label="Expulsar a ${esc(r.nombre)}">Expulsar</button>`}</div>`).join('')||'<div class="empty">No hay cuentas.</div>'}</div>
+   ${inact.length?`<button type="button" class="btn danger" data-admdelall style="margin-top:12px;width:100%;justify-content:center">${I.trash}Expulsar las ${inact.length} cuentas inactivas</button>`:''}
+   <p class="hint">Expulsar cierra la sesión de esa persona en todos sus dispositivos al momento, le avisa y borra sus datos. Si vuelve a entrar, empezará de cero.</p>`;
+  const expel=async uids=>{const upd={},t=firebase.database.ServerValue?firebase.database.ServerValue.TIMESTAMP:Date.now();uids.forEach(u=>{upd['expulsados/'+u]={t,por:myName()};upd['dietari/'+u]=null});await firebase.database().ref().update(upd)};
+  body.querySelectorAll('[data-admdel]').forEach(b=>b.onclick=async()=>{if(!confirm(`¿Expulsar a ${b.dataset.admname}? Se le cerrará la sesión, le saldrá un aviso y se borrarán sus datos.`))return;
+    try{await expel([b.dataset.admdel]);toast(b.dataset.admname+' expulsado');openAdmin()}catch(e){toast('No se ha podido expulsar')}});
+  const da=body.querySelector('[data-admdelall]');if(da)da.onclick=async()=>{if(!confirm(`¿Expulsar las ${inact.length} cuentas inactivas? Se borrarán sus datos.`))return;
+    try{await expel(inact.map(r=>r.uid));toast(`${inact.length} cuentas expulsadas`);openAdmin()}catch(e){toast('No se ha podido expulsar')}};
 }
 document.addEventListener('click',e=>{if(e.target.closest('[data-admin]')){if(!CUR)return;openAdminGate()}});
+
+
+/* ---------- Cuestionario de estudios ---------- */
+const NIV=[
+ {id:'eso',n:'ESO',d:'Secundaria',cursos:4},
+ {id:'bach',n:'Bachillerato',d:'1º o 2º',cursos:2,mod:true},
+ {id:'fpb',n:'FP Básica',d:'Ciclo formativo',cursos:2,nombre:'¿Qué ciclo?',ph:'Ej.: Informática y Comunicaciones'},
+ {id:'gm',n:'FP Grado Medio',d:'Ciclo formativo',cursos:2,nombre:'¿Qué ciclo?',ph:'Ej.: Sistemas Microinformáticos y Redes'},
+ {id:'gs',n:'FP Grado Superior',d:'Ciclo formativo',cursos:2,nombre:'¿Qué ciclo?',ph:'Ej.: DAM, DAW, ASIR…'},
+ {id:'ce',n:'Curso de especialización',d:'Después de un ciclo',cursos:0,nombre:'¿Qué curso?',ph:'Ej.: Ciberseguridad'},
+ {id:'uni',n:'Universidad',d:'Grado',cursos:6,nombre:'¿Qué grado?',ph:'Ej.: Ingeniería Aeroespacial'},
+ {id:'master',n:'Máster',d:'Posgrado',cursos:2,nombre:'¿Qué máster?',ph:'Ej.: Máster en Formación del Profesorado'},
+ {id:'doc',n:'Doctorado',d:'Tesis',cursos:0,nombre:'¿Sobre qué?',ph:'Tema de la tesis'},
+ {id:'artes',n:'Enseñanzas artísticas',d:'Música, danza, diseño…',cursos:4,nombre:'¿Qué estudias?',ph:'Ej.: Conservatorio de Música'},
+ {id:'eoi',n:'Escuela de Idiomas',d:'EOI',niveles:['A1','A2','B1','B2','C1','C2'],nombre:'¿Qué idioma?',ph:'Ej.: Inglés'},
+ {id:'acceso',n:'Prueba de acceso',d:'PAU, mayores de 25…',cursos:0},
+ {id:'opos',n:'Oposiciones',d:'Preparación',cursos:0,nombre:'¿A qué te presentas?',ph:'Ej.: Policía Nacional'},
+ {id:'primaria',n:'Primaria',d:'De 1º a 6º',cursos:6},
+ {id:'otro',n:'Otro',d:'Lo que sea',cursos:0,nombre:'¿Qué estudias?',ph:'Escríbelo aquí'}
+];
+const MODS=[['ciencias','Ciencias y Tecnología'],['sociales','Humanidades y Ciencias Sociales'],['artes','Artes'],['general','General']];
+const PRESET={
+ primaria:{base:['Lengua','Matemáticas','Inglés','Ciencias de la Naturaleza','Ciencias Sociales','Educación Física','Música','Plástica'],opt:['Català','Valencià','Euskera','Galego','Religión','Francés']},
+ eso:{base:['Lengua Castellana','Matemáticas','Inglés','Geografía e Historia','Biología y Geología','Física y Química','Educación Física','Tecnología','Música','Plástica'],opt:['Català','Valencià','Euskera','Galego','Latín','Francés','Economía','Digitalización','Religión','Valores Éticos']},
+ bach1:['Lengua Castellana I','Inglés I','Filosofía','Educación Física'],
+ bach2:['Lengua Castellana II','Inglés II','Historia de España','Historia de la Filosofía'],
+ mod:{ciencias:{1:['Matemáticas I','Física y Química','Biología y Geología','Dibujo Técnico I','Tecnología e Ingeniería I'],2:['Matemáticas II','Física','Química','Biología','Dibujo Técnico II','Tecnología e Ingeniería II','Geología']},
+  sociales:{1:['Matemáticas CCSS I','Economía','Historia del Mundo Contemporáneo','Latín I','Griego I','Literatura Universal'],2:['Matemáticas CCSS II','Geografía','Historia del Arte','Latín II','Griego II','Empresa y Diseño de Modelos de Negocio']},
+  artes:{1:['Dibujo Artístico I','Cultura Audiovisual','Proyectos Artísticos','Volumen','Análisis Musical I','Artes Escénicas I'],2:['Dibujo Artístico II','Diseño','Fundamentos Artísticos','Técnicas de Expresión Gráfico-Plástica','Historia de la Música y la Danza','Artes Escénicas II']},
+  general:{1:['Matemáticas Generales','Economía, Emprendimiento y Actividad Empresarial'],2:['Ciencias Generales','Movimientos Culturales y Artísticos']}},
+ bachOpt:['Català','Valencià','Euskera','Galego','Francés','Psicología','TIC','Religión','Segunda Lengua Extranjera']
+};
+let ONB=null;
+function courseDefaults(niv,curso){const n=new Date();const y=n.getMonth()>=6?n.getFullYear():n.getFullYear()-1;
+  if(niv==='uni'||niv==='master'||niv==='doc')return{start:`${y}-09-15`,end:`${y+1}-06-30`};
+  if(niv==='bach'&&curso===2)return{start:`${y}-09-08`,end:`${y+1}-05-22`};
+  if(niv==='opos'||niv==='acceso')return{start:ds(new Date()),end:`${y+1}-06-05`};
+  return{start:`${y}-09-08`,end:`${y+1}-06-19`}}
+function subjOptions(){const o=ONB;if(o.nivel==='bach'){const c=o.curso||1;return[...PRESET['bach'+c],...(o.mod?PRESET.mod[o.mod][c]:[]),...PRESET.bachOpt,...o.extra]}
+  const p=PRESET[o.nivel];return p?[...p.base,...p.opt,...o.extra]:[...o.extra]}
+function presetSelect(){const o=ONB;o.subs=new Set();if(o.nivel==='bach'){const c=o.curso||1;PRESET['bach'+c].forEach(x=>o.subs.add(x))}else if(PRESET[o.nivel])PRESET[o.nivel].base.forEach(x=>o.subs.add(x))}
+function openOnb(fromSettings){
+  const hasData=S.tasks.length+S.exams.length+S.blocks.length>0;
+  const p=S.perfil&&!S.perfil.skipped?S.perfil:{};
+  ONB={step:0,nivel:p.nivel||null,curso:p.curso||null,mod:p.mod||null,nombre:p.nombre||'',start:S.course?.start||'',end:S.course?.end||'',extra:[],subs:new Set(),keep:hasData||!!fromSettings,fromSettings:!!fromSettings};
+  $('#onb').hidden=false;renderOnb();
+}
+function onbCanNext(){const o=ONB,N=NIV.find(n=>n.id===o.nivel),st=['nivel','curso','fechas','asig','fin'][o.step];
+  if(st==='nivel')return!!o.nivel;
+  if(st==='curso')return(!(N.cursos||N.niveles)||!!o.curso)&&(!N.mod||!!o.mod);
+  if(st==='fechas')return!!o.start&&!!o.end&&o.end>o.start;
+  if(st==='asig')return o.keep||o.subs.size>0;return true}
+function etiqueta(o){const N=NIV.find(n=>n.id===o.nivel);if(!N)return'';
+  const c=o.curso;const base=N.niveles?`${N.n} ${c}`:c?`${c}º de ${N.n}`:N.n;
+  return base+(o.nombre?` · ${o.nombre}`:'')}
+function corta(o){const N=NIV.find(n=>n.id===o.nivel);const c=o.curso;
+  const m={eso:`${c}º ESO`,bach:`${c}º BACH`,fpb:`${c}º FPB`,gm:`${c}º GM`,gs:`${c}º GS`,ce:'ESPECIALIZACIÓN',uni:`${c}º UNI`,master:'MÁSTER',doc:'DOCTORADO',artes:`${c}º ARTES`,eoi:`EOI ${c}`,acceso:'ACCESO',opos:'OPOSICIONES',primaria:`${c}º PRIMARIA`,otro:'MCF'};
+  return m[o.nivel]||(N?N.n.toUpperCase():'MCF')}
+function renderOnb(){
+  const o=ONB,N=NIV.find(n=>n.id===o.nivel),steps=['nivel','curso','fechas','asig','fin'],st=steps[o.step];let b='';
+  if(st==='nivel')b=`<div class="oq">¿Qué estás estudiando?</div><div class="ohelp">Así preparo la app para tu curso. Lo puedes cambiar cuando quieras en Ajustes.</div>
+    <div class="ogrid">${NIV.map(n=>`<button type="button" class="opt ${o.nivel===n.id?'on':''}" data-onbniv="${n.id}">${n.n}<small>${n.d}</small></button>`).join('')}</div>`;
+  if(st==='curso'){
+    b=`<div class="oq">${N.niveles?'¿Qué nivel?':N.cursos?'¿Qué curso?':'Cuéntame un poco más'}</div><div class="ohelp">${esc(N.n)}</div>`;
+    if(N.cursos||N.niveles){const opts=N.niveles||[...Array(N.cursos)].map((_,i)=>i+1);b+=`<div class="ogrid small">${opts.map(c=>`<button type="button" class="opt ${o.curso===c?'on':''}" data-onbcur="${c}">${N.niveles?c:c+'º'}</button>`).join('')}</div>`}
+    if(N.mod)b+=`<div class="olabel">Modalidad</div><div class="ogrid">${MODS.map(([k,l])=>`<button type="button" class="opt ${o.mod===k?'on':''}" data-onbmod="${k}">${l}</button>`).join('')}</div>`;
+    if(N.nombre)b+=`<div class="olabel">${N.nombre} <span style="font-weight:500;color:var(--ink-3)">(opcional)</span></div><input class="field" id="onbNombre" value="${esc(o.nombre)}" placeholder="${esc(N.ph||'')}" autocomplete="off">`;
+    if(!N.cursos&&!N.niveles&&!N.mod&&!N.nombre)b+=`<div class="ohelp" style="margin-top:0">Todo listo, pasa al siguiente paso.</div>`;
+  }
+  if(st==='fechas')b=`<div class="oq">¿Cuándo empiezas y cuándo acabas?</div><div class="ohelp">El primer y el último día de clase. Con esto la app te cuenta los días que quedan.</div>
+    <div class="odates"><label>Empiezo el<input class="field" type="date" id="onbStart" value="${o.start}"></label><label>Acabo el<input class="field" type="date" id="onbEnd" value="${o.end}"></label></div>`;
+  if(st==='asig'){const opts=[...new Set(subjOptions())];
+    b=`<div class="oq">¿Qué asignaturas tienes?</div><div class="ohelp">Toca para marcar o desmarcar. Si falta alguna, añádela abajo.</div>
+    ${o.fromSettings||S.tasks.length+S.exams.length>0?`<label class="okeep"><input type="checkbox" class="chk" id="onbKeep" ${o.keep?'checked':''}>Mantener mis asignaturas actuales</label>`:''}
+    <div style="${o.keep?'opacity:.35;pointer-events:none':''}"><div class="ochips">${opts.map(x=>`<button type="button" class="ochip ${o.subs.has(x)?'on':''}" data-onbsub="${esc(x)}">${esc(x)}</button>`).join('')}</div>
+    <div class="oadd" style="margin-top:12px"><input class="field" id="onbAdd" placeholder="Añadir otra asignatura o módulo" autocomplete="off"><button type="button" class="btn" data-onbadd>${I.plus}Añadir</button></div></div>`}
+  if(st==='fin'){const L=(k,v)=>`<div><span>${k}</span><b>${esc(v)}</b></div>`;
+    b=`<div class="oq">¡Todo listo!</div><div class="ohelp">Revisa que esté bien. Puedes cambiarlo en Ajustes.</div>
+    <div class="osum">${L('Estudias',etiqueta(o))}${o.mod?L('Modalidad',MODS.find(m=>m[0]===o.mod)[1]):''}${L('Empiezas',fmtDate(o.start))}${L('Acabas',fmtDate(o.end))}${L('Asignaturas',o.keep?'Las que ya tenías':o.subs.size)}</div>`}
+  const can=onbCanNext();
+  $('#onbBox').innerHTML=`<div class="oprog">${steps.map((_,i)=>`<i class="${i<=o.step?'on':''}"></i>`).join('')}</div>${b}
+   <div class="ofoot">${o.step>0?`<button type="button" class="btn" data-onbback>Atrás</button>`:`<button type="button" class="btn ghost" data-onbskip>${o.fromSettings?'Cancelar':'Ahora no'}</button>`}<button type="button" class="btn primary" data-onbnext ${can?'':'disabled'}>${st==='fin'?'Empezar':'Siguiente'}</button></div>`;
+  $('#onb').scrollTop=0;
+}
+function onbRefreshBtn(){const b=document.querySelector('[data-onbnext]');if(b)b.disabled=!onbCanNext()}
+function onbFinish(){const o=ONB;checkpoint();
+  S.perfil={nivel:o.nivel,curso:o.curso,mod:o.mod,nombre:o.nombre.trim(),etiqueta:etiqueta(o),corta:corta(o)};
+  S.course={start:o.start,end:o.end};
+  if(!o.keep){const old=S.subjects;S.subjects=[...o.subs].map((n,i)=>{const ex=old.find(x=>x.name===n);return ex||{id:uid(),name:n,color:PALETTE[i%PALETTE.length]}})}
+  $('#onb').hidden=true;ONB=null;save();render();toast('¡Listo! Tu calendario está preparado')}
+document.addEventListener('click',e=>{if(!ONB||!e.target.closest('#onb'))return;const t=e.target.closest('button');if(!t)return;const o=ONB;
+  if(t.dataset.onbniv){if(o.nivel!==t.dataset.onbniv){o.nivel=t.dataset.onbniv;o.curso=null;o.mod=null;o.nombre=''}renderOnb()}
+  else if(t.dataset.onbcur){o.curso=isNaN(+t.dataset.onbcur)?t.dataset.onbcur:+t.dataset.onbcur;renderOnb()}
+  else if(t.dataset.onbmod){o.mod=t.dataset.onbmod;renderOnb()}
+  else if(t.dataset.onbsub){const x=t.dataset.onbsub;o.subs.has(x)?o.subs.delete(x):o.subs.add(x);t.classList.toggle('on');onbRefreshBtn()}
+  else if(t.dataset.onbadd!==undefined){const i=$('#onbAdd');const v=i.value.trim();if(v){o.extra.push(v);o.subs.add(v);renderOnb();setTimeout(()=>$('#onbAdd')?.focus(),0)}}
+  else if(t.dataset.onbback!==undefined){o.step--;renderOnb()}
+  else if(t.dataset.onbskip!==undefined){if(!o.fromSettings&&!S.perfil){S.perfil={skipped:true,corta:'MCF',etiqueta:''};save()}$('#onb').hidden=true;ONB=null;render()}
+  else if(t.dataset.onbnext!==undefined&&onbCanNext()){const st=['nivel','curso','fechas','asig','fin'][o.step];
+    if(st==='curso'){const d=courseDefaults(o.nivel,o.curso);if(!o.start||!o.fromSettings)o.start=d.start;if(!o.end||!o.fromSettings)o.end=d.end;if(!o.subs.size)presetSelect()}
+    if(st==='fin'){onbFinish();return}o.step++;renderOnb()}
+});
+document.addEventListener('input',e=>{if(!ONB)return;const id=e.target.id;
+  if(id==='onbNombre')ONB.nombre=e.target.value;else if(id==='onbStart')ONB.start=e.target.value;else if(id==='onbEnd')ONB.end=e.target.value;onbRefreshBtn()});
+document.addEventListener('change',e=>{if(!ONB)return;if(e.target.id==='onbKeep'){ONB.keep=e.target.checked;renderOnb()}});
+document.addEventListener('keydown',e=>{if(ONB&&e.target.id==='onbAdd'&&e.key==='Enter'){e.preventDefault();document.querySelector('[data-onbadd]').click()}});
+
+/* ---------- Botón flotante (móvil) ---------- */
+document.addEventListener('click',e=>{if(e.target.closest('[data-reonb]'))openOnb(true)});
+document.addEventListener('click',e=>{if(!e.target.closest('[data-fab]'))return;
+  const it=[['task','Deber',I.tasks],['exam','Examen',I.exams],['block','Bloque de estudio',I.plan],['class','Clase del horario',I.classes]];
+  modal(`<div class="sheet"><div class="grab"></div><div class="sgrid" style="grid-template-columns:repeat(2,1fr)">${it.map(([k,l,ic])=>`<button type="button" class="sitem" data-fabnew="${k}">${ic}<span>${l}</span></button>`).join('')}<button type="button" class="sitem" data-fabnota>${I.grade}<span>Nota de examen</span></button><button type="button" class="sitem" data-search>${I.search||''}<span>Buscar</span></button></div>
+   <button type="button" class="btn ghost" data-close style="width:100%;justify-content:center;margin-top:10px">Cerrar</button></div>`,()=>{});
+  document.querySelector('.scrim').classList.add('sheet-scrim')});
+document.addEventListener('click',e=>{const n=e.target.closest('[data-fabnew],[data-fabnota]');if(!n)return;$('#modalRoot').innerHTML='';
+  if(n.dataset.fabnota!==undefined){UI.view='notas';render();return}
+  const k=n.dataset.fabnew;setTimeout(()=>{if(k==='task')openTaskModal();else if(k==='exam')openExamModal();else if(k==='class')openClassModal();else openBlockModal()},0)});
 
 let wasMob=innerWidth<=700;window.addEventListener('resize',()=>{const m=innerWidth<=700;if(m!==wasMob){wasMob=m;if(CUR)render()}});
 startAuth();
