@@ -2,6 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<script>try{var t=localStorage.getItem("2batx.theme");document.documentElement.setAttribute("data-theme",t&&t!=="auto"?t:(t==="auto"?"":"dark"));if(t==="auto")document.documentElement.removeAttribute("data-theme")}catch(e){document.documentElement.setAttribute("data-theme","dark")}</script>
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>2BATX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -258,6 +262,7 @@ table.grades td.n{text-align:right;font-weight:700}
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--sheet);padding:10px 16px;border-radius:12px;font-weight:600;font-size:14px;z-index:60;display:flex;gap:12px;align-items:center;box-shadow:0 12px 30px -10px rgba(0,0,0,.5);animation:fade .2s ease}
 .toast button{background:none;border:0;color:inherit;text-decoration:underline;font-weight:700}
 @keyframes fade{from{opacity:0}}
+@keyframes sheetUp{from{transform:translateY(40px);opacity:0}}
 @keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}}
 .toast{transform:translateX(-50%)}
 
@@ -345,6 +350,13 @@ table.grades td.n{text-align:right;font-weight:700}
 @keyframes flash{0%{box-shadow:0 0 0 3px var(--ink)}100%{box-shadow:0 0 0 0 transparent}}
 @media (max-width:900px){.hero-r{align-items:flex-start}.clock{display:none}}
 
+/* Carga */
+.boot{position:fixed;inset:0;z-index:95;display:grid;place-content:center;justify-items:center;gap:22px;background:var(--paper);transition:opacity .25s ease}
+.boot[hidden]{display:none}
+.boot.out{opacity:0;pointer-events:none}
+.spin{width:26px;height:26px;border:2.5px solid var(--line);border-top-color:var(--ink);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spin{animation-duration:2.4s!important;animation-name:spin!important}}
 /* Acceso */
 .auth{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;background-color:var(--paper);background-image:radial-gradient(var(--grid) 1px,transparent 1.4px);background-size:20px 20px;overflow:auto}
 .auth[hidden]{display:none}
@@ -363,6 +375,24 @@ table.grades td.n{text-align:right;font-weight:700}
 .whoami .av{width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--sheet);display:grid;place-items:center;font-weight:700;font-size:13px;flex:none}
 .whoami b{font-size:13.5px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
+/* Móvil */
+.mtop{display:none}
+.dpick{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:10px}
+.dpick button{border:1px solid var(--line);background:var(--sheet);border-radius:12px;padding:6px 0 5px;display:flex;flex-direction:column;align-items:center;gap:1px;color:var(--ink-2)}
+.dpick span{font-size:11px;font-weight:600}
+.dpick b{font-family:var(--display);font-size:18px;color:var(--ink);line-height:1.1}
+.dpick i{display:flex;gap:3px;height:5px}
+.dpick u{width:5px;height:5px;border-radius:50%;background:var(--ink-3);display:block}
+.dpick u.x{background:var(--red)}
+.dpick button.today b{color:var(--red)}
+.dpick button.on{background:var(--ink);border-color:var(--ink)}
+.dpick button.on b,.dpick button.on span{color:var(--sheet)}
+.sheet .grab{width:40px;height:4px;border-radius:4px;background:var(--line);margin:-6px auto 14px}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sitem{display:flex;flex-direction:column;align-items:center;gap:7px;border:1px solid var(--line);background:var(--sheet-2);border-radius:14px;padding:14px 6px;font-size:13px;font-weight:600;color:var(--ink)}
+.sitem svg{width:22px;height:22px}
+.sitem.on{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.mav{width:32px;height:32px;border-radius:50%;border:0;background:var(--ink);color:var(--sheet);font-weight:700;font-size:14px;display:grid;place-items:center}
 /* Mobile */
 .tabbar{display:none}
 @media (max-width:900px){
@@ -375,6 +405,30 @@ table.grades td.n{text-align:right;font-weight:700}
   .tabbar button svg{width:21px;height:21px}
   .tabbar button[aria-current="page"]{color:var(--pen)}
   .mobile-pomo{display:block!important}
+  .mtop{display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:30;padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px;margin-top:calc(-1 * env(safe-area-inset-top,0px));background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .mbrand{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.03em}
+  .mspacer{flex:1}
+  .mtop .iconbtn svg{width:20px;height:20px}
+  .main{padding:16px 12px calc(96px + env(safe-area-inset-bottom,0px))}
+  h1{font-size:30px}
+  h1 .sub{font-size:14px}
+  .topbar{margin-bottom:16px;gap:12px}
+  .topbar>.btn,.topbar>div{width:100%}
+  .topbar .btn{flex:1;justify-content:center}
+  .panel{padding:14px;border-radius:14px}
+  .wk-nav{width:100%}
+  .wk-nav [data-copyweek]{display:none}
+  .wk-nav .primary{margin-left:auto}
+  .planner-wrap{border-radius:14px}
+  .ph{min-height:0}
+  input,select,textarea{font-size:16px!important}
+  .tabbar button span{font-size:11px}
+  .scrim{place-items:end center;padding:0}
+  .modal{width:100%;max-height:92vh;border-radius:20px 20px 0 0;padding:20px 16px calc(18px + env(safe-area-inset-bottom,0px));animation:sheetUp .22s ease}
+  .ctx{max-width:calc(100vw - 16px)}
+  .toast{bottom:calc(90px + env(safe-area-inset-bottom,0px));max-width:calc(100vw - 24px)}
+  .ntotal .avgbig{font-size:52px}
+  .cbig{font-size:72px}
   .form{grid-template-columns:1fr}
   .bar{grid-template-columns:90px 1fr 54px}
 }
@@ -386,6 +440,7 @@ table.grades td.n{text-align:right;font-weight:700}
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 </head>
 <body>
+<header class="mtop" id="mtop"><div class="mbrand">2BATX</div><i class="dot" id="mSync"></i><div class="mspacer"></div><button class="iconbtn" data-search aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button><button class="mav" data-more aria-label="Más opciones" id="mAv"></button></header>
 <div class="app">
   <aside class="side" aria-label="Menú">
     <div class="brand">2BATX<small id="sideDate"></small></div>
@@ -398,7 +453,8 @@ table.grades td.n{text-align:right;font-weight:700}
   <main class="main" id="main"></main>
 </div>
 <nav class="tabbar" id="tabbar" aria-label="Menú"></nav>
-<div class="auth" id="auth">
+<div class="boot" id="boot" aria-label="Cargando"><div class="alogo">2BATX</div><div class="spin"></div></div>
+<div class="auth" id="auth" hidden>
   <form class="abox" id="authForm" novalidate>
     <div class="alogo">2BATX</div>
     <div class="asub" id="authSub">Inicia sesión para ver tu agenda.</div>
@@ -482,8 +538,8 @@ let S=migrate(seed());
 let UI={view:'hoy',weekRef:todayS(),taskFilter:'all',examFilter:'all'};
 let saveT=null, remoteRef=null, lastRemote=0;
 function save(){S.updatedAt=Date.now();try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}clearTimeout(saveT);saveT=setTimeout(pushRemote,700)}
-async function pushRemote(){if(!remoteRef)return;try{await remoteRef.set({json:JSON.stringify(S),updatedAt:S.updatedAt||0});setSync(true)}catch(e){setSync(false)}}
-function setSync(ok){$('#syncDot').classList.toggle('ok',ok);$('#syncTxt').textContent=ok?'Guardado en tu cuenta':'Guardado en este navegador'}
+async function pushRemote(){if(!remoteRef)return;try{await remoteRef.set({nombre:CUR?(CUR.displayName||CUR.email.split('@')[0]):'',json:JSON.stringify(S),updatedAt:S.updatedAt||0,ultimoGuardado:new Date().toISOString()});setSync(true)}catch(e){setSync(false)}}
+function setSync(ok){$('#syncDot').classList.toggle('ok',ok);const m=$('#mSync');if(m)m.classList.toggle('ok',ok);$('#syncTxt').textContent=ok?'Guardado en tu cuenta':'Guardado en este navegador'}
 /* ---------- Cuenta y sincronización con Firebase ---------- */
 // PEGA AQUÍ la configuración de tu proyecto de Firebase (Configuración del proyecto > Tus apps > Web)
 // Configuración del proyecto Marela
@@ -519,33 +575,40 @@ $('#authForm').addEventListener('submit',async e=>{
     if(AMODE==='signup'){
       if(p!==f.elements.pass2.value){authErr('Las contraseñas no coinciden.');return}
       const cr=await firebase.auth().createUserWithEmailAndPassword(userToEmail(u),p);
-      await cr.user.updateProfile({displayName:u});
+      await cr.user.updateProfile({displayName:u});try{await firebase.database().ref('dietari/'+cr.user.uid+'/nombre').set(u)}catch(e){}
     }else await firebase.auth().signInWithEmailAndPassword(userToEmail(u),p);
   }catch(err){authErr(AUTH_MSG[err.code]||'No se ha podido entrar ('+(err.code||err.message)+').')}
   finally{btn.disabled=false;btn.textContent=old}
 });
+function hideBoot(){const b=$('#boot');if(!b||b.hidden)return;b.classList.add('out');setTimeout(()=>{b.hidden=true;b.classList.remove('out')},260)}
+function showBoot(){const b=$('#boot');b.classList.remove('out');b.hidden=false}
+const readState=sn=>{const v=sn.val();if(!v||!v.json)return null;try{return JSON.parse(v.json)}catch(e){return null}};
 async function onLogin(user){
   CUR=user;LS='dietari2batx.'+user.uid;
   let local=null;try{const r=localStorage.getItem(LS);if(r)local=migrate(JSON.parse(r))}catch(e){}
   S=local||(()=>{const n=migrate(seed());n.tasks=[];n.exams=[];n.blocks=[];n.updatedAt=0;return n})();
-  $('#auth').hidden=true;render();
+  $('#auth').hidden=true;
+  // Con datos guardados en este dispositivo: se enseña al momento. Si no, se espera a la nube (máx. 5 s).
+  if(local){render();hideBoot()}
   const ref=firebase.database().ref('dietari/'+user.uid);
-  const readState=sn=>{const v=sn.val();if(!v||!v.json)return null;try{return JSON.parse(v.json)}catch(e){return null}};
-  try{const snap=await ref.get();remoteRef=ref;const remote=readState(snap);
-    if(remote&&(remote.updatedAt||0)>(S.updatedAt||0)){S=migrate(remote);try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}render()}
-    else await pushRemote();setSync(true);
+  try{
+    const snap=await Promise.race([ref.get(),new Promise((_,rj)=>setTimeout(()=>rj(new Error('timeout')),5000))]);
+    remoteRef=ref;const remote=readState(snap);
+    if(remote&&(remote.updatedAt||0)>(S.updatedAt||0)){S=migrate(remote);try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}}
+    else await pushRemote();
+    render();hideBoot();setSync(true);
     const onVal=sn=>{const r=readState(sn);if(r&&(r.updatedAt||0)>(S.updatedAt||0)){S=migrate(r);try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}if(!document.querySelector('.dragging'))render()}};
     ref.on('value',onVal);unsubSnap=()=>ref.off('value',onVal);
-  }catch(e){setSync(false);toast('No se ha podido conectar con el servidor. Se guarda en este dispositivo.')}
+  }catch(e){remoteRef=ref;render();hideBoot();setSync(false);toast('No se ha podido conectar con el servidor. Se guarda en este dispositivo y se subirá al volver la conexión.')}
 }
 async function logout(){
   if(!confirm('¿Cerrar sesión en este dispositivo?'))return;
   clearTimeout(saveT);await pushRemote();if(unsubSnap)unsubSnap();unsubSnap=null;remoteRef=null;CUR=null;
-  await firebase.auth().signOut();
+  showBoot();await firebase.auth().signOut();
 }
 function startAuth(){
-  if(!fbReady){$('#auth').hidden=false;authErr('Falta pegar la apiKey de Firebase en el código.');return}
-  firebase.auth().onAuthStateChanged(u=>{if(u)onLogin(u);else{CUR=null;$('#auth').hidden=false;$('#authForm').reset();setAuthMode('login')}});
+  if(!fbReady){hideBoot();$('#auth').hidden=false;authErr('Falta pegar la apiKey de Firebase en el código.');return}
+  firebase.auth().onAuthStateChanged(u=>{if(u)onLogin(u);else{CUR=null;$('#auth').hidden=false;$('#authForm').reset();setAuthMode('login');hideBoot()}});
 }
 
 const subj=id=>S.subjects.find(s=>s.id===id)||{id:'',name:'Otra',color:'#94A3B8'};
@@ -565,10 +628,18 @@ const VIEWS=[['hoy','Hoy','today'],['deberes','Deberes','tasks'],['examenes','Ex
 function renderNav(){
   const late=S.tasks.filter(t=>!t.done&&taskDue(t)<new Date()).length;
   $('#nav').innerHTML=VIEWS.map(([k,l,i])=>`<button data-go="${k}" ${UI.view===k?'aria-current="page"':''}>${I[i]}<span>${l}</span>${k==='deberes'&&late?`<span class="badge">${late}</span>`:''}</button>`).join('');
-  $('#tabbar').innerHTML=VIEWS.filter(v=>v[0]!=='horario').map(([k,l,i])=>`<button data-go="${k}" ${UI.view===k?'aria-current="page"':''}>${I[i]}<span>${k==='plan'?'Plan':l}</span></button>`).join('');
+  const MAIN=['hoy','deberes','examenes','plan'];const inMore=!MAIN.includes(UI.view);
+  $('#tabbar').innerHTML=VIEWS.filter(v=>MAIN.includes(v[0])).map(([k,l,i])=>`<button data-go="${k}" ${UI.view===k?'aria-current="page"':''}>${I[i]}<span>${k==='plan'?'Plan':l}</span></button>`).join('')+`<button data-more ${inMore?'aria-current="page"':''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></svg><span>${inMore?VIEWS.find(v=>v[0]===UI.view)[1].split(' ')[0]:'Más'}</span></button>`;
+  if(CUR){const nm=CUR.displayName||CUR.email.split('@')[0];$('#mAv').textContent=nm.charAt(0).toUpperCase()}
   const n=new Date();$('#sideDate').textContent=`${cap(WD[n.getDay()])}, ${n.getDate()} de ${MON[n.getMonth()]}`;
 }
-document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){UI.view=g.dataset.go;render();window.scrollTo({top:0})}});
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){if(g.closest('.sheet')){$('#modalRoot').innerHTML=''}UI.view=g.dataset.go;render();window.scrollTo({top:0})}});
+document.addEventListener('click',e=>{if(!e.target.closest('[data-more]'))return;const nm=CUR?(CUR.displayName||CUR.email.split('@')[0]):'';
+  const items=VIEWS.filter(v=>!['hoy','deberes','examenes','plan'].includes(v[0]));
+  modal(`<div class="sheet"><div class="grab"></div><div class="whoami" style="margin-bottom:12px"><span class="av">${esc(nm.charAt(0).toUpperCase())}</span><b>${esc(nm)}</b><button type="button" class="btn sm ghost" data-logout>Salir</button></div>
+   <div class="sgrid">${items.map(([k,l,i])=>`<button type="button" class="sitem ${UI.view===k?'on':''}" data-go="${k}">${I[i]}<span>${l}</span></button>`).join('')}<button type="button" class="sitem" data-search>${I.search||''}<span>Buscar</span></button></div>
+   <button type="button" class="btn ghost" data-close style="width:100%;justify-content:center;margin-top:10px">Cerrar</button></div>`,()=>{});
+  document.querySelector('.scrim').classList.add('sheet-scrim')});
 
 let lastView=null;
 function render(){
@@ -582,7 +653,7 @@ function render(){
   lastView=UI.view;
   if(UI.view==='horario')bindHorario();
 }
-function applyTheme(){const t=S.settings.theme;if(t==='auto')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',t)}
+function applyTheme(){const t=S.settings.theme;try{localStorage.setItem('2batx.theme',t)}catch(e){}if(t==='auto')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',t)}
 
 /* ---------- Vista: Hoy ---------- */
 function stripHTML(){
@@ -719,14 +790,14 @@ function vExamenes(){
 /* ---------- Planificador ---------- */
 const PX=1.15; // px por minuto
 function vPlan(){
-  const mon=mondayOf(pd(UI.weekRef)),days=[...Array(7)].map((_,i)=>addDays(mon,i));
+  const mon=mondayOf(pd(UI.weekRef)),days=[...Array(7)].map((_,i)=>addDays(mon,i));const MOB=innerWidth<=700;const shown=MOB?[pd(UI.weekRef)]:days;
   const st=S.settings.dayStart*60,en=S.settings.dayEnd*60,H=(en-st)*PX;
   const t=todayS(),sun=days[6];
   const title=mon.getMonth()===sun.getMonth()?`${mon.getDate()}–${sun.getDate()} de ${MON[mon.getMonth()]}`:`${mon.getDate()} ${MON[mon.getMonth()].slice(0,3)} – ${sun.getDate()} ${MON[sun.getMonth()].slice(0,3)}`;
   const weekMin=S.blocks.filter(b=>{const d=pd(b.date);return d>=mon&&d<=sun&&b.done}).reduce((a,b)=>a+blockMin(b),0);
   const planned=S.blocks.filter(b=>{const d=pd(b.date);return d>=mon&&d<=sun}).reduce((a,b)=>a+blockMin(b),0);
   let head='<div class="ph"></div>';
-  for(const d of days){const s=ds(d);
+  for(const d of shown){const s=ds(d);
     const ex=S.exams.filter(e=>e.date===s),du=S.tasks.filter(x=>x.due===s&&!x.done),un=S.blocks.filter(b=>b.date===s&&!b.start);
     head+=`<div class="ph ${s===t?'today':''}"><div class="d"><span>${WDS[d.getDay()]}</span><b class="num">${d.getDate()}</b></div>
       ${ex.map(e=>`<button class="chip exam" data-ctx="exam:${e.id}" data-goview="examenes" title="${esc(e.title)}"><span>${esc(e.title)}</span></button>`).join('')}
@@ -737,7 +808,7 @@ function vPlan(){
   let gut=`<div class="gutter" style="height:${H}px">`;for(let m=st;m<=en;m+=60)gut+=`<span class="num" style="top:${(m-st)*PX}px">${fromMin(m%1440)}</span>`;gut+='</div>';
   let cols='';
   const nowD=new Date(),nowM=nowD.getHours()*60+nowD.getMinutes();
-  for(const d of days){const s=ds(d),wd=d.getDay();
+  for(const d of shown){const s=ds(d),wd=d.getDay();
     let inner='';
     for(const c of S.classes.filter(c=>c.day===wd)){const a=Math.max(toMin(c.start),st),b=Math.min(toMin(c.end),en);if(b<=a)continue;inner+=`<div class="cls" style="top:${(a-st)*PX}px;height:${(b-a)*PX}px">${esc(subj(c.subj).name)}</div>`}
     const bl=S.blocks.filter(b=>b.date===s&&b.start).sort((a,b)=>toMin(a.start)-toMin(b.start));
@@ -758,10 +829,12 @@ function vPlan(){
   return `<div class="topbar"><h1>${cap(title)}<span class="sub">${Math.floor(planned/60)} h ${planned%60} min planificadas, ${Math.floor(weekMin/60)} h ${weekMin%60} min hechas esta semana.</span></h1>
    <div class="wk-nav"><button class="iconbtn" data-wk="-7" aria-label="Semana anterior">${I.left}</button><button class="btn sm" data-wk="0">Hoy</button><button class="iconbtn" data-wk="7" aria-label="Semana siguiente">${I.right}</button>
    <button class="btn sm" data-copyweek>${I.copy}Copiar semana anterior</button><button class="btn sm primary" data-new="block">${I.plus}Bloque</button></div></div>
-   <div class="planner-wrap"><div class="planner">${head}${gut}${cols}</div></div>
+   ${MOB?`<div class="dpick">${days.map(d=>{const s=ds(d);const nEx=S.exams.some(e=>e.date===s),nB=S.blocks.some(b=>b.date===s);return `<button type="button" class="${s===UI.weekRef?'on':''} ${s===t?'today':''}" data-pday="${s}"><span>${WDS[d.getDay()]}</span><b class="num">${d.getDate()}</b><i>${nEx?'<u class="x"></u>':''}${nB?'<u></u>':''}</i></button>`}).join('')}</div>`:''}
+   <div class="planner-wrap"><div class="planner" ${MOB?'style="grid-template-columns:46px minmax(0,1fr);min-width:0"':''}>${head}${gut}${cols}</div></div>
    <p class="hint">Haz clic en un hueco para crear un bloque de estudio. Arrastra un bloque para moverlo de hora o de día, y tira del borde inferior para alargarlo. Las clases de tu horario salen rayadas.</p>`;
 }
 document.addEventListener('click',e=>{
+  const pdy=e.target.closest('[data-pday]');if(pdy){UI.weekRef=pdy.dataset.pday;render();return}
   const w=e.target.closest('[data-wk]');if(w){const v=+w.dataset.wk;UI.weekRef=v===0?todayS():ds(addDays(pd(UI.weekRef),v));render();return}
   if(e.target.closest('[data-copyweek]')){copyPrevWeek();return}
   const au=e.target.closest('[data-addun]');if(au){openBlockModal({date:au.dataset.addun,start:null,end:null});return}
@@ -1258,7 +1331,7 @@ function openHelp(){
   const rows=[['N','Nuevo deber'],['E','Nuevo examen'],['B','Nuevo bloque de estudio'],['Ctrl K','Buscar'],['1 a 9','Cambiar de sección'],['← y →','Semana anterior o siguiente'],['T','Volver a esta semana'],['Supr','Borrar lo que tienes debajo del ratón'],['D','Duplicarlo'],['C','Copiarlo'],['V','Pegar en el hueco del planificador bajo el ratón'],['Ctrl Z','Deshacer'],['Clic derecho','Menú con todas las opciones'],['Mantener pulsado','El mismo menú en el móvil']];
   modal(`<h3>Atajos</h3><table class="grades">${rows.map(r=>`<tr><td style="width:40%"><span class="kbd2">${r[0]}</span></td><td>${r[1]}</td></tr>`).join('')}</table><div class="mfoot"><button type="button" class="btn primary" data-close>Entendido</button></div>`,()=>{});
 }
-document.addEventListener('click',e=>{if(e.target.closest('[data-search]'))openSearch();else if(e.target.closest('[data-help]'))openHelp()});
+document.addEventListener('click',e=>{if(e.target.closest('[data-search]')){if(e.target.closest('.sheet'))$('#modalRoot').innerHTML='';openSearch();return}else if(e.target.closest('[data-help]'))openHelp()});
 
 /* ---------- Teclado ---------- */
 let HOVER=null,HOVERPT={x:0,y:0};
@@ -1285,6 +1358,7 @@ document.addEventListener('keydown',e=>{
 /* ---------- Reloj ---------- */
 setInterval(()=>{const c=document.getElementById('clock');if(!c)return;const n=new Date();c.innerHTML=`${pad(n.getHours())}:${pad(n.getMinutes())}<small>${pad(n.getSeconds())}</small>`},1000);
 
+let wasMob=innerWidth<=700;window.addEventListener('resize',()=>{const m=innerWidth<=700;if(m!==wasMob){wasMob=m;if(CUR)render()}});
 startAuth();
 </script>
 </body>
