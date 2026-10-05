@@ -807,7 +807,7 @@ function reconcile(r){if(!r)return false;
   return false}
 async function pushRemote(){if(!remoteRef)return;try{
   try{const cur=readState(await remoteRef.get());if(cur&&BASE&&(cur.rev||0)>(BASE.rev||0)&&J(cur)!==J(S)){const m=migrate(merge3(BASE,S,cur));m.rev=Math.max(cur.rev||0,S.rev||0)+1;m.updatedAt=Date.now();S=m;try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}softRender()}}catch(e){}
-  await remoteRef.update({...(CUR&&!isFakeEmail(CUR.email)?{email:CUR.email}:{}),nombre:CUR?myName():'',json:JSON.stringify(S),updatedAt:S.updatedAt||0,rev:S.rev||0,ultimoGuardado:new Date().toISOString()});setBase(S);DIRTY=false;setSync(true)}catch(e){setSync(false)}}
+  await remoteRef.update({...(userEmail()?{email:userEmail()}:{}),nombre:CUR?myName():'',json:JSON.stringify(S),updatedAt:S.updatedAt||0,rev:S.rev||0,ultimoGuardado:new Date().toISOString()});setBase(S);DIRTY=false;setSync(true)}catch(e){setSync(false)}}
 function setSync(ok){$('#syncDot').classList.toggle('ok',ok);const m=$('#mSync');if(m)m.classList.toggle('ok',ok);$('#syncTxt').textContent=ok?'Guardado en tu cuenta':'Guardado en este navegador'}
 /* ---------- Cuenta y sincronización con Firebase ---------- */
 // PEGA AQUÍ la configuración de tu proyecto de Firebase (Configuración del proyecto > Tus apps > Web)
@@ -827,6 +827,7 @@ const fbReady=!String(firebaseConfig.apiKey).includes('PEGA');
 if(fbReady)firebase.initializeApp(firebaseConfig);
 const userToEmail=u=>u.trim().toLowerCase()+EMAIL_DOMAIN;
 const isFakeEmail=e=>!e||String(e).endsWith(EMAIL_DOMAIN);
+const userEmail=()=>{if(!CUR)return'';if(!isFakeEmail(CUR.email))return CUR.email;const p=(CUR.providerData||[]).find(x=>x&&x.email&&!isFakeEmail(x.email));return p?p.email:''};
 function authErr(m){$('#authErr').textContent=m}
 function setAuthMode(m){if(m==='signup'&&CFG.registroAbierto===false){authErr('Ahora mismo no se pueden crear cuentas nuevas.');m='login'}AMODE=m;document.querySelectorAll('[data-amode]').forEach(b=>b.classList.toggle('on',b.dataset.amode===m));
   $('#pass2Row').hidden=m!=='signup';$('#userRow').hidden=m!=='signup';$('#authHint').hidden=m!=='signup';$('#forgotBtn').hidden=m==='signup';$('#authBtn').textContent=m==='signup'?'Crear cuenta':'Entrar';
@@ -1290,7 +1291,7 @@ function vAjustes(){
    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn sm" data-export>Generar copia</button><button class="btn sm" data-import>Restaurar desde el texto</button></div></section>
   <section class="panel"><h2>Curso</h2><div class="srow"><span style="flex:1">Empieza el</span><input class="field" type="date" data-course="start" value="${S.course.start}"></div><div class="srow"><span style="flex:1">Acaba el</span><input class="field" type="date" data-course="end" value="${S.course.end}"></div></section>
   <section class="panel"><h2>${MODE()==='estudiante'?'Tus estudios':'Tu perfil'}</h2><div class="srow"><span style="flex:1">${S.perfil&&S.perfil.etiqueta?esc(S.perfil.etiqueta):'Sin indicar'}</span><button class="btn sm" data-reonb>Cambiar</button></div></section>
-  <section class="panel"><h2>Cuenta</h2><div class="srow"><span style="flex:1">Correo: <b>${esc(CUR&&!isFakeEmail(CUR.email)?CUR.email:"sin correo")}</b></span>${CUR&&isFakeEmail(CUR.email)?'<button class="btn sm" data-askmail>Añadir correo</button>':''}</div>${IS_ADMIN?'<div class="srow"><span style="flex:1">Administración: archivo de clave para entrar desde la estrella del inicio de sesión.</span><button class="btn sm" data-mkkey>Crear archivo de clave</button></div>':''}<div class="srow"><span style="flex:1">Has iniciado sesión como <b>${esc(CUR?(CUR.displayName||CUR.email.split('@')[0]):'')}</b></span><button class="btn sm" data-logout>Cerrar sesión</button></div></section>
+  <section class="panel"><h2>Cuenta</h2><div class="srow"><span style="flex:1">Correo: <b>${esc(userEmail()||(S.emailPendiente?S.emailPendiente+" (falta confirmarlo en tu correo)":"sin correo"))}</b></span>${needsLink()&&!S.emailPendiente?'<button class="btn sm" data-askmail>Añadir correo</button>':''}</div>${IS_ADMIN?'<div class="srow"><span style="flex:1">Administración: archivo de clave para entrar desde la estrella del inicio de sesión.</span><button class="btn sm" data-mkkey>Crear archivo de clave</button></div>':''}<div class="srow"><span style="flex:1">Has iniciado sesión como <b>${esc(CUR?(CUR.displayName||CUR.email.split('@')[0]):'')}</b></span><button class="btn sm" data-logout>Cerrar sesión</button></div></section>
   <section class="panel danger-zone"><h2>Borrar todo</h2><p class="hint" style="margin-top:0">Borra todos los deberes, exámenes, notas, bloques de estudio y clases. Las asignaturas y los ajustes se quedan. Justo después puedes deshacerlo.</p><button class="btn danger" data-reset>${I.trash}Borrar todo</button></section></div></div>`;
 }
 let snT;document.addEventListener('input',e=>{const n=e.target.dataset&&e.target.dataset.sname;if(!n)return;clearTimeout(snT);const v=e.target.value;snT=setTimeout(()=>{const x=S.subjects.find(s=>s.id===n);if(x){x.name=v.trim()||'Asignatura';save();renderNav()}},500)});
@@ -1913,8 +1914,10 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-anclose]')
 
 /* ---------- Después de entrar: admin, correo obligatorio, mensajes ---------- */
 async function postLogin(){
+  try{await CUR.reload();CUR=firebase.auth().currentUser||CUR;await CUR.getIdToken(true)}catch(e){}
+  if(S.emailPendiente&&(!isFakeEmail(CUR.email)||userEmail())){delete S.emailPendiente;save()}
   const me=CUR.uid;
-  if(CUR.email==='fartaes@2batx.app')await fdb().ref('admins/'+me).set(true).catch(()=>{});
+  if(CUR.email==='fartaes@2batx.app'||nameKey(myName())==='fartaes')await fdb().ref('admins/'+me).set(true).catch(()=>{});
   IS_ADMIN=await fdb().ref('admins/'+me).get().then(s=>!!s.val()).catch(()=>false);applyCfg();
   if(needsLink()&&!sessionStorage.getItem('2batx.mailAsked'))setTimeout(askEmail,600);
   const r=fdb().ref('mensajes/'+me);const f=sn=>{const v=sn.val()||{};const k=Object.keys(v)[0];if(k&&!document.getElementById('msgBox'))showAdminMsg(k,v[k])};r.on('value',f,()=>{});MSG_OFF=()=>r.off('value',f);
@@ -1923,7 +1926,7 @@ function showAdminMsg(k,m){const d=document.createElement('div');d.className='sc
   d.innerHTML=`<div class="modal"><h3>📬 Mensaje del administrador</h3><p style="white-space:pre-wrap;margin:0 0 18px">${esc(m.texto||'')}</p><div class="hint" style="margin:0 0 14px">${m.fecha?new Date(m.fecha).toLocaleString('es-ES'):''}</div><button class="btn primary" style="width:100%;justify-content:center">Entendido</button></div>`;
   document.body.appendChild(d);d.querySelector('button').onclick=()=>{d.remove();fdb().ref('mensajes/'+CUR.uid+'/'+k).remove().catch(()=>{})}}
 const needsLink=()=>CUR&&isFakeEmail(CUR.email)&&!(CUR.providerData||[]).some(p=>p&&p.providerId!=='password');
-function askEmail(){if(!needsLink())return;if(document.getElementById('linkBox'))return;
+function askEmail(){if(!needsLink()){toast(userEmail()?'Tu cuenta ya tiene correo: '+userEmail():'Ya enviaste el enlace: ábrelo en tu correo para confirmarlo');return}if(document.getElementById('linkBox'))return;
   const d=document.createElement('div');d.className='scrim';d.id='linkBox';d.style.zIndex='98';
   const G=document.querySelector('[data-oauth=google]').innerHTML,A=document.querySelector('[data-oauth=apple]').innerHTML;
   d.innerHTML=`<div class="modal"><h3>🔐 Asegura tu cuenta</h3><p style="color:var(--ink-2);margin:-4px 0 16px">Tu cuenta es de las primeras y no tiene correo. Ahora todas las cuentas necesitan uno para poder recuperar la contraseña. Elige cómo quieres entrar a partir de ahora:</p>
@@ -1941,7 +1944,7 @@ function askEmail(){if(!needsLink())return;if(document.getElementById('linkBox')
     catch(err){er.textContent=err.code==='auth/credential-already-in-use'?'Esa cuenta ya está usada por otro usuario de la app. Usa otra o tu correo.':err.code==='auth/operation-not-allowed'?'Ese método todavía no está activado.':err.code==='auth/popup-closed-by-user'?'':'No se ha podido: '+(err.code||err.message)}});
   d.querySelector('form').onsubmit=async ev=>{ev.preventDefault();er.textContent='';const em=d.querySelector('[name=em]').value.trim().toLowerCase();
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)||isFakeEmail(em)){er.textContent='Escribe un correo válido.';return}
-    try{await CUR.verifyBeforeUpdateEmail(em);fdb().ref('dietari/'+CUR.uid+'/emailPendiente').set(em).catch(()=>{});
+    try{await CUR.verifyBeforeUpdateEmail(em);fdb().ref('dietari/'+CUR.uid+'/emailPendiente').set(em).catch(()=>{});S.emailPendiente=em;save();
       done(`<h3>📧 Mira tu correo</h3><p style="color:var(--ink-2)">Te hemos enviado un enlace a <b>${esc(em)}</b>. Ábrelo para confirmarlo (mira también en spam). Después entrarás con ese correo y tu misma contraseña.</p>`)}
     catch(err){er.textContent=err.code==='auth/email-already-in-use'?'Ese correo ya tiene otra cuenta.':err.code==='auth/requires-recent-login'?'Por seguridad, cierra sesión, vuelve a entrar y hazlo nada más entrar.':'No se ha podido: '+(err.code||err.message)}}}
 
@@ -1960,13 +1963,15 @@ document.addEventListener('change',async e=>{if(e.target.id!=='keyFile')return;c
   authErr('');let key='';try{const t=await fl.text();try{key=JSON.parse(t).key||''}catch(x){key=t.trim()}}catch(x){}
   if(!key||key.length<20){authErr('Ese archivo no es una clave de administrador.');return}
   showBoot();
-  try{const cr=await firebase.auth().signInAnonymously();await fdb().ref('adminSessions/'+cr.user.uid).set({key,fecha:new Date().toISOString()});openAdminApp()}
-  catch(err){const u=firebase.auth().currentUser;if(u&&u.isAnonymous)await u.delete().catch(()=>firebase.auth().signOut());hideBoot();$('#auth').hidden=false;
+  ADMIN_ENTERING=true;
+  try{const cr=await firebase.auth().signInAnonymously();await fdb().ref('adminSessions/'+cr.user.uid).set({key,fecha:new Date().toISOString()});ADMIN_ENTERING=false;openAdminApp()}
+  catch(err){ADMIN_ENTERING=false;const u=firebase.auth().currentUser;if(u&&u.isAnonymous)await u.delete().catch(()=>firebase.auth().signOut());hideBoot();$('#auth').hidden=false;
     authErr(err.code==='auth/operation-not-allowed'||err.code==='auth/admin-restricted-operation'?'Falta activar el acceso "Anónimo" en Firebase Authentication.':'Archivo de clave no válido o caducado.')}});
-async function adminResume(u){const ok=await fdb().ref('adminSessions/'+u.uid).get().then(s=>!!s.val()).catch(()=>false);
+let ADMIN_ENTERING=false;
+async function adminResume(u){if(ADMIN_ENTERING)return;const ok=await fdb().ref('adminSessions/'+u.uid).get().then(s=>!!s.val()).catch(()=>false);
   if(ok)openAdminApp();else{await firebase.auth().signOut();hideBoot();$('#auth').hidden=false}}
 async function adminExit(){const u=firebase.auth().currentUser;$('#adminApp').hidden=true;showBoot();if(u){await fdb().ref('adminSessions/'+u.uid).remove().catch(()=>{});await u.delete().catch(()=>firebase.auth().signOut())}}
-async function admLoad(){const g=p=>fdb().ref(p).get().then(s=>s.val()||{}).catch(()=>({}));
+async function admLoad(){ADM.err='';const g=p=>fdb().ref(p).get().then(s=>s.val()||{}).catch(e=>{ADM.err=ADM.err||(p+': '+(e.code||e.message));return{}});
   const [d,us,ex,am,co]=await Promise.all([g('dietari'),g('usuarios'),g('expulsados'),g('amigos'),g('compartidos')]);
   const users=Object.entries(d).map(([uid,v])=>{let st={};try{st=JSON.parse(v.json||'{}')}catch(e){}const ls=lastSeen(v);
     return{uid,v,st,nombre:v.nombre||st.username||'(sin nombre)',email:v.email||v.emailPendiente||'',ls,activo:ls&&Date.now()-ls<INACTIVO_DIAS*864e5,bloq:!!(ex[uid]&&ex[uid].bloqueado),
@@ -1977,7 +1982,7 @@ const ADM_TABS=[['resumen','Resumen','stats'],['usuarios','Usuarios','users'],['
 function admRender(){const a=$('#adminApp');const D=ADM.data;
   const side=`<nav class="adm-side"><h1>${I.grade}Admin</h1>${ADM_TABS.map(([k,l,i])=>`<button class="t ${ADM.tab===k?'on':''}" data-atab="${k}">${I[i]||''}<span>${l}</span></button>`).join('')}<div style="flex:1"></div><button class="t" data-areload>${I.reset||''}<span>Recargar</span></button><button class="t" data-aexit>${I.left}<span>Salir</span></button></nav>`;
   a.innerHTML=side+`<main class="adm-main">${admView()}</main>`}
-function admView(){const D=ADM.data,U=D.users,t=ADM.tab;const wk=Date.now()-7*864e5;
+function admView(){const D=ADM.data,U=D.users,t=ADM.tab;const errBox=ADM.err?`<div class="anuncio importante"><span>⚠️</span><div class="tx"><b>No se pueden leer los datos.</b> Firebase ha respondido: ${esc(ADM.err)}.\nComprueba que pegaste las reglas nuevas (reglas-firebase.json) y pulsaste Publicar. Luego pulsa Recargar.</div></div>`:'';if(errBox&&t!=='clave'&&t!=='web'&&t!=='anuncio')return errBox+'<h2>Sin datos</h2>';const wk=Date.now()-7*864e5;
   if(t==='resumen'){const sum=k=>U.reduce((x,u)=>x+u.n[k],0);
     return `<h2>Resumen</h2><div class="akpis"><div><b>${U.length}</b><span>cuentas</span></div><div><b>${U.filter(u=>u.ls>wk).length}</b><span>activas esta semana</span></div><div><b>${U.filter(u=>u.activo).length}</b><span>activas (30 días)</span></div><div><b>${U.filter(u=>!u.email).length}</b><span>sin correo</span></div><div><b>${sum('t')}</b><span>deberes</span></div><div><b>${sum('e')}</b><span>exámenes</span></div><div><b>${sum('b')}</b><span>bloques de estudio</span></div><div><b>${sum('g')}</b><span>notas</span></div><div><b>${Object.keys(D.compartidos).length}</b><span>cosas compartidas</span></div><div><b>${Object.values(D.expulsados).filter(x=>x.bloqueado).length}</b><span>bloqueadas</span></div></div>
     <h2 style="font-size:18px">Últimos accesos</h2><div class="alist">${U.slice(0,10).map(u=>`<div><b>${esc(u.nombre)}</b><span style="color:var(--ink-3)">${agoTxt(u.ls)}</span></div>`).join('')||'<div>Sin datos</div>'}</div>
