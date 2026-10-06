@@ -13,7 +13,7 @@ try{var pl=localStorage.getItem("2batx.palette");if(pl){document.documentElement
 <meta name="apple-mobile-web-app-title" content="MCF Calendar">
 <meta name="application-name" content="MCF Calendar">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-npw/HSVmU8f4wZfxqI/fzDGQLKipBWI4CjFn4AfE4AY=' 'sha256-WU0uDcR+bETz15GQNiSaDtBApZIH1MWEbuwJ+BiXGS4=' https://www.gstatic.com https://apis.google.com https://www.google.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleusercontent.com https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com https://www.google.com; frame-src https://*.firebaseapp.com https://accounts.google.com https://appleid.apple.com https://www.google.com https://recaptcha.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-npw/HSVmU8f4wZfxqI/fzDGQLKipBWI4CjFn4AfE4AY=' 'sha256-uBld9IBWWK/llGiW7euVpPmDgX76Hz9qzZ2amu9PP04=' https://www.gstatic.com https://apis.google.com https://www.google.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleusercontent.com https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com https://www.google.com; frame-src https://*.firebaseapp.com https://accounts.google.com https://appleid.apple.com https://www.google.com https://recaptcha.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MCF Calendar</title>
@@ -606,6 +606,23 @@ body.support .mtop{top:48px}
 .pill.off{background:var(--red-soft);color:var(--red)}
 .pill.me{background:var(--sheet-2);color:var(--ink-2)}
 @media (max-width:900px){.adminstar{display:none}.main{padding-right:12px}}
+.wsfab svg{width:17px;height:17px}
+.wsfab[aria-expanded=true]{transform:rotate(45deg);color:var(--ink)}
+.mcfws{position:fixed;top:calc(60px + env(safe-area-inset-top,0px));right:14px;z-index:90;width:min(370px,calc(100vw - 24px));background:var(--sheet);border:1px solid var(--line);border-radius:26px;padding:16px;box-shadow:0 30px 80px -20px rgba(0,0,0,.85);animation:fade .18s ease}
+.mcfws .wsh{display:flex;align-items:center;gap:10px;padding:2px 4px 14px;border-bottom:1px solid var(--line);margin-bottom:14px;font-family:var(--display);font-weight:800;font-size:18px;color:var(--ink)}
+.mcfws .wsh .pl{width:30px;height:30px;border-radius:10px;background:var(--ink);color:var(--sheet);display:grid;place-items:center}
+.mcfws .wsh .pl svg{width:16px;height:16px}
+.mcfws .wsh small{display:block;font-family:var(--body);font-weight:500;font-size:12px;color:var(--ink-3)}
+.mcfws .wsg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.mcfws .wsa{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 4px 10px;border-radius:18px;text-decoration:none;color:var(--ink);font-size:12.5px;font-weight:600;text-align:center;border:1px solid transparent}
+.mcfws .wsa:hover{background:var(--sheet-2);border-color:var(--line)}
+.mcfws .wsa.here{background:var(--sheet-2);border-color:var(--line)}
+.mcfws .wsi{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;background:var(--g);box-shadow:inset 0 -3px 0 rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.25)}
+.mcfws .wsi svg{width:24px;height:24px;color:#fff}
+.mcfws .wst{position:absolute;top:6px;right:6px;font-size:9.5px;font-weight:800;border-radius:99px;padding:2px 6px;background:var(--ink);color:var(--sheet)}
+.mcfws .wsf{margin-top:12px;padding:12px 6px 2px;border-top:1px solid var(--line);color:var(--ink-3);font-size:12.5px;display:flex;justify-content:space-between;gap:10px}
+.mcfws .wsf a{color:var(--ink);font-weight:700;text-decoration:none}
+@media (max-width:900px){.mcfws{top:calc(62px + env(safe-area-inset-top,0px));right:8px}}
 /* Amigos */
 .kind{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;border:1px solid var(--line);border-radius:6px;padding:0 6px;color:var(--ink-2);background:var(--sheet-2);line-height:1.6}
 .kind svg{width:12px;height:12px}
@@ -741,7 +758,9 @@ body.support .mtop{top:48px}
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check-compat.js"></script>
 </head>
 <body>
-<header class="mtop" id="mtop"><div class="mbrand" id="mBrand">MCF</div><i class="dot" id="mSync"></i><div class="mspacer"></div><button class="iconbtn" data-search aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button><button class="mav" data-more aria-label="Más opciones" id="mAv"></button></header>
+<header class="mtop" id="mtop"><div class="mbrand" id="mBrand">MCF</div><i class="dot" id="mSync"></i><div class="mspacer"></div><button class="iconbtn" data-search aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button><button class="iconbtn" data-ws aria-label="MCF Workspace"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><circle cx="5" cy="5" r="2.2"/><circle cx="12" cy="5" r="2.2"/><circle cx="19" cy="5" r="2.2"/><circle cx="5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="19" cy="12" r="2.2"/><circle cx="5" cy="19" r="2.2"/><circle cx="12" cy="19" r="2.2"/><circle cx="19" cy="19" r="2.2"/></g></svg></button><button class="mav" data-more aria-label="Más opciones" id="mAv"></button></header>
+<button class="adminstar wsfab" data-ws aria-label="MCF Workspace" aria-expanded="false" title="MCF Workspace"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><circle cx="5" cy="5" r="2.2"/><circle cx="12" cy="5" r="2.2"/><circle cx="19" cy="5" r="2.2"/><circle cx="5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="19" cy="12" r="2.2"/><circle cx="5" cy="19" r="2.2"/><circle cx="12" cy="19" r="2.2"/><circle cx="19" cy="19" r="2.2"/></g></svg></button>
+<div class="mcfws" id="mcfWs" role="dialog" aria-label="MCF Workspace" hidden></div>
 <div class="app">
   <aside class="side" aria-label="Menú">
     <div class="brand"><span id="brandTxt">MCF Calendar</span><small id="sideDate"></small></div>
@@ -1128,6 +1147,26 @@ const HIDDEN_VIEWS=()=>MODE()==='personal'?['examenes','notas','curso','horario'
 const viewLabel=(k,l)=>({deberes:TT().tareas,examenes:TT().examenes,notas:TT().notas,horario:TT().horario}[k]||l);
 
 const VIEWS=[['hoy','Hoy','today'],['deberes','Deberes','tasks'],['examenes','Exámenes','exams'],['notas','Notas','grade'],['curso','Curso','cal'],['amigos','Amigos','users'],['plan','Planificador','plan'],['horario','Horario de clases','classes'],['progreso','Progreso','stats'],['ajustes','Ajustes','settings']];
+
+/* ---------- MCF Workspace: menú de apps ---------- */
+const WS_B='https://cfartaesmario-a11y.github.io';
+const WS_PL='M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z';
+const WS_LIST=[
+  ['calendar','MCF Calendar',null,'linear-gradient(145deg,#2b2b2b,#0a0a0a)','<path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 13h3v3H8z" fill="currentColor"/>'],
+  ['focus','MCF Focus','/mcf/focus/','linear-gradient(145deg,#4cc9ff,#1d4ed8)','<circle cx="12" cy="13" r="7.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 13V9.2M10 3h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'],
+  ['flashcards','MCF Flashcards','/mcf/flashcards/','linear-gradient(145deg,#ffc21a,#f97316)','<rect x="3.5" y="7" width="13" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(-8 10 12)"/><rect x="7.5" y="6" width="13" height="10" rx="2" fill="currentColor"/>'],
+  ['pau','MCF Nota PAU','/mcf/pau/','linear-gradient(145deg,#35d07f,#0f766e)','<path d="M12 4 2.5 8.5 12 13l9.5-4.5z" fill="currentColor"/><path d="M6 10.6v4.2c0 1.5 2.7 2.7 6 2.7s6-1.2 6-2.7v-4.2M21 9v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'],
+  ['games','MCF Games','/mcf/games/','linear-gradient(145deg,#ff5c63,#b36bff)','<path d="M7 9h10a4 4 0 0 1 3.9 4.9l-.6 2.6a2.3 2.3 0 0 1-3.9 1L14.6 15H9.4l-1.8 2.5a2.3 2.3 0 0 1-3.9-1l-.6-2.6A4 4 0 0 1 7 9z" fill="currentColor"/>'],
+  ['home','Inicio','/mcf/','linear-gradient(145deg,#ffffff,#9a9a9a)','<g transform="rotate(45 12 12)"><path fill="#000" d="'+WS_PL+'"/></g>']];
+function wsRender(){const p=$('#mcfWs');const n=CUR?esc(myName()):'';
+  p.innerHTML=`<div class="wsh"><span class="pl"><svg viewBox="0 0 24 24"><g transform="rotate(45 12 12)"><path fill="currentColor" d="${WS_PL}"/></g></svg></span><span>MCF Workspace<small>${n?'Una cuenta para todo, '+n:'Una cuenta para todas tus apps'}</small></span></div>
+  <div class="wsg">${WS_LIST.map(([id,name,url,g,ico])=>{const ic=`<span class="wsi" style="--g:${g}"><svg viewBox="0 0 24 24">${ico}</svg></span>`;
+    return url?`<a class="wsa" href="${WS_B+url}">${ic}<span>${name}</span></a>`:`<div class="wsa here">${ic}<span>${name}</span><span class="wst">AQUÍ</span></div>`}).join('')}</div>
+  <div class="wsf"><span>${n?'Conectado como <b style="color:var(--ink)">'+n+'</b>':'Entra para usarlas todas'}</span><a href="${WS_B}/mcf/">Ver todo</a></div>`}
+function wsToggle(o){const p=$('#mcfWs');o=o==null?p.hidden:o;if(o)wsRender();p.hidden=!o;document.querySelectorAll('[data-ws]').forEach(b=>b.setAttribute('aria-expanded',String(o)))}
+document.addEventListener('click',e=>{if(e.target.closest('[data-ws]')){e.stopPropagation();wsToggle();return}const p=$('#mcfWs');if(p&&!p.hidden&&!e.target.closest('#mcfWs'))wsToggle(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#mcfWs')&&!$('#mcfWs').hidden)wsToggle(false)});
+
 function renderNav(){setTimeout(()=>{if(CFG.compartir===false)document.querySelectorAll('[data-go=amigos]').forEach(x=>x.style.display='none')},0);
   const late=S.tasks.filter(t=>!t.done&&taskDue(t)<new Date()).length;
   if(HIDDEN_VIEWS().includes(UI.view))UI.view='hoy';
