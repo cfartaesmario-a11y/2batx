@@ -13,7 +13,7 @@ try{var pl=localStorage.getItem("2batx.palette");if(pl){document.documentElement
 <meta name="apple-mobile-web-app-title" content="MCF Calendar">
 <meta name="application-name" content="MCF Calendar">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-npw/HSVmU8f4wZfxqI/fzDGQLKipBWI4CjFn4AfE4AY=' 'sha256-STQ8o94gZcL59uLOgCEzyZ9+QI0KrDNY36wQGQD9rsw=' https://www.gstatic.com https://apis.google.com https://www.google.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleusercontent.com https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com https://www.google.com; frame-src https://*.firebaseapp.com https://accounts.google.com https://appleid.apple.com https://www.google.com https://recaptcha.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-npw/HSVmU8f4wZfxqI/fzDGQLKipBWI4CjFn4AfE4AY=' 'sha256-91FaeQ9VrVZB7XBEyoCauBhQlYUc/TRgX/eX2tW/j14=' https://www.gstatic.com https://apis.google.com https://www.google.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleusercontent.com https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://text.pollinations.ai https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com https://www.google.com; frame-src https://*.firebaseapp.com https://accounts.google.com https://appleid.apple.com https://www.google.com https://recaptcha.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MCF Calendar</title>
@@ -658,6 +658,52 @@ body.support .mtop{top:48px}
 .sitem svg{width:22px;height:22px}
 .sitem.on{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
 .mav{width:32px;height:32px;border-radius:50%;border:0;background:var(--ink);color:var(--sheet);font-weight:700;font-size:14px;display:grid;place-items:center}
+.aifab{position:fixed;right:22px;bottom:22px;z-index:42;width:54px;height:54px;border-radius:50%;border:0;background:var(--pen);color:var(--on-pen);font-size:24px;display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 30px -10px rgba(0,0,0,.55);transition:transform .15s}
+.aifab:hover{transform:scale(1.06)}.aifab[hidden]{display:none}
+body.aiopen .aifab{display:none}
+.aipan{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);z-index:60;background:var(--sheet);border-left:1px solid var(--line);display:flex;flex-direction:column;box-shadow:-20px 0 50px -20px rgba(0,0,0,.5)}
+.aipan[hidden]{display:none}
+.aihead{display:flex;align-items:center;gap:8px;padding:14px 14px 12px 18px;border-bottom:1px solid var(--line)}
+.aihead b{font-size:16px}.aihead small{color:var(--ink-3);font-size:12px}
+.aihead .iconbtn{width:34px;height:34px;border:0;background:none;color:var(--ink-2);border-radius:50%;display:grid;place-items:center;cursor:pointer}
+.aihead .iconbtn:hover{background:var(--pen-soft)}
+.aispark{color:var(--pen);font-size:17px;margin-right:4px}
+.aimsgs{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px}
+.aimsg{display:flex}.aimsg.user{justify-content:flex-end}
+.aibub{max-width:90%;padding:10px 13px;border-radius:16px;font-size:14px;line-height:1.45;background:var(--sheet-2);color:var(--ink)}
+.aimsg.user .aibub{background:var(--pen);color:var(--on-pen);border-bottom-right-radius:5px}
+.aimsg.ai .aibub{border-bottom-left-radius:5px}
+.aiform{display:flex;gap:8px;padding:10px 12px calc(12px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);align-items:flex-end}
+.aiform textarea{flex:1;resize:none;border:1px solid var(--line);background:var(--sheet-2);color:var(--ink);border-radius:14px;padding:10px 12px;font:inherit;font-size:14px;outline:0;max-height:120px}
+.aiform textarea:focus{border-color:var(--pen)}
+.aiform .btn{height:42px;width:42px;padding:0;justify-content:center;border-radius:50%}
+.aiops{display:flex;flex-direction:column;gap:6px;margin:10px 0 4px;max-height:46vh;overflow:auto}
+.aiop{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--sheet);cursor:pointer;font-weight:400}
+.aiop .chk{flex:none}
+.aiopk{width:22px;height:22px;border-radius:50%;background:var(--pen-soft);display:grid;place-items:center;font-size:12px;font-weight:700;flex:none;color:var(--pen)}
+.aiopb{min-width:0;display:flex;flex-direction:column}.aiopb b{font-size:13.5px;font-weight:600;color:var(--ink)}.aiopb small{font-size:12px;color:var(--ink-3)}
+.aiop:has(.chk:not(:checked)){opacity:.5}
+.aiopbtns{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.aidone{margin-top:8px;font-size:12.5px;color:var(--ok,#2F9E5F);font-weight:600}
+.aiload{display:flex;gap:6px;justify-content:center;padding:18px 0}.aiload.sm{padding:4px 0;justify-content:flex-start}
+.aiload i{width:8px;height:8px;border-radius:50%;background:var(--pen);animation:aib 1s infinite ease-in-out}.aiload i:nth-child(2){animation-delay:.15s}.aiload i:nth-child(3){animation-delay:.3s}
+@keyframes aib{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+.aipanel .aibrief{margin:0 0 10px;color:var(--ink);font-size:14.5px;line-height:1.5}.aipanel .aidim{color:var(--ink-3)}
+.aitips{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.aitip{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;background:var(--sheet-2);flex-wrap:wrap}
+.aiic{width:26px;height:26px;border-radius:50%;background:var(--pen-soft);color:var(--pen);display:grid;place-items:center;font-weight:700;font-size:13px;flex:none}
+.aitt{flex:1;min-width:160px;font-size:13.5px;color:var(--ink-2)}.aitt b{color:var(--ink)}
+.aitb{display:flex;gap:6px;flex-wrap:wrap}
+.aichips{display:flex;gap:6px;flex-wrap:wrap}
+.aichip{border:1px solid var(--line);background:none;color:var(--ink);border-radius:16px;padding:6px 12px;font-size:13px;cursor:pointer;font-weight:500}
+.aichip:hover{border-color:var(--pen);color:var(--pen)}
+.aiseg{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.aiseg label{display:inline-flex;font-weight:500;cursor:pointer}
+.aiseg input{position:absolute;opacity:0;pointer-events:none}
+.aiseg span{padding:7px 12px;border-radius:16px;border:1px solid var(--line);font-size:13px;color:var(--ink-2)}
+.aiseg input:checked+span{background:var(--pen);border-color:var(--pen);color:var(--on-pen)}
+.aiseg input:focus-visible+span{outline:2px solid var(--pen);outline-offset:2px}
+@media (max-width:900px){.aifab{right:16px;bottom:calc(146px + env(safe-area-inset-bottom,0px));width:48px;height:48px;font-size:21px}.aipan{width:100vw;border-left:0}}
 /* Mobile */
 .tabbar{display:none}
 @media (max-width:900px){
@@ -1186,6 +1232,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('[data-more]'))return
 
 let lastView=null;
 function render(){
+  try{aiFabSync()}catch(e){}
   if(!CUR){const f=document.querySelector('.fab');if(f)f.hidden=true;return}
   {const f=document.querySelector('.fab');if(f)f.hidden=false;const lb=S.perfil&&S.perfil.corta?S.perfil.corta:'MCF';const bt=$('#brandTxt');if(bt)bt.textContent=S.perfil&&S.perfil.etiqueta?S.perfil.etiqueta.split(' · ')[0]:'MCF Calendar';const mb=$('#mBrand');if(mb)mb.textContent=lb}
   const wa=$('#whoami');if(wa){const nm=CUR.displayName||CUR.email.split('@')[0];wa.innerHTML=`<span class="av">${esc(nm.charAt(0).toUpperCase())}</span><b>${esc(nm)}</b><button class="btn sm ghost" data-logout>Salir</button>`}
@@ -1196,6 +1243,8 @@ function render(){
   if(UI.view==='plan')bindPlanner();
   lastView=UI.view;
   if(UI.view==='horario')bindHorario();
+  if(UI.view==='hoy')setTimeout(aiBriefMaybe,700);
+  if(!AI.chk){AI.chk=1;setTimeout(aiCheckPending,3000)}
 }
 function applyTheme(){if(S.settings.palette){setPalette(S.settings.palette);return}const t=S.settings.theme;try{localStorage.setItem('2batx.theme',t)}catch(e){}if(t==='auto')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',t)}
 
@@ -1254,6 +1303,7 @@ function vHoy(){
     <div class="hero-r"><div class="clock num" id="clock">${pad(n.getHours())}:${pad(n.getMinutes())}<small>${pad(n.getSeconds())}</small></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-new="block">${I.plus}Bloque de estudio</button><button class="btn" data-new="exam">${I.plus}Examen</button><button class="btn primary" data-new="task">${I.plus}Deber</button></div></div>
   </div>
   ${reqHTML()}
+  ${aiHoyHTML()}
   <section class="panel" style="margin-bottom:18px">
     <h2>Las próximas dos semanas</h2>
     <div class="strip">${stripHTML()}</div>
@@ -1322,7 +1372,7 @@ function examCard(e){
    ${e.topics.length?`<div class="topics">${e.topics.map((t,i)=>`<label class="${t.done?'done':''}"><input type="checkbox" class="chk" data-topic="${e.id}:${i}" ${t.done?'checked':''}><span>${esc(t.t)}</span></label>`).join('')}</div>`:''}
    ${linked.length?`<div class="meta">${linked.filter(b=>b.done).length} de ${linked.length} sesiones de estudio hechas</div>`:''}
    ${e.notes?`<div class="notes">${esc(e.notes)}</div>`:''}
-   <div class="row">${!past&&e.date&&e.grade==null?`<button class="btn sm" data-autoplan="${e.id}">${I.wand}Repartir estudio</button>`:''}${MODE()==='docente'?(e.alumnos?`<span class="kind" style="align-self:center">Corregidos ${e.corregidos||0}/${e.alumnos}</span><button class="btn sm" data-corr="${e.id}:1">+1 corregido</button>`:''):past||e.grade!=null?`<button class="btn sm" data-grade="${e.id}">${e.grade!=null?'Cambiar nota':'Poner nota'}</button>`:''}<button class="btn sm ghost" data-editexam="${e.id}">${I.edit}Editar</button></div>
+   <div class="row">${!past&&e.date&&e.grade==null?`<button class="btn sm" data-autoplan="${e.id}">${I.wand}Planificar estudio</button>`:''}${MODE()==='docente'?(e.alumnos?`<span class="kind" style="align-self:center">Corregidos ${e.corregidos||0}/${e.alumnos}</span><button class="btn sm" data-corr="${e.id}:1">+1 corregido</button>`:''):past||e.grade!=null?`<button class="btn sm" data-grade="${e.id}">${e.grade!=null?'Cambiar nota':'Poner nota'}</button>`:''}<button class="btn sm ghost" data-editexam="${e.id}">${I.edit}Editar</button></div>
   </article>`;
 }
 function vExamenes(){
@@ -1561,7 +1611,7 @@ document.addEventListener('click',e=>{
   const dt=e.target.closest('[data-deltask]');if(dt){const i=S.tasks.findIndex(x=>x.id===dt.dataset.deltask);const [r]=S.tasks.splice(i,1);save();render();toast('Deber borrado',()=>{S.tasks.push(r);save();render()});return}
   const eb=e.target.closest('[data-editblock]');if(eb&&!e.target.closest('[data-blk]')){openBlockModal(S.blocks.find(x=>x.id===eb.dataset.editblock));return}
   const ee=e.target.closest('[data-editexam]');if(ee){openExamModal(S.exams.find(x=>x.id===ee.dataset.editexam));return}
-  const ap=e.target.closest('[data-autoplan]');if(ap){openAutoModal(S.exams.find(x=>x.id===ap.dataset.autoplan));return}
+  const ap=e.target.closest('[data-autoplan]');if(ap){aiPlanQuestions(S.exams.find(x=>x.id===ap.dataset.autoplan));return}
   const gr=e.target.closest('[data-grade]');if(gr){openGradeModal(S.exams.find(x=>x.id===gr.dataset.grade));return}
 });
 
@@ -1635,7 +1685,7 @@ function openExamModal(e){
     const lines=fd.get('topics').split('\n').map(x=>x.trim()).filter(Boolean);
     const topics=lines.map(t=>({t,done:!!e.topics.find(o=>o.t===t&&o.done)}));
     const o={kind:fd.get('kind')||'',subj:fd.get('subj'),title,date:fd.get('date')||null,time:fd.get('time')||null,topics,notes:fd.get('notes').trim()};if(MODE()==='docente'){const al=fd.get('alumnos'),co=fd.get('corregidos');o.alumnos=al===''||al==null?null:Math.max(0,+al);o.corregidos=co===''||co==null?0:Math.max(0,+co)}
-    let obj;if(n){obj={id:uid(),grade:null,...o};S.exams.push(obj)}else{const cur=S.exams.find(x=>x.id===e.id)||e;Object.assign(cur,o);obj=cur}save();render();toast(n?'Examen añadido':'Examen guardado');
+    let obj;if(n){obj={id:uid(),grade:null,...o};S.exams.push(obj)}else{const cur=S.exams.find(x=>x.id===e.id)||e;Object.assign(cur,o);obj=cur}save();render();toast(n?'Examen añadido':'Examen guardado');if(n&&obj.date&&MODE()!=='personal')setTimeout(()=>aiAskPlan(obj),250);
     const sh=fd.getAll('shareTo');if(sh.length)shareItem('exam',obj,sh);
   },(f,close)=>{bindPick(f);bindHourPopover(f,'date','time');const d=f.querySelector('[data-del]');d&&d.addEventListener('click',()=>{S.exams=S.exams.filter(x=>x.id!==e.id);save();close();render();toast('Examen borrado',()=>{S.exams.push(e);save();render()})})});
 }
@@ -1686,6 +1736,199 @@ function openGradeModal(e){
     e=S.exams.find(x=>x.id===e.id)||e;const v=fd.get('g');if(v===''){e.grade=null}else{const g=+v;if(isNaN(g)||g<0||g>10){toast('Pon una nota entre 0 y 10');return false}e.grade=g}save();render();
   });
 }
+
+
+/* ---------- Asistente IA: planificar y organizar el día a día ---------- */
+const AI={hist:[],busy:false,open:false,src:''};
+const AIP=()=>Object.assign({desde:'16:00',dormir:'23:00',maxh:2,cuando:['tarde'],finde:true,sesion:60},S.aiPrefs||{});
+const aiSleep=()=>Math.min(1440,toMin(AIP().dormir)||23*60);
+function aiParse(t){t=String(t||'').replace(/```(?:json)?/gi,'').trim();const a=t.indexOf('{'),b=t.lastIndexOf('}');if(a<0||b<a)throw new Error('json');return JSON.parse(t.slice(a,b+1))}
+async function aiCall(sys,msgs,json=true){
+  const key=String(CFG.iaKey||'').trim();let err=null;
+  if(key){for(const m of ['gemini-flash-latest','gemini-2.5-flash','gemini-2.0-flash']){
+    try{const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),40000);
+      const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+m+':generateContent?key='+encodeURIComponent(key),{method:'POST',signal:ctl.signal,headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({systemInstruction:{parts:[{text:sys}]},contents:msgs.map(x=>({role:x.role==='ai'?'model':'user',parts:[{text:x.text}]})),generationConfig:Object.assign({temperature:.4},json?{responseMimeType:'application/json'}:{})})});
+      clearTimeout(to);if(r.status===404||r.status===400&&m!=='gemini-2.0-flash')continue;if(!r.ok){err=new Error('Gemini '+r.status);if(r.status===429)break;continue}
+      const j=await r.json();const t=((j.candidates||[])[0]||{}).content;const tx=t&&t.parts?t.parts.map(p=>p.text||'').join(''):'';if(tx){AI.src='Gemini';return tx}}catch(e){err=e}}}
+  try{const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),45000);
+    const r=await fetch('https://text.pollinations.ai/openai',{method:'POST',signal:ctl.signal,headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({model:'openai',messages:[{role:'system',content:sys},...msgs.map(x=>({role:x.role==='ai'?'assistant':'user',content:x.text}))]},json?{response_format:{type:'json_object'}}:{}))});
+    clearTimeout(to);if(r.ok){const j=await r.json();const tx=(((j.choices||[])[0]||{}).message||{}).content;if(tx){AI.src='IA gratuita';return tx}}}catch(e){err=e}
+  throw err||new Error('sin IA');
+}
+function aiCtx(){
+  const n=new Date(),lim=ds(addDays(n,21)),from=ds(addDays(n,-2));
+  return {hoy:todayS(),diaSemana:WD[n.getDay()],hora:pad(n.getHours())+':'+pad(n.getMinutes()),modo:MODE(),
+    asignaturas:S.subjects.map(s=>({id:s.id,nombre:s.name})),
+    horarioClases:S.classes.map(c=>({dia:WD[c.day],ini:c.start,fin:c.end,asig:c.subj})),
+    rutinas:(S.routines||[]).map(r=>({que:rutLabel(r),dias:(r.days||[]).map(d=>WD[+d]),ini:r.start,fin:r.end})),
+    bloques:S.blocks.filter(b=>b.date&&b.date>=from&&b.date<=lim).map(b=>({id:b.id,dia:b.date,ini:b.start,fin:b.end,asig:b.subj,que:b.what,hecho:!!b.done,examId:b.examId||null})),
+    deberesPendientes:S.tasks.filter(x=>!x.done).slice(0,40).map(x=>({id:x.id,titulo:x.title,asig:x.subj,entrega:x.due,hora:x.time})),
+    examenes:S.exams.filter(e=>e.date&&examDays(e)>=0&&e.grade==null).map(e=>({id:e.id,titulo:e.title,asig:e.subj,dia:e.date,hora:e.time,temario:e.topics.map(x=>x.t+(x.done?' (ya lo domina)':''))})),
+    preferencias:AIP(),huecosLibres:aiGaps(7)};
+}
+const AI_RULES=`Reglas del calendario:
+- Nunca pongas nada encima de clases, rutinas u otros bloques. Usa solo los "huecosLibres" que te doy (o los que te indique) y deja 10 min entre cosas.
+- No planifiques en el pasado ni después de la hora de dormir menos 30 min. Respeta preferencias (desde qué hora estudia, máximo de horas al día, fines de semana).
+- Sesiones de 30 a 120 min. Lo más difícil, antes; el día anterior al examen, repaso final corto. Mezcla teoría, ejercicios y repaso.
+- Fechas YYYY-MM-DD y horas HH:MM (24 h). "asig" es el id de la asignatura.
+Operaciones posibles en "acciones":
+{"op":"add_block","dia","ini","fin","asig","que","examId"?} · {"op":"move_block","id","dia","ini","fin"} · {"op":"delete_block","id"} · {"op":"done_block","id"} · {"op":"add_task","titulo","asig","entrega","hora"} · {"op":"done_task","id"} · {"op":"add_exam","titulo","asig","dia","hora"?}
+Responde SOLO con JSON: {"respuesta":"texto para el alumno","acciones":[...]}`;
+const AI_SYS=()=>`Eres el asistente de MCF Calendar, la agenda de ${esc(myName())}. Tu trabajo es planificar y organizar su día a día: estudio, deberes, exámenes, descanso y tiempo libre. Hablas en español, de tú, cercano, claro y breve (máximo 5 frases o una lista corta). Das sugerencias concretas con días y horas. Si te pide cambiar el calendario, propón las acciones; el alumno las revisa antes de aplicarlas. Si solo charla o pregunta, "acciones" va vacío.
+${AI_RULES}`;
+function aiBusy(date,ign,extra){const wd=pd(date).getDay();
+  return [...S.classes.filter(c=>c.day===wd).map(c=>[toMin(c.start),toMin(c.end)]),...S.blocks.filter(b=>b.date===date&&b.start&&b.end&&b.id!==ign).map(b=>[toMin(b.start),toMin(b.end)]),...routineSegs(date).map(g=>[g.a,g.b]),...(extra||[]).filter(x=>x.date===date).map(x=>[x.a,x.b])]}
+function aiFits(date,a,b,ign,extra){if(!date||a==null||b==null||b<=a||date<todayS())return false;if(b>aiSleep())return false;if(date===todayS()){const n=new Date();if(a<n.getHours()*60+n.getMinutes()+5)return false}return !aiBusy(date,ign,extra).some(([x,y])=>a<y+10&&b+10>x)}
+function aiDayStart(date){const p=AIP(),wk=[0,6].includes(pd(date).getDay());return wk?((p.cuando||[]).includes('manana')?10*60:16*60):(toMin(p.desde)||16*60)}
+function aiNearest(date,dur,pref,ign,extra,lo,hi){lo=lo??aiDayStart(date);hi=hi??aiSleep()-30;let best=null;for(let t=Math.ceil(lo/15)*15;t+dur<=hi;t+=15)if(aiFits(date,t,t+dur,ign,extra)&&(best==null||Math.abs(t-pref)<Math.abs(best-pref)))best=t;return best}
+function aiGaps(nd,until){const out={},p=AIP();for(let i=0;i<nd;i++){const d=ds(addDays(new Date(),i));if(until&&d>=until)break;if(!p.finde&&[0,6].includes(pd(d).getDay())&&i>0)continue;
+  let lo=aiDayStart(d),hi=aiSleep()-30;if(d===todayS()){const n=new Date();lo=Math.max(lo,Math.ceil((n.getHours()*60+n.getMinutes()+10)/15)*15)}
+  const bs=aiBusy(d).sort((a,b)=>a[0]-b[0]);const g=[];let t=lo;for(const[a,b]of bs){if(a-10-t>=30&&a-10<=hi)g.push(fromMin(t)+'-'+fromMin(Math.min(a-10,hi)));t=Math.max(t,b+10)}if(hi-t>=30)g.push(fromMin(t)+'-'+fromMin(hi));if(g.length)out[d]=g}return out}
+const aiSubj=v=>S.subjects.some(x=>x.id===v)?v:((S.subjects.find(x=>x.name.toLowerCase()===String(v||'').toLowerCase())||S.subjects[0]||{}).id);
+function aiNormalize(acts,maxDay){const out=[],extra=[],perDay={};
+  for(const a of Array.isArray(acts)?acts:[]){try{const op=a&&a.op;
+    if(op==='add_block'||op==='move_block'){const date=cleanDate(a.dia);let s=toMin(cleanTime(a.ini)),e=toMin(cleanTime(a.fin));if(!date||s==null||e==null||e<=s)continue;const dur=Math.min(150,e-s);e=s+dur;
+      const ign=op==='move_block'?a.id:null;if(op==='move_block'&&!S.blocks.some(b=>b.id===a.id))continue;
+      if(maxDay&&(perDay[date]||0)+dur>maxDay)continue;
+      if(!aiFits(date,s,e,ign,extra)){const t=aiNearest(date,dur,s,ign,extra);if(t==null)continue;s=t;e=t+dur}
+      extra.push({date,a:s,b:e});perDay[date]=(perDay[date]||0)+dur;
+      if(op==='add_block')out.push({op,date,start:fromMin(s),end:fromMin(e),subj:aiSubj(a.asig),what:String(a.que||'Estudiar').slice(0,200),examId:S.exams.some(x=>x.id===a.examId)?a.examId:undefined,on:true});
+      else{const b=S.blocks.find(x=>x.id===a.id);out.push({op,id:a.id,date,start:fromMin(s),end:fromMin(e),what:b.what,subj:b.subj,on:true})}}
+    else if(op==='delete_block'||op==='done_block'){const b=S.blocks.find(x=>x.id===a.id);if(b)out.push({op,id:b.id,what:b.what,subj:b.subj,date:b.date,start:b.start,on:true})}
+    else if(op==='done_task'){const t=S.tasks.find(x=>x.id===a.id);if(t)out.push({op,id:t.id,what:t.title,subj:t.subj,on:true})}
+    else if(op==='add_task'){const due=cleanDate(a.entrega);if(due&&a.titulo)out.push({op,what:String(a.titulo).slice(0,200),subj:aiSubj(a.asig),date:due,time:cleanTime(a.hora)||'08:00',on:true})}
+    else if(op==='add_exam'){const d=cleanDate(a.dia);if(d&&a.titulo)out.push({op,what:String(a.titulo).slice(0,200),subj:aiSubj(a.asig),date:d,time:cleanTime(a.hora)||null,on:true})}
+  }catch(e){}}
+  return out}
+const AI_OPL={add_block:['＋','Estudio'],move_block:['↔','Mover'],delete_block:['−','Quitar'],done_block:['✓','Hecho'],add_task:['＋','Deber'],done_task:['✓','Entregado'],add_exam:['＋','Examen']};
+function aiOpsHTML(ops,key){return `<div class="aiops" data-aiops="${key}">${ops.map((o,i)=>`<label class="aiop"><input type="checkbox" class="chk" data-aiop="${i}" ${o.on?'checked':''}><span class="aiopk">${AI_OPL[o.op][0]}</span><span class="aiopb"><b>${esc(o.what)}</b><small>${AI_OPL[o.op][1]}${o.date?' · '+fmtDate(o.date):''}${o.start?' · '+o.start+(o.end?'–'+o.end:''):''}${o.time?' · '+o.time:''}${o.subj?' · '+esc(subj(o.subj).name):''}</small></span></label>`).join('')}</div>`}
+function aiApply(ops){checkpoint();let n=0;
+  for(const o of ops){if(!o.on)continue;
+    if(o.op==='add_block'){S.blocks.push({id:uid(),date:o.date,start:o.start,end:o.end,subj:o.subj,what:o.what,done:false,examId:o.examId,ai:1});n++}
+    else if(o.op==='move_block'){const b=S.blocks.find(x=>x.id===o.id);if(b){b.date=o.date;b.start=o.start;b.end=o.end;n++}}
+    else if(o.op==='delete_block'){const L=S.blocks.length;S.blocks=S.blocks.filter(x=>x.id!==o.id);n+=L-S.blocks.length}
+    else if(o.op==='done_block'){const b=S.blocks.find(x=>x.id===o.id);if(b){b.done=true;n++}}
+    else if(o.op==='add_task'){S.tasks.push({id:uid(),subj:o.subj,title:o.what,due:o.date,time:o.time,prio:1,notes:'',done:false});n++}
+    else if(o.op==='done_task'){const t=S.tasks.find(x=>x.id===o.id);if(t){t.done=true;n++}}
+    else if(o.op==='add_exam'){S.exams.push({id:uid(),grade:null,kind:'',subj:o.subj,title:o.what,date:o.date,time:o.time,topics:[],notes:''});n++}}
+  save();render();aiRenderChat();toast(n===1?'1 cambio aplicado':n+' cambios aplicados',undoLast);return n}
+
+/* --- Examen nuevo: ¿planificar estudio? --- */
+function aiAskPlan(e){if(!e||!e.date||examDays(e)<1||e.aiAsked)return;e.aiAsked=1;save();
+  modal(`<h3>${I.wand}¿Quieres planificar el estudio?</h3><p style="margin:-6px 0 14px;color:var(--ink-2)">Para <b>${esc(e.title)}</b>, ${fmtDate(e.date)} (${examDays(e)===1?'mañana':'en '+examDays(e)+' días'}). Te hago 5 preguntas rápidas y te reparto sesiones en tus huecos libres, sin pisar tus clases ni tus rutinas.</p>
+  <div class="mfoot"><button type="button" class="btn ghost" data-close>Ahora no</button><button class="btn primary" type="submit">Sí, planificar</button></div>`,()=>{setTimeout(()=>aiPlanQuestions(e),0)})}
+function aiPlanQuestions(e){const p=AIP(),c=p.cuando||[];
+  const R=(name,opts,val)=>`<div class="aiseg">${opts.map(([v,l])=>`<label><input type="radio" name="${name}" value="${v}" ${val===v?'checked':''}><span>${l}</span></label>`).join('')}</div>`;
+  modal(`<h3>Planificar: ${esc(e.title)}</h3><div class="form aiq">
+    <label class="full">¿Cómo lo llevas ahora mismo?${R('prep',[['nada','Nada'],['poco','Un poco'],['bastante','Bastante'],['casi','Casi listo']],'poco')}</label>
+    <label class="full">¿Cuánto te cuesta esta asignatura?${R('dif',[['facil','Poco'],['normal','Normal'],['dificil','Mucho']],'normal')}</label>
+    <label>Máximo al día para esto<select class="field" name="maxh">${[[.5,'30 min'],[1,'1 hora'],[1.5,'1 h 30'],[2,'2 horas'],[3,'3 horas'],[4,'4 horas']].map(([v,l])=>`<option value="${v}" ${+p.maxh===v?'selected':''}>${l}</option>`).join('')}</select></label>
+    <label>Sesiones de<select class="field" name="sesion">${[[30,'30 min'],[45,'45 min'],[60,'1 hora'],[90,'1 h 30']].map(([v,l])=>`<option value="${v}" ${+p.sesion===v?'selected':''}>${l}</option>`).join('')}</select></label>
+    <label>Entre semana empiezo a las<input class="field" type="time" name="desde" value="${p.desde}"></label>
+    <label>Me voy a dormir a las<input class="field" type="time" name="dormir" value="${p.dormir}"></label>
+    <label class="full">¿Cuándo prefieres estudiar?<div class="aiseg">${[['tarde','Tarde'],['noche','Noche'],['manana','Mañanas del finde']].map(([v,l])=>`<label><input type="checkbox" name="cuando" value="${v}" ${c.includes(v)?'checked':''}><span>${l}</span></label>`).join('')}<label><input type="checkbox" name="finde" ${p.finde?'checked':''}><span>También fin de semana</span></label></div></label>
+    <label class="full">Algo más que deba saber (opcional)<textarea class="field" name="extra" placeholder="Ej.: el martes tengo fútbol de 18 a 20. Lo que más me cuesta son los problemas."></textarea></label>
+  </div><p class="hint" style="margin:6px 0 0">Tu horario de clases, rutinas y lo que ya tienes en el planificador se tienen en cuenta solos.</p>
+  <div class="mfoot"><button type="button" class="btn ghost" data-close>Cancelar</button><button class="btn primary" type="submit">${I.wand}Crear plan</button></div>`,fd=>{
+    const ans={prep:fd.get('prep'),dif:fd.get('dif'),extra:(fd.get('extra')||'').trim()};
+    S.aiPrefs={desde:cleanTime(fd.get('desde'))||'16:00',dormir:cleanTime(fd.get('dormir'))||'23:00',maxh:+fd.get('maxh')||2,sesion:+fd.get('sesion')||60,cuando:fd.getAll('cuando'),finde:!!fd.get('finde')};save();
+    setTimeout(()=>aiMakePlan(e,ans),0)})}
+function aiLocalPlan(e,ans){const p=AIP();
+  let total=({nada:600,poco:420,bastante:240,casi:120}[ans.prep]||360)*({facil:.75,normal:1,dificil:1.35}[ans.dif]||1);
+  const ses=+p.sesion||60,cap=Math.round((+p.maxh||2)*60),days=[];
+  for(let k=1;k<=examDays(e);k++){const d=ds(addDays(pd(e.date),-k));if(d<todayS())break;if(!p.finde&&[0,6].includes(pd(d).getDay())&&k>1)continue;days.push(d)}
+  const wins=d=>{const wk=[0,6].includes(pd(d).getDay()),c=p.cuando||[],w=[];const ds0=aiDayStart(d),sl=aiSleep()-30;
+    if(wk&&c.includes('manana'))w.push([10*60,13*60+30]);if(c.includes('tarde')||!c.length)w.push([ds0,Math.max(ds0+60,20*60)]);if(c.includes('noche')||!c.length)w.push([Math.max(ds0,20*60),sl]);w.push([ds0,sl]);return w};
+  const topics=e.topics.filter(x=>!x.done).map(x=>x.t);const name=e.title.replace(/^examen\s*/i,'');const extra=[],used={},acts=[];let k=0,guard=0;
+  while(total>0&&guard++<60){let placed=false;
+    for(const d of days){if(total<=0)break;if((used[d]||0)+Math.min(ses,total)>cap)continue;const dur=Math.max(30,Math.min(ses,Math.round(total/15)*15));
+      let t=null;for(const[lo,hi]of wins(d)){t=aiNearest(d,dur,lo,null,extra,lo,Math.min(hi,aiSleep()-30));if(t!=null)break}if(t==null)continue;
+      extra.push({date:d,a:t,b:t+dur});used[d]=(used[d]||0)+dur;total-=dur;placed=true;
+      const last=d===days[0];const what=last&&!acts.some(a=>a.dia===d)?'Repaso final: '+name:(k%3===2?'Ejercicios: ':'Estudiar: ')+(topics.length?topics[k%topics.length]:name);k++;
+      acts.push({op:'add_block',dia:d,ini:fromMin(t),fin:fromMin(t+dur),asig:e.subj,que:what,examId:e.id})}
+    if(!placed)break}
+  return acts}
+async function aiMakePlan(e,ans){const p=AIP();
+  modal(`<h3>${I.wand}Preparando tu plan…</h3><div class="aiload"><i></i><i></i><i></i></div><p class="hint" style="text-align:center">Mirando tu horario y tus huecos libres hasta el ${fmtDate(e.date)}.</p><div class="mfoot"><button type="button" class="btn ghost" data-close>Cancelar</button></div>`,()=>{});
+  const tok=Symbol();AI.planTok=tok;let ops=[],msg='',viaAI=true;
+  try{const ctx=aiCtx();ctx.huecosLibres=aiGaps(Math.max(1,examDays(e)+1),e.date);
+    const q=`Crea un plan de estudio para el examen "${e.title}" (id ${e.id}, asignatura ${e.subj}, ${e.date}${e.time?' a las '+e.time:''}). Temario: ${e.topics.map(t=>t.t+(t.done?' (ya lo domino)':'')).join('; ')||'sin detallar'}.
+Mis respuestas: cómo lo llevo: ${ans.prep}; me cuesta: ${ans.dif}; máximo ${p.maxh} h al día para esto; sesiones de ${p.sesion} min; prefiero ${(p.cuando||[]).join(', ')||'cualquier momento'}; fines de semana: ${p.finde?'sí':'no'}; me voy a dormir a las ${p.dormir}.${ans.extra?' Además: '+ans.extra:''}
+Usa solo add_block con examId "${e.id}". Pon en "respuesta" 2-3 frases explicando la estrategia.
+Datos: ${JSON.stringify(ctx)}`;
+    const r=aiParse(await aiCall(AI_SYS(),[{role:'user',text:q}]));if(AI.planTok!==tok)return;
+    ops=aiNormalize((r.acciones||[]).filter(a=>a.op==='add_block').map(a=>Object.assign(a,{examId:e.id})),Math.round(p.maxh*60));msg=String(r.respuesta||'')}catch(err){}
+  if(AI.planTok!==tok)return;
+  if(!ops.length){viaAI=false;ops=aiNormalize(aiLocalPlan(e,ans),Math.round(p.maxh*60));msg=''}
+  if(!$('#modalRoot .aiload'))return;
+  if(!ops.length){modal(`<h3>No hay huecos</h3><p style="color:var(--ink-2)">No he encontrado tiempo libre antes del examen con esas preferencias. Prueba a subir las horas al día, activar el fin de semana o empezar antes.</p><div class="mfoot"><button type="button" class="btn ghost" data-close>Cerrar</button><button class="btn primary" type="submit">Cambiar respuestas</button></div>`,()=>{setTimeout(()=>aiPlanQuestions(e),0)});return}
+  const tot=ops.reduce((a,o)=>a+toMin(o.end)-toMin(o.start),0);
+  modal(`<h3>Tu plan para ${esc(e.title)}</h3><p style="margin:-6px 0 10px;color:var(--ink-2)">${esc(msg||`${ops.length} sesiones, ${Math.floor(tot/60)} h ${tot%60?tot%60+' min':''} en total, repartidas en tus huecos libres.`)}</p>
+    ${aiOpsHTML(ops,'plan')}<p class="hint" style="margin:8px 0 0">${viaAI?'Hecho con '+AI.src+'. ':'Hecho con el planificador automático (la IA no estaba disponible). '}Quita lo que no quieras; luego puedes moverlo en el planificador.</p>
+    <div class="mfoot"><button type="button" class="btn ghost" data-close>Cancelar</button><button type="button" class="btn" data-airedo>Rehacer</button><button class="btn primary" type="submit">Añadir al calendario</button></div>`,(fd,f)=>{
+    f.querySelectorAll('[data-aiop]').forEach(c=>ops[+c.dataset.aiop].on=c.checked);const n=aiApply(ops);if(n){UI.view='plan';UI.weekRef=ops.find(o=>o.on)?.date||UI.weekRef;render()}},
+    (f,close)=>{f.querySelector('[data-airedo]').onclick=()=>{close();setTimeout(()=>aiPlanQuestions(e),0)}})}
+
+/* --- Sugerencias del día (siempre activas en Hoy) --- */
+function aiTips(){const t=todayS(),n=new Date(),nm=n.getHours()*60+n.getMinutes(),out=[];
+  if(MODE()!=='personal')for(const e of S.exams.filter(e=>e.date&&e.grade==null&&examDays(e)>=1&&examDays(e)<=14).sort((a,b)=>a.date.localeCompare(b.date))){
+    const fut=S.blocks.filter(b=>b.examId===e.id&&b.date>=t&&!b.done).length;if(!fut)out.push({ic:'!',t:`<b>${esc(e.title)}</b> ${examDays(e)===1?'es mañana':'en '+examDays(e)+' días'} y no tienes estudio planificado.`,b:`<button class="btn sm primary" data-aiplan="${e.id}">${I.wand}Planificar</button>`})}
+  const miss=S.blocks.filter(b=>!b.done&&b.start&&b.end&&(b.date<t&&b.date>=ds(addDays(n,-3))||b.date===t&&toMin(b.end)<=nm));
+  if(miss.length){const b=miss[miss.length-1];out.push({ic:'?',t:`¿Hiciste <b>${esc(b.what)}</b> (${b.date===t?'hoy':fmtDate(b.date)}, ${b.start})?`,b:`<button class="btn sm" data-aidone="${b.id}">Sí, hecho</button><button class="btn sm ghost" data-aiask="Ayer o hoy no hice el bloque &quot;${esc(b.what)}&quot; (id ${b.id}). Muévelo al mejor hueco libre próximo.">Reprogramar</button>`})}
+  const soon=S.tasks.filter(x=>!x.done&&x.due&&(x.due===t||x.due===ds(addDays(n,1))));
+  if(soon.length)out.push({ic:'⏰',t:soon.length===1?`Entrega ${soon[0].due===t?'hoy':'mañana'}: <b>${esc(soon[0].title)}</b>.`:`Tienes <b>${soon.length} entregas</b> entre hoy y mañana.`,b:`<button class="btn sm ghost" data-goview2="deberes">Ver</button>`});
+  const g=aiGaps(1)[t];if(g&&g.length){const[a,b]=g[0].split('-');if(toMin(b)-toMin(a)>=45)out.push({ic:'◷',t:`Tienes libre de <b>${a}</b> a <b>${b}</b>.`,b:`<button class="btn sm ghost" data-aiask="Tengo libre de ${a} a ${b} hoy. ¿Qué me recomiendas hacer? Si tiene sentido, ponlo en el calendario.">¿Qué hago?</button>`})}
+  return out.slice(0,4)}
+function aiBriefKey(){return 'mcf.aibrief.'+(CUR?CUR.uid:'')}
+function aiHoyHTML(){const tips=aiTips();let br=null;try{br=JSON.parse(localStorage.getItem(aiBriefKey())||'null')}catch(e){}
+  const brief=br&&br.d===todayS()?br.t:'';
+  return `<section class="panel aipanel" style="margin-bottom:18px"><h2><span class="aispark">✦</span>Asistente<span class="count">${brief?'Resumen de hoy':'Siempre activo'}</span></h2>
+    ${brief?`<p class="aibrief">${esc(brief)}</p>`:`<p class="aibrief aidim" id="aiBriefP">${CUR?'Mirando tu día…':''}</p>`}
+    ${tips.length?`<div class="aitips">${tips.map(x=>`<div class="aitip"><span class="aiic">${x.ic}</span><span class="aitt">${x.t}</span><span class="aitb">${x.b}</span></div>`).join('')}</div>`:''}
+    <div class="aichips"><button class="aichip" data-aiask="Organízame el resto del día de hoy con mis huecos libres.">Organízame hoy</button><button class="aichip" data-aiask="¿Qué debería hacer ahora mismo?">¿Qué hago ahora?</button><button class="aichip" data-aiask="Planifica mi semana: estudio para los exámenes y tiempo para los deberes, sin pasarte.">Planifica mi semana</button><button class="aichip" data-aichat>Hablar con el asistente</button></div></section>`}
+let aiBriefRun=0;
+async function aiBriefMaybe(){if(!CUR||UI.view!=='hoy'||aiBriefRun===todayS())return;let br=null;try{br=JSON.parse(localStorage.getItem(aiBriefKey())||'null')}catch(e){}if(br&&br.d===todayS())return;aiBriefRun=todayS();
+  try{const tx=await aiCall(`Eres el asistente de MCF Calendar. Escribe en español, de tú, un resumen del día para el alumno en 2-3 frases cortas: qué es lo importante hoy, cuándo hacerlo según sus huecos libres y una sugerencia (descanso, adelantar algo, etc.). Sin saludos largos, sin listas, sin markdown.`,[{role:'user',text:JSON.stringify(aiCtx())}],false);
+    const t=String(tx).replace(/[*#_`]/g,'').trim().slice(0,500);if(!t)throw 0;try{localStorage.setItem(aiBriefKey(),JSON.stringify({d:todayS(),t}))}catch(e){}
+    const p=$('#aiBriefP');if(p){p.textContent=t;p.classList.remove('aidim')}}catch(e){const p=$('#aiBriefP');if(p)p.textContent=aiTips().length?'Esto es lo que te recomiendo hoy:':'Todo en orden por hoy. Pregúntame lo que quieras.'}}
+
+/* --- Chat del asistente --- */
+function aiEnsurePanel(){let p=$('#aiPanel');if(p)return p;
+  p=document.createElement('aside');p.id='aiPanel';p.className='aipan';p.hidden=true;p.setAttribute('aria-label','Asistente');
+  p.innerHTML=`<div class="aihead"><span class="aispark">✦</span><b>Asistente</b><small id="aiSrc"></small><span style="flex:1"></span><button class="iconbtn" data-aiclear title="Nueva conversación" aria-label="Nueva conversación"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"/></svg></button><button class="iconbtn" data-aiclose aria-label="Cerrar"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="aimsgs" id="aiMsgs"></div>
+  <form class="aiform" id="aiForm"><textarea id="aiIn" rows="1" placeholder="Pídeme lo que sea…"></textarea><button class="btn primary" type="submit" aria-label="Enviar"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></form>`;
+  document.body.appendChild(p);
+  const inp=p.querySelector('#aiIn');inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();p.querySelector('#aiForm').requestSubmit()}});
+  inp.addEventListener('input',()=>{inp.style.height='auto';inp.style.height=Math.min(120,inp.scrollHeight)+'px'});
+  p.querySelector('#aiForm').addEventListener('submit',e=>{e.preventDefault();const v=inp.value.trim();if(!v||AI.busy)return;inp.value='';inp.style.height='auto';aiSend(v)});
+  return p}
+function aiOpenChat(q){const p=aiEnsurePanel();p.hidden=false;AI.open=true;document.body.classList.add('aiopen');aiRenderChat();if(q)aiSend(q);else setTimeout(()=>$('#aiIn')?.focus(),50)}
+function aiCloseChat(){const p=$('#aiPanel');if(p)p.hidden=true;AI.open=false;document.body.classList.remove('aiopen')}
+function aiRenderChat(){const box=$('#aiMsgs');if(!box)return;$('#aiSrc').textContent=AI.src?'· '+AI.src:'';
+  const hello=`<div class="aimsg ai"><div class="aibub">Hola${myName()?', '+esc(myName()):''}. Veo tu horario, tus deberes, exámenes y el planificador. Puedo organizarte el día, planificar el estudio, mover bloques o apuntarte cosas. Tú decides qué cambios se aplican.</div></div>`;
+  box.innerHTML=hello+AI.hist.map((m,i)=>`<div class="aimsg ${m.role}"><div class="aibub">${esc(m.text).replace(/\n/g,'<br>')}${m.ops&&m.ops.length?aiOpsHTML(m.ops,i)+(m.applied?`<div class="aidone">✓ Aplicado</div>`:`<div class="aiopbtns"><button class="btn sm primary" data-aiapply="${i}">Aplicar cambios</button><button class="btn sm ghost" data-aiskip="${i}">Descartar</button></div>`):''}</div></div>`).join('')+(AI.busy?`<div class="aimsg ai"><div class="aibub"><div class="aiload sm"><i></i><i></i><i></i></div></div></div>`:'');
+  if(!AI.hist.length)box.innerHTML+=`<div class="aichips" style="padding:4px 2px"><button class="aichip" data-aiask="Organízame el resto del día de hoy.">Organízame hoy</button><button class="aichip" data-aiask="¿Qué debería hacer ahora mismo?">¿Qué hago ahora?</button><button class="aichip" data-aiask="Planifica mi semana.">Planifica mi semana</button><button class="aichip" data-aiask="Dame 3 consejos para organizarme mejor según mi horario.">Consejos</button></div>`;
+  box.scrollTop=box.scrollHeight}
+async function aiSend(q){AI.hist.push({role:'user',text:q});AI.busy=true;aiRenderChat();
+  const msgs=AI.hist.slice(-10).map(m=>({role:m.role,text:m.text}));msgs[msgs.length-1]={role:'user',text:q+'\n\n[Datos actuales del calendario: '+JSON.stringify(aiCtx())+']'};
+  let m;try{const r=aiParse(await aiCall(AI_SYS(),msgs));const ops=aiNormalize(r.acciones,0);m={role:'ai',text:String(r.respuesta||(ops.length?'Te propongo estos cambios:':'Hecho.')).replace(/[*#`]/g,''),ops};
+    if((r.acciones||[]).length&&!ops.length)m.text+='\n\n(No he podido encajar esos cambios sin pisar tu horario.)'}
+  catch(e){const tips=aiTips();m={role:'ai',text:'Ahora mismo no puedo conectar con la IA'+(String(CFG.iaKey||'')?'':' (falta activar la clave de IA en el panel de administración)')+'. '+(tips.length?'Mientras tanto, esto es lo importante:\n• '+tips.map(x=>x.t.replace(/<[^>]+>/g,'')).join('\n• '):'Inténtalo de nuevo en un momento.'),ops:[]}}
+  AI.hist.push(m);AI.busy=false;aiRenderChat()}
+document.addEventListener('click',e=>{const t=e.target;
+  const pl=t.closest('[data-aiplan]');if(pl){const ex=S.exams.find(x=>x.id===pl.dataset.aiplan);if(ex)aiPlanQuestions(ex);return}
+  const dn=t.closest('[data-aidone]');if(dn){const b=S.blocks.find(x=>x.id===dn.dataset.aidone);if(b){checkpoint();b.done=true;save();render();toast('Marcado como hecho',undoLast)}return}
+  const ak=t.closest('[data-aiask]');if(ak){aiOpenChat(ak.dataset.aiask);return}
+  if(t.closest('[data-aichat]')||t.closest('#aiFab')){AI.open?aiCloseChat():aiOpenChat();return}
+  if(t.closest('[data-aiclose]')){aiCloseChat();return}
+  if(t.closest('[data-aiclear]')){AI.hist=[];aiRenderChat();return}
+  const ap=t.closest('[data-aiapply]');if(ap){const m=AI.hist[+ap.dataset.aiapply];if(m&&!m.applied){const box=ap.closest('.aibub');box.querySelectorAll('[data-aiop]').forEach(c=>m.ops[+c.dataset.aiop].on=c.checked);m.applied=true;aiApply(m.ops)}return}
+  const sk=t.closest('[data-aiskip]');if(sk){const m=AI.hist[+sk.dataset.aiskip];if(m){m.ops=[];aiRenderChat()}return}
+});
+function aiFabSync(){let f=$('#aiFab');if(!f){f=document.createElement('button');f.id='aiFab';f.className='aifab';f.type='button';f.setAttribute('aria-label','Asistente');f.innerHTML='<span>✦</span>';document.body.appendChild(f)}f.hidden=!CUR||!!SUPPORT;if(!CUR)aiCloseChat()}
+function aiCheckPending(){if(!CUR||MODE()==='personal'||$('#modalRoot').innerHTML)return;const e=S.exams.find(e=>e.date&&e.grade==null&&!e.aiAsked&&examDays(e)>=2&&examDays(e)<=14&&!S.blocks.some(b=>b.examId===e.id));if(e)aiAskPlan(e)}
 
 /* ---------- Toast ---------- */
 let toastT;
@@ -2381,6 +2624,7 @@ function admView(){const D=ADM.data,U=D.users,t=ADM.tab;const errBox=ADM.err?`<d
     ${T('wMant','Modo mantenimiento','Nadie puede usar la app salvo el administrador.',!!CFG.mantenimiento)}
     <label>Correo de contacto (sale en la política de privacidad)<input class="field" id="wCont" type="email" value="${esc(CFG.contacto||'')}" placeholder="tucorreo@gmail.com"></label>
     <label>Mensaje de mantenimiento<input class="field" id="wMantTx" value="${esc(CFG.mensajeMant||'')}"></label>
+    <label>Clave de IA (Google Gemini, gratis en aistudio.google.com)<input class="field" id="wIa" type="password" autocomplete="off" value="${esc(CFG.iaKey||'')}" placeholder="AIza…"></label><p class="hint" style="margin:-4px 0 6px">El asistente la usa para planificar. Sin clave usa una IA gratuita pública y, si falla, el planificador automático.</p>
     <label>Colores por defecto para cuentas nuevas<select class="field" id="wPal">${PALETTES.map(p=>`<option value="${p[0]}" ${CFG.paletaDefecto===p[0]?'selected':''}>${p[1]}</option>`).join('')}</select></label>
     <div class="ubtns"><button class="btn primary" data-wsave>Guardar cambios</button></div></div>`}
   if(t==='mensajes')return `<h2>Enviar mensaje</h2><p class="hint" style="margin-top:-8px">Le saldrá en una ventana la próxima vez que abra la app (o al momento si la tiene abierta).</p><div class="aform">
@@ -2421,7 +2665,7 @@ document.addEventListener('click',async e=>{if(!e.target.closest('#adminApp'))re
   else if(b.hasAttribute('data-ajsave')&&u){let st;try{st=JSON.parse($('#ajsonTx').value)}catch(x){toast('El texto no es válido');return}st.updatedAt=Date.now();st.rev=(st.rev||0)+1000;await fdb().ref('dietari/'+u.uid).update({json:JSON.stringify(st),updatedAt:st.updatedAt,rev:st.rev});await admLoad();admRender();toast('Datos guardados')}
   else if(b.hasAttribute('data-ansave')){await fdb().ref('config/anuncio').set({texto:$('#anTx').value.trim(),tipo:$('#anTp').value,activo:$('#anOn').checked});toast('Anuncio publicado')}
   else if(b.hasAttribute('data-anoff')){await fdb().ref('config/anuncio/activo').set(false);admRender();toast('Anuncio quitado')}
-  else if(b.hasAttribute('data-wsave')){await fdb().ref('config').update({contacto:($('#wCont')||{value:''}).value.trim(),nombreApp:$('#wName').value.trim()||'MCF Calendar',bienvenida:$('#wWel').value.trim(),registroAbierto:$('#wReg').checked,google:$('#wG').checked,apple:$('#wA').checked,compartir:$('#wShare').checked,mantenimiento:$('#wMant').checked,mensajeMant:$('#wMantTx').value.trim(),paletaDefecto:$('#wPal').value});toast('Ajustes guardados')}
+  else if(b.hasAttribute('data-wsave')){await fdb().ref('config').update({contacto:($('#wCont')||{value:''}).value.trim(),nombreApp:$('#wName').value.trim()||'MCF Calendar',bienvenida:$('#wWel').value.trim(),registroAbierto:$('#wReg').checked,google:$('#wG').checked,apple:$('#wA').checked,compartir:$('#wShare').checked,mantenimiento:$('#wMant').checked,mensajeMant:$('#wMantTx').value.trim(),paletaDefecto:$('#wPal').value,iaKey:($('#wIa')||{value:CFG.iaKey||''}).value.trim()});toast('Ajustes guardados')}
   else if(b.hasAttribute('data-msend')){const to=$('#mTo').value,tx=$('#mTx').value.trim();if(!tx){toast('Escribe el mensaje');return}const ids=to==='*'?D.users.map(x=>x.uid):[to];const upd={};ids.forEach(id=>{upd['mensajes/'+id+'/'+fdb().ref().push().key]={texto:tx,fecha:Date.now()}});await fdb().ref().update(upd);$('#mTx').value='';toast('Enviado a '+ids.length+(ids.length===1?' persona':' personas'))}
   else if(b.hasAttribute('data-aexport')){const g=p=>fdb().ref(p).get().then(s=>s.val()).catch(()=>null);const out={fecha:new Date().toISOString()};for(const p of ['config','cuentas','dietari','usuarios','amigos','compartidos','expulsados'])out[p]=await g(p);
     const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(out,null,2)],{type:'application/json'}));a.download='mcf-copia-'+todayS()+'.json';document.body.appendChild(a);a.click();a.remove()}
