@@ -13,7 +13,7 @@ try{var pl=localStorage.getItem("2batx.palette");if(pl){document.documentElement
 <meta name="apple-mobile-web-app-title" content="MCF Calendar">
 <meta name="application-name" content="MCF Calendar">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-npw/HSVmU8f4wZfxqI/fzDGQLKipBWI4CjFn4AfE4AY=' 'sha256-9cot/rSeZYWhefsMWMW9Q9WfUwwsprZASwR8lGbG5oQ=' https://www.gstatic.com https://apis.google.com https://www.google.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleusercontent.com https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com https://www.google.com; frame-src https://*.firebaseapp.com https://accounts.google.com https://appleid.apple.com https://www.google.com https://recaptcha.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-npw/HSVmU8f4wZfxqI/fzDGQLKipBWI4CjFn4AfE4AY=' 'sha256-STQ8o94gZcL59uLOgCEzyZ9+QI0KrDNY36wQGQD9rsw=' https://www.gstatic.com https://apis.google.com https://www.google.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleusercontent.com https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com https://www.google.com; frame-src https://*.firebaseapp.com https://accounts.google.com https://appleid.apple.com https://www.google.com https://recaptcha.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MCF Calendar</title>
@@ -1154,9 +1154,8 @@ const WS_PL='M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-
 const WS_LIST=[
   ['calendar','MCF Calendar',null,'linear-gradient(145deg,#2b2b2b,#0a0a0a)','<path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 13h3v3H8z" fill="currentColor"/>'],
   ['focus','MCF Focus','/mcf/focus/','linear-gradient(145deg,#4cc9ff,#1d4ed8)','<circle cx="12" cy="13" r="7.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 13V9.2M10 3h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'],
-  ['flashcards','MCF Flashcards','/mcf/flashcards/','linear-gradient(145deg,#ffc21a,#f97316)','<rect x="3.5" y="7" width="13" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(-8 10 12)"/><rect x="7.5" y="6" width="13" height="10" rx="2" fill="currentColor"/>'],
-  ['pau','MCF Nota PAU','/mcf/pau/','linear-gradient(145deg,#35d07f,#0f766e)','<path d="M12 4 2.5 8.5 12 13l9.5-4.5z" fill="currentColor"/><path d="M6 10.6v4.2c0 1.5 2.7 2.7 6 2.7s6-1.2 6-2.7v-4.2M21 9v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'],
-  ['apuntes','MCF Apuntes','/mcf/apuntes/','linear-gradient(145deg,#5b7fff,#2448c9)','<path d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z" fill="currentColor"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M8.5 21h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'],
+  ['docs','MCF Docs','/mcf/docs/','linear-gradient(145deg,#5b7fff,#2448c9)','<path d="M6 3h8l4 4v14H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 3v4h4M9 12h6M9 16h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'],
+  ['dt','MCF dt','/mcf/dt/','linear-gradient(145deg,#ff6b6b,#b3121e)','<path d="M4 20L20 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 20V8l12 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>'],
   ['games','MCF Games','/mcf/games/','linear-gradient(145deg,#ff5c63,#b36bff)','<path d="M7 9h10a4 4 0 0 1 3.9 4.9l-.6 2.6a2.3 2.3 0 0 1-3.9 1L14.6 15H9.4l-1.8 2.5a2.3 2.3 0 0 1-3.9-1l-.6-2.6A4 4 0 0 1 7 9z" fill="currentColor"/>'],
   ['home','Inicio','/mcf/','linear-gradient(145deg,#ffffff,#9a9a9a)','<g transform="rotate(45 12 12)"><path fill="#000" d="'+WS_PL+'"/></g>']];
 function wsRender(){const p=$('#mcfWs');const n=CUR?esc(myName()):'';
@@ -2168,7 +2167,7 @@ async function postLogin(){
   if(S.emailPendiente&&(!isFakeEmail(CUR.email)||userEmail())){delete S.emailPendiente;save()}
   const me=CUR.uid;
   if(CUR.email==='fartaes@2batx.app'||nameKey(myName())==='fartaes')await fdb().ref('admins/'+me).set(true).catch(()=>{});
-  IS_ADMIN=await fdb().ref('admins/'+me).get().then(s=>!!s.val()).catch(()=>false);applyCfg();sharedPdfCheck();
+  IS_ADMIN=await fdb().ref('admins/'+me).get().then(s=>!!s.val()).catch(()=>false);applyCfg();
   if(needsLink()&&!sessionStorage.getItem('2batx.mailAsked'))setTimeout(askEmail,600);
   const r=fdb().ref('mensajes/'+me);const f=sn=>{const v=sn.val()||{};const k=Object.keys(v)[0];if(k&&!document.getElementById('msgBox'))showAdminMsg(k,v[k])};r.on('value',f,()=>{});MSG_OFF=()=>r.off('value',f);
 }
@@ -2354,33 +2353,15 @@ async function admLoad(){ADM.err='';const g=p=>fdb().ref(p).get().then(s=>s.val(
       curso:st.perfil&&st.perfil.etiqueta||'',n:{t:(st.tasks||[]).length,e:(st.exams||[]).length,b:(st.blocks||[]).length,g:(st.grades||[]).length},amigos:Object.values(am[uid]||{}).filter(x=>x.estado==='ok').length}}).sort((a,b)=>b.ls-a.ls);
   ADM.data={users,usuarios:us,expulsados:ex,amigos:am,compartidos:co,raw:d}}
 async function openAdminApp(){setTimeout(admIdleReset,0);hideBoot();$('#auth').hidden=true;const a=$('#adminApp');a.hidden=false;a.innerHTML='<div class="adm-main"><div class="empty">Cargando datos…</div></div>';await admLoad();admRender()}
-const ADM_TABS=[['resumen','Resumen','stats'],['usuarios','Usuarios','users'],['anuncio','Anuncio','bell'],['web','Ajustes de la web','settings'],['mensajes','Mensajes','tasks'],['datos','Datos','copy'],['pdf','Compartir PDF','tasks'],['clave','Clave','grade']];
+const ADM_TABS=[['resumen','Resumen','stats'],['usuarios','Usuarios','users'],['anuncio','Anuncio','bell'],['web','Ajustes de la web','settings'],['mensajes','Mensajes','tasks'],['datos','Datos','copy'],['clave','Clave','grade']];
 function admRender(){const a=$('#adminApp');const D=ADM.data;
   const side=`<nav class="adm-side"><h1>${I.grade}Admin</h1>${ADM_TABS.map(([k,l,i])=>`<button class="t ${ADM.tab===k?'on':''}" data-atab="${k}">${I[i]||''}<span>${l}</span></button>`).join('')}<div style="flex:1"></div><button class="t" data-areload>${I.reset||''}<span>Recargar</span></button><button class="t" data-aexit>${I.left}<span>Salir</span></button></nav>`;
   a.innerHTML=side+`<main class="adm-main">${admView()}</main>`}
-/* ---------- Compartir PDF (MCF Apuntes privados) ---------- */
-const PDFS={loaded:false,loading:false,docs:[],acl:{},q:''};
-async function pdfLoad(){if(PDFS.loading)return;PDFS.loading=true;try{const j=await fetch('/mcf/privado/d/index.json',{cache:'no-store'}).then(r=>r.json());PDFS.docs=j.docs||[]}catch(e){PDFS.docs=[]}
-  for(const d of PDFS.docs){PDFS.acl[d.id]=await fdb().ref('mcfdocs/acl/'+d.id).get().then(s=>s.val()||{}).catch(()=>({}))}PDFS.loaded=true;PDFS.loading=false;if(ADM.tab==='pdf')admRender()}
-function pdfView(){if(!PDFS.loaded){pdfLoad();return '<h2>Compartir PDF</h2><p class="hint">Cargando…</p>'}const U=ADM.data.users||[];const q=nm2(PDFS.q||'');
-  if(!PDFS.docs.length)return '<h2>Compartir PDF</h2><p class="hint">No hay PDFs subidos.</p>';
-  return `<h2>Compartir PDF</h2><p class="hint" style="margin-top:-8px">Solo las personas marcadas pueden abrir el PDF (se ve en la web, sin poder descargarlo, copiarlo ni imprimirlo, y con su nombre como marca de agua). A ellas les aparece un botón «Apuntes compartidos» en su calendario.</p>
-  <input class="field" id="pdfq" placeholder="Buscar usuario" value="${esc(PDFS.q||'')}" style="margin-bottom:10px">
-  ${PDFS.docs.map(d=>{const A=PDFS.acl[d.id]||{};const n=Object.keys(A).length;const L=U.filter(u=>!q||nm2(u.nombre+' '+u.email).includes(q)).sort((a,b)=>(A[b.uid]?1:0)-(A[a.uid]?1:0));
-    return `<h2 style="font-size:18px;margin-top:16px">📄 ${esc(d.n)} <span class="count">${n} con acceso</span></h2><p class="hint" style="margin-top:-6px">${esc(d.sub||'')} · ${d.pages} páginas · <a href="/mcf/privado/" target="_blank" rel="noopener">abrir</a></p>
-    <div class="alist">${L.map(u=>`<div><span><b>${esc(u.nombre)}</b> <span style="color:var(--ink-3)">${esc(u.email||'')}</span></span><button class="btn ${A[u.uid]?'':'primary'}" data-pdfacl="${esc(d.id)}|${esc(u.uid)}|${A[u.uid]?0:1}">${A[u.uid]?'Quitar acceso':'Dar acceso'}</button></div>`).join('')||'<div>Sin usuarios</div>'}</div>`}).join('')}`}
-async function sharedPdfCheck(){try{if(!CUR||CUR.isAnonymous)return;const j=await fetch('/mcf/privado/d/index.json',{cache:'no-store'}).then(r=>r.json());let n=0;
-  for(const d of j.docs||[]){const ok=await fdb().ref('mcfdocs/acl/'+d.id+'/'+CUR.uid).get().then(s=>s.val()===true).catch(()=>false);if(ok)n++}
-  const old=document.getElementById('pdfShared');if(old)old.remove();if(!n)return;
-  const a=document.createElement('a');a.id='pdfShared';a.href='/mcf/privado/';a.textContent='📄 Apuntes compartidos ('+n+')';
-  a.style.cssText='position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;background:#123a6b;color:#fff;font-weight:700;padding:10px 16px;border-radius:999px;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.3);font-size:14px';
-  document.body.appendChild(a)}catch(e){}}
 function admView(){const D=ADM.data,U=D.users,t=ADM.tab;const errBox=ADM.err?`<div class="anuncio importante"><span>⚠️</span><div class="tx"><b>No se pueden leer los datos.</b> Firebase ha respondido: ${esc(ADM.err)}.\nComprueba que pegaste las reglas nuevas (reglas-firebase.json) y pulsaste Publicar. Luego pulsa Recargar.</div></div>`:'';if(errBox&&t!=='clave'&&t!=='web'&&t!=='anuncio')return errBox+'<h2>Sin datos</h2>';const wk=Date.now()-7*864e5;
   if(t==='resumen'){const sum=k=>U.reduce((x,u)=>x+u.n[k],0);
     return `<h2>Resumen</h2><div class="akpis"><div><b>${U.length}</b><span>cuentas</span></div><div><b>${U.filter(u=>u.ls>wk).length}</b><span>activas esta semana</span></div><div><b>${U.filter(u=>u.activo).length}</b><span>activas (30 días)</span></div><div><b>${U.filter(u=>!u.email).length}</b><span>sin correo</span></div><div><b>${U.filter(u=>u.verif===false).length}</b><span>correo sin confirmar</span></div><div><b>${U.filter(u=>/Google/.test(u.prov)).length}</b><span>con Google</span></div><div><b>${sum('t')}</b><span>deberes</span></div><div><b>${sum('e')}</b><span>exámenes</span></div><div><b>${sum('b')}</b><span>bloques de estudio</span></div><div><b>${sum('g')}</b><span>notas</span></div><div><b>${Object.keys(D.compartidos).length}</b><span>cosas compartidas</span></div><div><b>${Object.values(D.expulsados).filter(x=>x.bloqueado).length}</b><span>bloqueadas</span></div></div>
     <h2 style="font-size:18px">Últimos accesos</h2><div class="alist">${U.slice(0,10).map(u=>`<div><b>${esc(u.nombre)}</b><span style="color:var(--ink-3)">${agoTxt(u.ls)}</span></div>`).join('')||'<div>Sin datos</div>'}</div>
     <h2 style="font-size:18px;margin-top:22px">Por curso</h2><div class="alist">${Object.entries(U.reduce((m,u)=>{const k=u.curso||'Sin indicar';m[k]=(m[k]||0)+1;return m},{})).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div><span>${esc(k)}</span><b>${v}</b></div>`).join('')}</div>`}
-  if(t==='pdf')return pdfView();
   if(t==='usuarios'){if(ADM.sel)return admUser(U.find(u=>u.uid===ADM.sel));const q=nm2(ADM.q),F=ADM.f||'all';const L=U.filter(u=>(!q||nm2(u.nombre+' '+u.email+' '+u.curso).includes(q))&&(F==='all'||(F==='act'&&u.activo)||(F==='inact'&&!u.activo)||(F==='nover'&&u.verif===false)||(F==='google'&&/Google/.test(u.prov))||(F==='bloq'&&u.bloq)||(F==='vacia'&&u.sinDatos)));
     return `<h2>Usuarios <span class="count">${U.length}</span></h2><input class="field" id="aq" placeholder="Buscar por nombre, correo o curso" value="${esc(ADM.q)}" style="margin-bottom:10px"><div class="filters">${[['all','Todas'],['act','Activas'],['inact','Inactivas'],['nover','Sin confirmar'],['google','Google'],['bloq','Bloqueadas'],['vacia','Sin datos']].map(([k,l])=>`<button class="fbtn ${(ADM.f||'all')===k?'on':''}" data-af="${k}">${l}</button>`).join('')}</div>
     <div class="uwrap"><table class="utable"><tr><th>Usuario</th><th>Correo</th><th>Entra con</th><th>Curso</th><th>Última vez</th><th>Estado</th></tr>${L.map(u=>`<tr class="click" data-auser="${esc(u.uid)}"><td><b>${esc(u.nombre)}</b>${u.sinDatos?' <span class="pill me">sin datos</span>':''}</td><td>${esc(u.email||'—')}${u.verif===false?' <span class="pill off">sin confirmar</span>':''}</td><td>${esc(u.prov||'—')}</td><td>${esc(u.curso||'—')}</td><td>${agoTxt(u.ls)}</td><td>${u.bloq?'<span class="pill off">Bloqueada</span>':`<span class="pill ${u.activo?'on':'off'}">${u.activo?'Activa':'Inactiva'}</span>`}</td></tr>`).join('')}</table></div>`}
@@ -2423,12 +2404,11 @@ function admUser(u){if(!u){ADM.sel=null;return admView()}const st=u.st;const L=(
   <section class="panel"><h2 style="font-size:17px">Exámenes <span class="count">${u.n.e}</span></h2><div class="alist">${L(st.exams,x=>`<div><span>${esc(x.title)}${x.grade!=null?` · <b>${esc(x.grade)}</b>`:''}</span><span style="color:var(--ink-3)">${esc(x.date||'sin fecha')}</span></div>`)}</div></section></div>
   <div id="ajsonBox"></div>`}
 async function admExpel(uids){const upd={},t=firebase.database.ServerValue?firebase.database.ServerValue.TIMESTAMP:Date.now();uids.forEach(u=>{upd['expulsados/'+u]={t,por:'admin'};upd['dietari/'+u]=null;upd['cuentas/'+u]=null});await fdb().ref().update(upd)}
-document.addEventListener('input',e=>{if(e.target.id==='pdfq'){PDFS.q=e.target.value;const pos=e.target.selectionStart;admRender();const n=$('#pdfq');n.focus();n.setSelectionRange(pos,pos);return}if(e.target.id==='aq'){ADM.q=e.target.value;const pos=e.target.selectionStart;admRender();const n=$('#aq');n.focus();n.setSelectionRange(pos,pos)}});
+document.addEventListener('input',e=>{if(e.target.id==='aq'){ADM.q=e.target.value;const pos=e.target.selectionStart;admRender();const n=$('#aq');n.focus();n.setSelectionRange(pos,pos)}});
 document.addEventListener('click',async e=>{if(!e.target.closest('#adminApp'))return;const b=e.target.closest('button,tr');if(!b)return;const D=ADM.data;const u=ADM.sel&&D.users.find(x=>x.uid===ADM.sel);
   try{
   if(b.dataset.atab){ADM.tab=b.dataset.atab;ADM.sel=null;admRender()}
   else if(b.dataset.auser){ADM.sel=b.dataset.auser;admRender()}
-  else if(b.dataset.pdfacl){const[d,uid,on]=b.dataset.pdfacl.split('|');await fdb().ref('mcfdocs/acl/'+d+'/'+uid).set(on==='1'?true:null);(PDFS.acl[d]=PDFS.acl[d]||{});if(on==='1')PDFS.acl[d][uid]=true;else delete PDFS.acl[d][uid];admRender();toast(on==='1'?'Acceso dado':'Acceso quitado')}
   else if(b.hasAttribute('data-aback')){ADM.sel=null;admRender()}
   else if(b.hasAttribute('data-areload')){await admLoad();admRender();toast('Datos recargados')}
   else if(b.hasAttribute('data-aexit')){adminExit()}
