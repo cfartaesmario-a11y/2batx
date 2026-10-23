@@ -13,7 +13,7 @@ try{var pl=localStorage.getItem("2batx.palette");if(pl){document.documentElement
 <meta name="apple-mobile-web-app-title" content="MCF Calendar">
 <meta name="application-name" content="MCF Calendar">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-npw/HSVmU8f4wZfxqI/fzDGQLKipBWI4CjFn4AfE4AY=' 'sha256-STQ8o94gZcL59uLOgCEzyZ9+QI0KrDNY36wQGQD9rsw=' https://www.gstatic.com https://apis.google.com https://www.google.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleusercontent.com https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com https://www.google.com; frame-src https://*.firebaseapp.com https://accounts.google.com https://appleid.apple.com https://www.google.com https://recaptcha.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-npw/HSVmU8f4wZfxqI/fzDGQLKipBWI4CjFn4AfE4AY=' 'sha256-KgjeWVmq1l3kfumzR6pWf4mTG87HJa+wIV3kTvbuqUw=' https://www.gstatic.com https://apis.google.com https://www.google.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleusercontent.com https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com https://www.google.com; frame-src https://*.firebaseapp.com https://accounts.google.com https://appleid.apple.com https://www.google.com https://recaptcha.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MCF Calendar</title>
@@ -658,6 +658,37 @@ body.support .mtop{top:48px}
 .sitem svg{width:22px;height:22px}
 .sitem.on{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
 .mav{width:32px;height:32px;border-radius:50%;border:0;background:var(--ink);color:var(--sheet);font-weight:700;font-size:14px;display:grid;place-items:center}
+.orgh{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.orgsp{color:var(--pen);margin-right:6px}
+.orgsc{font-size:12.5px;color:var(--ink-3);padding:3px 10px;border-radius:12px;background:color-mix(in srgb,var(--c) 14%,transparent)}.orgsc b{color:var(--c);font-size:14px}
+.orgh .btn.ghost svg{width:17px;height:17px}
+.orgcmd{display:flex;gap:8px;margin-bottom:10px}
+.orgcmd input{flex:1;min-width:0;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--sheet-2);color:var(--ink);padding:0 13px;font:inherit;font-size:14px;outline:0}
+.orgcmd input:focus{border-color:var(--pen)}.orgcmd .btn{height:40px;min-width:74px;justify-content:center}
+.orgmsg{margin:-2px 0 10px;font-size:13.5px;color:var(--ink-2)}
+.orgdots{display:inline-flex;gap:4px}.orgdots i{width:6px;height:6px;border-radius:50%;background:currentColor;animation:orgb 1s infinite}.orgdots i:nth-child(2){animation-delay:.15s}.orgdots i:nth-child(3){animation-delay:.3s}
+@keyframes orgb{0%,80%,100%{opacity:.3}40%{opacity:1}}
+.orgex{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:12px}
+.orgexi{padding:9px 11px;border-radius:12px;background:var(--sheet-2);display:flex;flex-direction:column;gap:5px;min-width:0}
+.orgexi span{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.orgexi i{display:block;height:6px;border-radius:3px;background:var(--line);overflow:hidden}.orgexi u{display:block;height:100%;border-radius:3px}
+.orgexi small{font-size:11.5px;color:var(--ink-3)}
+.orgl{display:flex;flex-direction:column;gap:7px}
+.orgi{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:12px;background:var(--sheet-2);border-left:3px solid var(--ink-3)}
+.orgi.warn{border-left-color:#E8A200}.orgi.bad{border-left-color:var(--red)}
+.orgic{width:26px;height:26px;border-radius:50%;background:var(--pen-soft);display:grid;place-items:center;font-size:13px;font-weight:700;flex:none;color:var(--ink)}
+.orgt{flex:1;min-width:0;font-size:13.5px;color:var(--ink);line-height:1.35}.orgt small{display:block;color:var(--ink-3);font-size:12px;margin-top:2px}
+.orgi .btn{flex:none}
+.orgmore{align-self:flex-start;font-size:13px;margin-top:2px}
+.orgok{margin:0;color:var(--ok,#2F9E5F);font-size:14px}
+.orgbtns{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
+.orgbar{display:flex;align-items:center;gap:10px;padding:8px 12px;margin:0 0 12px;border-radius:14px;background:var(--sheet);border:1px solid var(--line);flex-wrap:wrap}
+.orgbt{font-size:13.5px;color:var(--ink-2)}
+.orgseg{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.orgseg label{display:inline-flex;cursor:pointer}
+.orgseg input{position:absolute;opacity:0;pointer-events:none}
+.orgseg span{padding:7px 13px;border-radius:16px;border:1px solid var(--line);font-size:13px;color:var(--ink-2);font-weight:500}
+.orgseg input:checked+span{background:var(--pen);border-color:var(--pen);color:var(--on-pen)}
+@media (max-width:700px){.orgi{flex-wrap:wrap;align-items:flex-start}.orgt{flex-basis:calc(100% - 40px)}.orgt small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.orgi .btn{margin-left:36px}.orgbtns .btn{flex:1;justify-content:center}.orgex{grid-template-columns:1fr 1fr}.orgh h2{font-size:18px}}
 /* Mobile */
 .tabbar{display:none}
 @media (max-width:900px){
@@ -1254,6 +1285,7 @@ function vHoy(){
     <div class="hero-r"><div class="clock num" id="clock">${pad(n.getHours())}:${pad(n.getMinutes())}<small>${pad(n.getSeconds())}</small></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-new="block">${I.plus}Bloque de estudio</button><button class="btn" data-new="exam">${I.plus}Examen</button><button class="btn primary" data-new="task">${I.plus}Deber</button></div></div>
   </div>
   ${reqHTML()}
+  ${orgHTML('hoy')}
   <section class="panel" style="margin-bottom:18px">
     <h2>Las próximas dos semanas</h2>
     <div class="strip">${stripHTML()}</div>
@@ -1392,6 +1424,7 @@ function vPlan(){
   return `<div class="topbar"><h1>${cap(title)}<span class="sub">${Math.floor(planned/60)} h ${planned%60} min planificadas, ${Math.floor(weekMin/60)} h ${weekMin%60} min hechas esta semana.</span></h1>
    <div class="wk-nav"><button class="iconbtn" data-wk="-7" aria-label="Semana anterior">${I.left}</button><button class="btn sm" data-wk="0">Hoy</button><button class="iconbtn" data-wk="7" aria-label="Semana siguiente">${I.right}</button>
    <button class="btn sm" data-routines>🔁 Rutinas</button><button class="btn sm" data-copyweek>${I.copy}Copiar semana anterior</button><button class="btn sm primary" data-new="block">${I.plus}Bloque</button></div></div>
+   ${orgBarHTML()}
    ${MOB?`<div class="dpick">${days.map(d=>{const s=ds(d);const nEx=S.exams.some(e=>e.date===s),nB=S.blocks.some(b=>b.date===s);return `<button type="button" class="${s===UI.weekRef?'on':''} ${s===t?'today':''}" data-pday="${s}"><span>${WDS[d.getDay()]}</span><b class="num">${d.getDate()}</b><i>${nEx?'<u class="x"></u>':''}${nB?'<u></u>':''}</i></button>`}).join('')}</div>`:''}
    <div class="planner-wrap"><div class="planner ${MOB?'dayview':''}" ${MOB?'style="grid-template-columns:46px minmax(0,1fr);min-width:0"':''}>${head}${gut}${cols}</div></div>
    <p class="hint">Las horas se ajustan solas: empieza con lo primero que tienes y acaba con lo último. Las clases salen rayadas y, dentro, los deberes que entregas a esa hora. Haz clic en un hueco para crear un bloque; para ponerlo fuera de estas horas, cambia la hora al editarlo.</p>`;
@@ -1561,7 +1594,7 @@ document.addEventListener('click',e=>{
   const dt=e.target.closest('[data-deltask]');if(dt){const i=S.tasks.findIndex(x=>x.id===dt.dataset.deltask);const [r]=S.tasks.splice(i,1);save();render();toast('Deber borrado',()=>{S.tasks.push(r);save();render()});return}
   const eb=e.target.closest('[data-editblock]');if(eb&&!e.target.closest('[data-blk]')){openBlockModal(S.blocks.find(x=>x.id===eb.dataset.editblock));return}
   const ee=e.target.closest('[data-editexam]');if(ee){openExamModal(S.exams.find(x=>x.id===ee.dataset.editexam));return}
-  const ap=e.target.closest('[data-autoplan]');if(ap){openAutoModal(S.exams.find(x=>x.id===ap.dataset.autoplan));return}
+  const ap=e.target.closest('[data-autoplan]');if(ap){const ex=S.exams.find(x=>x.id===ap.dataset.autoplan);if(examDays(ex)>=2)orgAskExam(ex);else openAutoModal(ex);return}
   const gr=e.target.closest('[data-grade]');if(gr){openGradeModal(S.exams.find(x=>x.id===gr.dataset.grade));return}
 });
 
@@ -1635,7 +1668,7 @@ function openExamModal(e){
     const lines=fd.get('topics').split('\n').map(x=>x.trim()).filter(Boolean);
     const topics=lines.map(t=>({t,done:!!e.topics.find(o=>o.t===t&&o.done)}));
     const o={kind:fd.get('kind')||'',subj:fd.get('subj'),title,date:fd.get('date')||null,time:fd.get('time')||null,topics,notes:fd.get('notes').trim()};if(MODE()==='docente'){const al=fd.get('alumnos'),co=fd.get('corregidos');o.alumnos=al===''||al==null?null:Math.max(0,+al);o.corregidos=co===''||co==null?0:Math.max(0,+co)}
-    let obj;if(n){obj={id:uid(),grade:null,...o};S.exams.push(obj)}else{const cur=S.exams.find(x=>x.id===e.id)||e;Object.assign(cur,o);obj=cur}save();render();toast(n?'Examen añadido':'Examen guardado');
+    let obj;if(n){obj={id:uid(),grade:null,...o};S.exams.push(obj)}else{const cur=S.exams.find(x=>x.id===e.id)||e;Object.assign(cur,o);obj=cur}save();render();toast(n?'Examen añadido':'Examen guardado');if(n&&obj.date)setTimeout(()=>orgAskExam(obj),250);
     const sh=fd.getAll('shareTo');if(sh.length)shareItem('exam',obj,sh);
   },(f,close)=>{bindPick(f);bindHourPopover(f,'date','time');const d=f.querySelector('[data-del]');d&&d.addEventListener('click',()=>{S.exams=S.exams.filter(x=>x.id!==e.id);save();close();render();toast('Examen borrado',()=>{S.exams.push(e);save();render()})})});
 }
@@ -1686,6 +1719,178 @@ function openGradeModal(e){
     e=S.exams.find(x=>x.id===e.id)||e;const v=fd.get('g');if(v===''){e.grade=null}else{const g=+v;if(isNaN(g)||g<0||g>10){toast('Pon una nota entre 0 y 10');return false}e.grade=g}save();render();
   });
 }
+
+
+/* ---------- Organizador: revisa la semana y la ordena con criterios de estudio reales ----------
+   Base: efecto de espaciado (Cepeda et al., 2006), práctica de recuperación (Roediger y Karpicke, 2006),
+   pausas cada 50-90 min (atención sostenida, ritmo ultradiano), sueño y memoria (Walker, 2017; Stickgold, 2005),
+   práctica intercalada (Rohrer y Taylor, 2007) y límite de estudio intenso al día (Ericsson et al., 1993). */
+const ORG={msg:'',busy:false,all:false,items:[]};
+const OP=()=>Object.assign({desde:'16:00',dormir:'23:00',capWk:210,capWe:300},S.orgPrefs||{});
+const oSleep=()=>Math.min(1440,toMin(OP().dormir)||1380);
+const oWE=d=>[0,6].includes(pd(d).getDay());
+const oStart=d=>oWE(d)?10*60:(toMin(OP().desde)||960);
+const oCap=d=>oWE(d)?+OP().capWe:+OP().capWk;
+const oBM=b=>b.start&&b.end?Math.max(0,toMin(b.end)-toMin(b.start)):45;
+const oHM=m=>{m=Math.round(m);const h=Math.floor(m/60),r=m%60;return h?(h+' h'+(r?' '+r:'')):r+' min'};
+const oDay=d=>d===todayS()?'hoy':d===ds(addDays(new Date(),1))?'mañana':WD[pd(d).getDay()]+' '+pd(d).getDate();
+const oNow=()=>{const n=new Date();return n.getHours()*60+n.getMinutes()};
+function oBusy(date,ign){const wd=pd(date).getDay(),I2=ign instanceof Set?ign:new Set(ign?[ign]:[]);
+  return [...S.classes.filter(c=>c.day===wd).map(c=>[toMin(c.start),toMin(c.end)]),...S.blocks.filter(b=>b.date===date&&b.start&&b.end&&!I2.has(b.id)).map(b=>[toMin(b.start),toMin(b.end)]),...routineSegs(date).map(g=>[g.a,g.b])]}
+function oFits(date,a,b,ign){if(!date||a==null||b==null||b<=a||date<todayS()||b>oSleep())return false;if(date===todayS()&&a<oNow()+5)return false;return !oBusy(date,ign).some(([x,y])=>a<y+10&&b+10>x)}
+function oSlot(date,dur,pref,ign,lo,hi){lo=lo??oStart(date);hi=hi??oSleep();pref=pref??lo;let best=null;for(let t=Math.ceil(lo/5)*5;t+dur<=hi;t+=5)if(oFits(date,t,t+dur,ign)&&(best==null||Math.abs(t-pref)<Math.abs(best-pref)))best=t;return best}
+const oStudy=d=>S.blocks.filter(b=>b.date===d).reduce((a,b)=>a+oBM(b),0);
+const oDays=(n,from)=>[...Array(n)].map((_,i)=>ds(addDays(from?pd(from):new Date(),i)));
+const oExams=()=>S.exams.filter(e=>e.date&&e.grade==null&&examDays(e)>=1&&examDays(e)<=21).sort((a,b)=>a.date.localeCompare(b.date));
+function oNeed(e){const tp=e.topics.length,left=e.topics.filter(t=>!t.done).length;const base=tp?Math.max(120,left*75+(tp-left)*20):300;return Math.round(base*(e.dif||1)*(e.prep||1)/15)*15}
+const oPlanned=e=>S.blocks.filter(b=>b.examId===e.id&&(b.done||b.date>=todayS())).reduce((a,b)=>a+oBM(b),0);
+const oSlotIn=(d,dur,ign)=>{const t=oSlot(d,dur,oStart(d),ign);return t};
+function oMove(b,days,dur){dur=dur||oBM(b);for(const d of days){if(oStudy(d)-(b.date===d?oBM(b):0)+dur>oCap(d))continue;const t=oSlotIn(d,dur,b.id);if(t!=null){b.date=d;b.start=fromMin(t);b.end=fromMin(t+dur);return true}}return false}
+function oAdd(o){const t=oSlotIn(o.date,o.dur);if(t==null)return null;const b={id:uid(),date:o.date,start:fromMin(t),end:fromMin(t+o.dur),subj:o.subj,what:o.what,done:false,examId:o.examId,org:1};S.blocks.push(b);return b}
+
+/* Plan de estudio de un examen: sesiones de 50 min repartidas, simulacro 2-3 días antes y repaso ligero el día antes */
+function oPlanExam(e){let left=oNeed(e)-oPlanned(e);if(left<30)return 0;const name=e.title.replace(/^examen\s*/i,'');const topics=e.topics.filter(t=>!t.done).map(t=>t.t);
+  const days=[];for(let k=examDays(e);k>=1;k--)days.push(ds(addDays(pd(e.date),-k)));const ok=days.filter(d=>d>=todayS());if(!ok.length)return 0;
+  const last=ds(addDays(pd(e.date),-1));let made=0,k=0;const has=re=>S.blocks.some(b=>b.examId===e.id&&b.date>=todayS()&&re.test(b.what));
+  if(ok.includes(last)&&!has(/repaso/i)){if(oAdd({date:last,dur:40,subj:e.subj,what:'Repaso ligero: '+name+' (y a dormir pronto)',examId:e.id})){left-=40;made++}}
+  const pre=ok.filter(d=>d<last);
+  if(left>=60&&pre.length>=2&&!has(/simulacro|autoexamen/i)){const d=pre[Math.max(0,pre.length-2)];if(oAdd({date:d,dur:60,subj:e.subj,what:'Simulacro de examen: '+name+' (sin apuntes, luego corrige)',examId:e.id})){left-=60;made++}}
+  const pool=pre.length?pre:ok;let guard=0;
+  while(left>=25&&guard++<40){let placed=false;
+    // de lejos a cerca: cada vuelta reparte una sesión por día (espaciado)
+    for(const d of pool){if(left<25)break;const mine=S.blocks.filter(b=>b.examId===e.id&&b.date===d).reduce((a,b)=>a+oBM(b),0);if(mine>=150)continue;const dur=Math.min(50,Math.max(25,left));if(oStudy(d)+dur>oCap(d))continue;
+      const tp=topics.length?topics[k%topics.length]:name;const what=(k%3===2?'Ejercicios y preguntas: ':k%3===1?'Practicar de memoria: ':'Estudiar: ')+tp;
+      if(oAdd({date:d,dur,subj:e.subj,what,examId:e.id})){left-=dur;made++;k++;placed=true}}
+    if(!placed)break}
+  return made}
+
+/* Pausas: reordena una cadena de bloques seguidos con 10 min entre ellos y 20 min cada ~90 min; parte bloques de más de 110 min */
+function oBreaks(d){const bl=S.blocks.filter(b=>b.date===d&&b.start&&b.end&&!b.done).sort((a,b)=>toMin(a.start)-toMin(b.start));let fixed=0;
+  // partir bloques largos
+  for(const b of bl){const m=oBM(b);if(m>110){const h=Math.ceil(m/2/5)*5;const nb={...b,id:uid(),what:b.what+' (2ª parte)'};b.end=fromMin(toMin(b.start)+h);nb.start=fromMin(toMin(b.end));nb.end=fromMin(toMin(b.start)+m);S.blocks.push(nb);fixed++}}
+  const all=S.blocks.filter(b=>b.date===d&&b.start&&b.end&&!b.done).sort((a,b)=>toMin(a.start)-toMin(b.start));
+  const chains=[];let cur=[];for(const b of all){if(cur.length&&toMin(b.start)-toMin(cur[cur.length-1].end)>=10){chains.push(cur);cur=[]}cur.push(b)}if(cur.length)chains.push(cur);
+  for(const ch of chains){if(ch.length<2&&oBM(ch[0])<=110)continue;const ids=new Set(ch.map(b=>b.id));let t=toMin(ch[0].start),acc=0;const plan=[];
+    for(const b of ch){const m=oBM(b);if(plan.length){const gap=acc+m>90?20:10;if(acc+m>90)acc=0;t+=gap}plan.push([b,t,t+m]);t+=m;acc+=m}
+    const bad=plan.some(([b,a,z])=>z>oSleep()||oBusy(d,ids).some(([x,y])=>a<y&&z>x));
+    const changed=plan.some(([b,a])=>a!==toMin(b.start));
+    if(changed&&!bad){plan.forEach(([b,a,z])=>{b.start=fromMin(a);b.end=fromMin(z)});fixed++}
+    else if(changed){ // no cabe: recorta 10 min a cada bloque menos el primero para hacer hueco
+      let ok=true;let t2=toMin(ch[0].start);const p2=[];for(const [i,b] of ch.entries()){const m=Math.max(20,oBM(b)-(i?10:0));if(i)t2+=10;p2.push([b,t2,t2+m]);t2+=m}
+      if(p2[p2.length-1][2]<=toMin(ch[ch.length-1].end)){p2.forEach(([b,a,z])=>{b.start=fromMin(a);b.end=fromMin(z)});fixed++}}}
+  return fixed}
+function oChains(d){const all=S.blocks.filter(b=>b.date===d&&b.start&&b.end&&!b.done).sort((a,b)=>toMin(a.start)-toMin(b.start));const out=[];let cur=[];
+  for(const b of all){if(cur.length&&toMin(b.start)-toMin(cur[cur.length-1].end)>=10){out.push(cur);cur=[]}cur.push(b)}if(cur.length)out.push(cur);
+  return out.filter(c=>c.length&&(toMin(c[c.length-1].end)-toMin(c[0].start)>100&&c.length>1||oBM(c[0])>110))}
+
+/* Análisis de la semana */
+function oAnalyze(){const t=todayS(),wk=oDays(7),items=[],exams=[];
+  const add=(lvl,ic,text,why,fix,fl)=>items.push({lvl,ic,text,why,fix,fl:fl||'Arreglar'});
+  // 1. bloques que no hiciste
+  const miss=S.blocks.filter(b=>!b.done&&b.start&&b.end&&(b.date<t&&b.date>=ds(addDays(new Date(),-3))||b.date===t&&toMin(b.end)<=oNow()));
+  if(miss.length)add('warn','↻',miss.length===1?`No marcaste como hecho <b>${esc(miss[0].what)}</b> (${oDay(miss[0].date)}).`:`Tienes <b>${miss.length} bloques</b> de estos días sin hacer.`,'Si no lo hiciste, mejor recolocarlo ya que acumularlo para el final.',()=>{let n=0;for(const b of miss){const e=b.examId&&S.exams.find(x=>x.id===b.examId);const lim=e?e.date:ds(addDays(new Date(),6));if(oMove(b,oDays(6).filter(d=>d<lim)))n++}return n},'Recolocar');
+  // 2. exámenes
+  for(const e of oExams()){const need=oNeed(e),pl=oPlanned(e),dd=examDays(e);const bl=S.blocks.filter(b=>b.examId===e.id&&b.date>=t&&!b.done);
+    const ndays=new Set(bl.map(b=>b.date)).size;exams.push({e,need,pl,dd,ndays});
+    const name=`<b>${esc(e.title)}</b> (${dd===1?'mañana':'en '+dd+' días'})`;
+    if(pl<need*.8&&dd>=2)add(pl?'warn':'bad','!',`${name}: ${pl?oHM(pl)+' planificadas de ~'+oHM(need):'nada planificado; recomendado ~'+oHM(need)}.`,'Calculado por el temario que te queda y la dificultad. Mejor sesiones de 50 min en varios días que un atracón (efecto de espaciado).',()=>oPlanExam(e),'Planificar');
+    const l2=bl.filter(b=>daysBetween(b.date,e.date)<=2).reduce((a,b)=>a+oBM(b),0),tot=bl.reduce((a,b)=>a+oBM(b),0);
+    if(dd>=5&&tot>=120&&l2>tot*.5)add('warn','⇆',`${name}: concentras el ${Math.round(l2/tot*100)}% del estudio en los 2 últimos días.`,'Repartirlo en más días hace que recuerdes bastante más que estudiarlo todo seguido (Cepeda et al., 2006).',()=>{let n=0;const early=oDays(dd).filter(d=>daysBetween(d,e.date)>2);for(const b of bl.filter(b=>daysBetween(b.date,e.date)<=2&&!/repaso/i.test(b.what)).slice(0,Math.ceil(bl.length/2)))if(oMove(b,early))n++;return n},'Repartir');
+    const lastD=ds(addDays(pd(e.date),-1)),lm=bl.filter(b=>b.date===lastD).reduce((a,b)=>a+oBM(b),0);
+    if(lm>150)add('warn','☾',`${name}: el día antes tienes ${oHM(lm)} de estudio.`,'El día antes rinde más un repaso ligero y dormir bien: el sueño fija lo estudiado (Walker, 2017).',()=>{let n=0;const early=oDays(dd).filter(d=>d<lastD);for(const b of bl.filter(b=>b.date===lastD&&!/repaso/i.test(b.what)).slice(1))if(oMove(b,early.slice().reverse()))n++;return n},'Aligerar');
+    if(tot>=120&&dd>=3&&!bl.some(b=>/simulacro|autoexamen|test|ejercicio|practicar|memoria/i.test(b.what)))add('info','✎',`${name}: todo es «estudiar»; no hay ninguna sesión de ponerte a prueba.`,'Hacerte preguntas o un simulacro sin apuntes fija más que releer (práctica de recuperación, Roediger y Karpicke, 2006).',()=>{const d=ds(addDays(pd(e.date),-2));if(oAdd({date:d<t?t:d,dur:60,subj:e.subj,what:'Simulacro de examen: '+e.title.replace(/^examen\s*/i,'')+' (sin apuntes)',examId:e.id}))return 1;const b=bl[bl.length-1];b.what='Practicar de memoria: '+b.what.replace(/^[^:]+:\s*/,'');return 1},'Añadir simulacro')}
+  // 3. días sobrecargados, sin pausas, hasta tarde
+  for(const d of wk){const st=oStudy(d),cp=oCap(d);
+    if(st>cp+15)add('warn','▲',`<b>${cap(oDay(d))}</b>: ${oHM(st)} de estudio (recomendado hasta ${oHM(cp)}).`,'A partir de ahí la concentración y lo que retienes bajan mucho; mejor pasarlo a un día más ligero (Ericsson et al., 1993).',()=>{let n=0;const bl=S.blocks.filter(b=>b.date===d&&!b.done&&b.start).sort((a,b)=>toMin(b.start)-toMin(a.start));let over=oStudy(d)-oCap(d);
+      for(const b of bl){if(over<=0)break;const e=b.examId&&S.exams.find(x=>x.id===b.examId);const lim=e?e.date:ds(addDays(new Date(),7));const opts=wk.filter(x=>x!==d&&x<lim).sort((a,c)=>oStudy(a)-oStudy(c));if(oMove(b,opts)){over-=oBM(b);n++}}return n},'Repartir');
+    for(const ch of oChains(d))add('warn','‖',`<b>${cap(oDay(d))}</b> de ${ch[0].start} a ${ch[ch.length-1].end} sin pausa.`,'La atención cae tras 50-90 min. Pausas de 10 min (y 20 cada hora y media) la recuperan; muévete o sal, no mires el móvil.',()=>oBreaks(d),'Meter pausas');
+    const late=S.blocks.filter(b=>b.date===d&&!b.done&&b.end&&toMin(b.end)>oSleep()-15);
+    if(late.length)add('warn','☾',`<b>${cap(oDay(d))}</b>: estudias hasta las ${late[late.length-1].end} y te acuestas a las ${OP().dormir}.`,'Recortar sueño empeora la memoria del día siguiente; a tu edad se recomiendan 8-10 h.',()=>{let n=0;for(const b of late)if(oMove(b,[d,...wk.filter(x=>x>d)]))n++;return n},'Adelantar');
+    const sb=S.blocks.filter(b=>b.date===d&&b.start).sort((a,b)=>toMin(a.start)-toMin(b.start));let run=0,rs=null;for(let i=0;i<sb.length;i++){if(i&&sb[i].subj===sb[i-1].subj&&toMin(sb[i].start)-toMin(sb[i-1].end)<30)run+=oBM(sb[i]);else run=oBM(sb[i]);if(run>150&&!rs)rs=sb[i]}
+    if(rs)add('info','⤨',`<b>${cap(oDay(d))}</b>: más de 2 h y media seguidas de ${esc(subj(rs.subj).name)}.`,'Alternar asignaturas o tipos de ejercicio ayuda a distinguir y recordar (práctica intercalada, Rohrer y Taylor, 2007).',null)}
+  // 4. entregas sin tiempo reservado
+  for(const x of S.tasks.filter(x=>!x.done&&x.due&&daysBetween(t,x.due)>=0&&daysBetween(t,x.due)<=2)){
+    if(S.blocks.some(b=>b.date>=t&&b.date<=x.due&&b.what&&b.what.toLowerCase().includes(x.title.toLowerCase().slice(0,18))))continue;
+    add('info','⏰',`Entrega ${oDay(x.due)}: <b>${esc(x.title)}</b>, sin hueco reservado.`,'Reservarle una hora concreta evita dejarlo para el último momento (intenciones de implementación, Gollwitzer, 1999).',()=>{for(const d of oDays(3).filter(d=>d<x.due||d===t))if(oAdd({date:d,dur:45,subj:x.subj,what:'Hacer: '+x.title}))return 1;return 0},'Reservar hueco')}
+  // 5. descanso semanal
+  if(wk.every(d=>oStudy(d)>=60))add('info','☀','No tienes ninguna tarde libre esta semana.','Un descanso de verdad a la semana evita el agotamiento y mantiene la motivación.',null);
+  const warn=items.filter(x=>x.lvl!=='info').length,info=items.length-warn;
+  const score=Math.max(0,Math.min(100,100-items.filter(x=>x.lvl==='bad').length*15-items.filter(x=>x.lvl==='warn').length*10-info*4));
+  return {items,exams,score}}
+function oRunAll(scope){checkpoint();let n=0;const today=todayS();
+  for(let pass=0;pass<2;pass++){const a=oAnalyze();for(const it of a.items){if(!it.fix)continue;if(scope==='hoy'&&!/hoy|mañana/.test(it.text)&&!/No marcaste|bloques<\/b> de estos/.test(it.text))continue;try{n+=+it.fix()||0}catch(e){}}}
+  save();render();toast(n?`Organizado: ${n} ${n===1?'cambio':'cambios'}`:'Ya estaba bien organizado',n?undoLast:undefined)}
+function oFixOne(i){const it=ORG.items[i];if(!it||!it.fix)return;checkpoint();let n=0;try{n=+it.fix()||0}catch(e){}if(!n){HIST.pop();toast('No he encontrado hueco libre para eso');return}save();render();toast(n===1?'Hecho':`Hecho: ${n} cambios`,undoLast)}
+
+/* Panel */
+function orgHTML(where){const A=oAnalyze();ORG.items=A.items;const items=A.items;const show=ORG.all?items:items.slice(0,where==='plan'?3:5);
+  const col=A.score>=80?'var(--ok,#2F9E5F)':A.score>=55?'#E8A200':'var(--red)';
+  return `<section class="panel orgp" style="margin-bottom:18px"><div class="orgh"><h2 style="margin:0"><span class="orgsp">✦</span>Organizador</h2><span class="orgsc" style="--c:${col}"><b>${A.score}</b>/100 semana</span><span style="flex:1"></span><button class="btn sm ghost" data-orgprefs title="Preferencias">${I.settings}</button></div>
+  <form class="orgcmd" data-orgcmd><input type="text" id="orgIn" placeholder="${CFG.iaKey?'Pídele algo: «libérame el sábado», «pasa física al jueves»…':'Pídele algo: «organiza la semana», «organiza hoy»…'}" autocomplete="off" enterkeyhint="go"><button class="btn primary sm" type="submit">${ORG.busy?'<span class="orgdots"><i></i><i></i><i></i></span>':'Hacer'}</button></form>
+  ${ORG.msg?`<p class="orgmsg">${esc(ORG.msg)}</p>`:''}
+  ${A.exams.length&&MODE()!=='personal'?`<div class="orgex">${A.exams.slice(0,4).map(x=>{const p=Math.min(100,Math.round(x.pl/Math.max(1,x.need)*100));return `<div class="orgexi" title="${esc(x.e.title)}"><span>${esc(x.e.title.replace(/^examen\s*/i,''))}</span><i><u style="width:${p}%;background:${p>=80?'var(--ok,#2F9E5F)':p>=40?'#E8A200':'var(--red)'}"></u></i><small>${oHM(x.pl)} / ${oHM(x.need)} · ${x.dd} d</small></div>`}).join('')}</div>`:''}
+  ${items.length?`<div class="orgl">${show.map((x,i)=>`<div class="orgi ${x.lvl}"><span class="orgic">${x.ic}</span><div class="orgt">${x.text}<small>${esc(x.why)}</small></div>${x.fix?`<button class="btn sm" data-orgfix="${i}">${x.fl}</button>`:''}</div>`).join('')}${items.length>show.length||ORG.all&&items.length>3?`<button class="linkbtn orgmore" data-orgall>${ORG.all?'Ver menos':'Ver todo ('+items.length+')'}</button>`:''}</div>`:`<p class="orgok">✓ Tu semana está bien organizada: estudio repartido, con pausas y sin trasnochar.</p>`}
+  <div class="orgbtns"><button class="btn sm" data-orgrun="hoy">Organizar hoy</button><button class="btn sm primary" data-orgrun="semana">Organizar la semana</button></div></section>`}
+function orgPrefs(){const p=OP();modal(`<h3>Preferencias del organizador</h3><div class="form">
+  <label>Entre semana empiezo a estudiar a las<input class="field" type="time" name="desde" value="${p.desde}"></label>
+  <label>Me voy a dormir a las<input class="field" type="time" name="dormir" value="${p.dormir}"></label>
+  <label>Máximo de estudio entre semana<select class="field" name="capWk">${[120,150,180,210,240,300].map(v=>`<option value="${v}" ${+p.capWk===v?'selected':''}>${oHM(v)}</option>`).join('')}</select></label>
+  <label>Máximo en fin de semana<select class="field" name="capWe">${[0,120,180,240,300,360,420].map(v=>`<option value="${v}" ${+p.capWe===v?'selected':''}>${v?oHM(v):'Nada (descanso)'}</option>`).join('')}</select></label></div>
+  <p class="hint" style="margin:8px 0 0">Para 2º de bachillerato se suele recomendar unas 2-4 h al día entre semana. Tus clases y rutinas se respetan siempre.</p>${foot(false)}`,fd=>{S.orgPrefs={desde:cleanTime(fd.get('desde'))||'16:00',dormir:cleanTime(fd.get('dormir'))||'23:00',capWk:+fd.get('capWk'),capWe:+fd.get('capWe')};save();render();toast('Preferencias guardadas')})}
+
+/* Examen nuevo: planificar en un toque */
+function orgAskExam(e){if(!e||!e.date||examDays(e)<2||MODE()==='personal')return;
+  const R=(n,o,v)=>`<div class="orgseg">${o.map(([a,l])=>`<label><input type="radio" name="${n}" value="${a}" ${v===a?'checked':''}><span>${l}</span></label>`).join('')}</div>`;
+  modal(`<h3>¿Planificar el estudio?</h3><p style="margin:-6px 0 12px;color:var(--ink-2)"><b>${esc(e.title)}</b>, ${fmtDate(e.date)} (en ${examDays(e)} días). Lo reparto en sesiones de 50 min en tus huecos libres, con un simulacro y un repaso ligero el día antes.</p>
+  <div class="form"><label class="full">¿Cómo lo llevas?${R('prep',[['1.3','Nada'],['1','Un poco'],['.7','Bastante'],['.4','Casi listo']],String(e.prep||1))}</label>
+  <label class="full">¿Cuánto te cuesta?${R('dif',[['.75','Poco'],['1','Normal'],['1.35','Mucho']],String(e.dif||1))}</label></div>
+  <div class="mfoot"><button type="button" class="btn ghost" data-close>Ahora no</button><button class="btn primary" type="submit">Planificar</button></div>`,fd=>{
+    const ex=S.exams.find(x=>x.id===e.id)||e;checkpoint();ex.prep=+fd.get('prep')||1;ex.dif=+fd.get('dif')||1;const n=oPlanExam(ex);save();render();
+    toast(n?`${n} sesiones planificadas · ${oHM(oPlanned(ex))} en total`:'No he encontrado huecos libres antes del examen',n?undoLast:undefined)})}
+
+/* Órdenes escritas: se ejecutan directamente (Ctrl+Z para deshacer) */
+async function orgCmd(q){const s=q.toLowerCase();
+  if(/organiza.*(semana)|ordena.*semana/.test(s)&&q.length<40){oRunAll('semana');return}
+  if(/organiza.*(hoy|d[ií]a)/.test(s)&&q.length<40){oRunAll('hoy');return}
+  if(/pausa|descanso/.test(s)&&/mete|pon|a[ñn]ade/.test(s)&&q.length<40){checkpoint();let n=0;oDays(7).forEach(d=>n+=oBreaks(d));save();render();toast(n?'Pausas añadidas':'Ya tenías pausas',n?undoLast:undefined);return}
+  const key=String(CFG.iaKey||'').trim();if(!key){ORG.msg='Para órdenes libres hace falta la clave de IA (panel de admin). Sin ella entiendo «organiza la semana», «organiza hoy» y «mete pausas».';render();return}
+  ORG.busy=true;ORG.msg='';render();
+  const n0=new Date(),ctx={hoy:todayS()+' ('+WD[n0.getDay()]+') '+pad(n0.getHours())+':'+pad(n0.getMinutes()),prefs:OP(),asig:S.subjects.map(s=>s.id+'='+s.name).join(', '),
+    clases:S.classes.map(c=>WDS[c.day]+' '+c.start+'-'+c.end+' '+c.subj).join('; '),rutinas:(S.routines||[]).map(r=>rutLabel(r)+' '+(r.days||[]).map(d=>WDS[+d]).join(',')+' '+r.start+'-'+r.end).join('; '),
+    bloques:S.blocks.filter(b=>b.date>=todayS()&&b.date<=ds(addDays(n0,14))).map(b=>[b.id,b.date,b.start||'-',b.end||'-',b.subj,b.what,b.done?'hecho':''].join('|')),
+    deberes:S.tasks.filter(x=>!x.done).slice(0,30).map(x=>[x.id,x.due,x.time,x.subj,x.title].join('|')),examenes:oExams().map(e=>[e.id,e.date,e.subj,e.title].join('|'))};
+  const sys=`Eres el organizador de MCF Calendar. Conviertes la orden del alumno en cambios del calendario y los EJECUTAS (él deshace con Ctrl+Z). No preguntes nada: haz lo más razonable.
+Criterios: sesiones de 25-90 min, 10 min entre bloques, no tocar clases ni rutinas, nada después de la hora de dormir menos 15 min, no planificar en el pasado, estudio repartido en varios días antes de un examen.
+JSON: {"r":"frase corta de lo que has hecho","a":[acciones]}. Acciones: {"op":"add_block","dia":"YYYY-MM-DD","ini":"HH:MM","fin":"HH:MM","asig":"id","que":"texto","examId":"id opcional"} {"op":"move_block","id","dia","ini","fin"} {"op":"delete_block","id"} {"op":"done_block","id"} {"op":"add_task","titulo","asig","entrega","hora"} {"op":"done_task","id"} {"op":"add_exam","titulo","asig","dia","hora"} {"op":"organize","scope":"semana|hoy"}.
+Bloques: id|fecha|ini|fin|asig|que|estado. Datos: ${JSON.stringify(ctx)}`;
+  let out=null,err='';
+  for(const m of ['gemini-flash-lite-latest','gemini-2.5-flash-lite','gemini-flash-latest']){for(const think of [true,false]){try{
+    const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+m+':generateContent',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({systemInstruction:{parts:[{text:sys}]},contents:[{role:'user',parts:[{text:q}]}],generationConfig:Object.assign({temperature:.2,responseMimeType:'application/json'},think?{thinkingConfig:{thinkingBudget:0}}:{})})});
+    if(r.status===400&&think)continue;if(!r.ok){err='IA '+r.status;break}
+    const j=await r.json();const tx=(((j.candidates||[])[0]||{}).content||{parts:[]}).parts.map(p=>p.text||'').join('');const a=tx.indexOf('{'),z=tx.lastIndexOf('}');out=JSON.parse(tx.slice(a,z+1));break}catch(e){err='sin conexión';break}}if(out)break}
+  ORG.busy=false;
+  if(!out){ORG.msg='No he podido usar la IA ('+err+'). Prueba otra vez o usa los botones de abajo.';render();return}
+  checkpoint();let n=0;const acts=Array.isArray(out.a)?out.a:[];
+  for(const a of acts){try{
+    if(a.op==='organize'){const before=JSON.stringify(S.blocks);const A=oAnalyze();A.items.forEach(it=>{if(it.fix)try{it.fix()}catch(e){}});if(JSON.stringify(S.blocks)!==before)n++}
+    else if(a.op==='add_block'||a.op==='move_block'){const d=cleanDate(a.dia);let s1=toMin(cleanTime(a.ini)),e1=toMin(cleanTime(a.fin));if(!d||s1==null||e1==null||e1<=s1)continue;const dur=Math.min(150,e1-s1);const b0=a.op==='move_block'?S.blocks.find(b=>b.id===a.id):null;if(a.op==='move_block'&&!b0)continue;
+      if(!oFits(d,s1,s1+dur,b0&&b0.id)){const t2=oSlot(d,dur,s1,b0&&b0.id,Math.min(s1,oStart(d)));if(t2==null)continue;s1=t2}
+      if(b0){b0.date=d;b0.start=fromMin(s1);b0.end=fromMin(s1+dur)}else S.blocks.push({id:uid(),date:d,start:fromMin(s1),end:fromMin(s1+dur),subj:S.subjects.some(x=>x.id===a.asig)?a.asig:(S.subjects[0]||{}).id,what:String(a.que||'Estudiar').slice(0,200),done:false,examId:S.exams.some(x=>x.id===a.examId)?a.examId:undefined,org:1});n++}
+    else if(a.op==='delete_block'){const L=S.blocks.length;S.blocks=S.blocks.filter(b=>b.id!==a.id);n+=L-S.blocks.length}
+    else if(a.op==='done_block'){const b=S.blocks.find(b=>b.id===a.id);if(b){b.done=true;n++}}
+    else if(a.op==='add_task'){const d=cleanDate(a.entrega);if(d&&a.titulo){S.tasks.push({id:uid(),subj:S.subjects.some(x=>x.id===a.asig)?a.asig:(S.subjects[0]||{}).id,title:String(a.titulo).slice(0,200),due:d,time:cleanTime(a.hora)||'08:00',prio:1,notes:'',done:false});n++}}
+    else if(a.op==='done_task'){const x=S.tasks.find(x=>x.id===a.id);if(x){x.done=true;n++}}
+    else if(a.op==='add_exam'){const d=cleanDate(a.dia);if(d&&a.titulo){S.exams.push({id:uid(),grade:null,kind:'',subj:S.subjects.some(x=>x.id===a.asig)?a.asig:(S.subjects[0]||{}).id,title:String(a.titulo).slice(0,200),date:d,time:cleanTime(a.hora)||null,topics:[],notes:''});n++}}
+  }catch(e){}}
+  if(!n)HIST.pop();else save();ORG.msg=String(out.r||'').slice(0,240)||(n?'Hecho.':'No había nada que cambiar.');render();if(n)toast(n===1?'1 cambio hecho':n+' cambios hechos',undoLast)}
+document.addEventListener('submit',e=>{const f=e.target.closest('[data-orgcmd]');if(!f)return;e.preventDefault();const v=(f.querySelector('input').value||'').trim();if(!v||ORG.busy)return;orgCmd(v)});
+document.addEventListener('click',e=>{const t=e.target;
+  const fx=t.closest('[data-orgfix]');if(fx){oFixOne(+fx.dataset.orgfix);return}
+  const rn=t.closest('[data-orgrun]');if(rn){oRunAll(rn.dataset.orgrun);return}
+  if(t.closest('[data-orgall]')){ORG.all=!ORG.all;render();return}
+  if(t.closest('[data-orgprefs]')){orgPrefs();return}});
+function orgBarHTML(){const A=oAnalyze();const n=A.items.length;const col=A.score>=80?'var(--ok,#2F9E5F)':A.score>=55?'#E8A200':'var(--red)';
+  return `<div class="orgbar"><span class="orgsp">✦</span><span class="orgsc" style="--c:${col}"><b>${A.score}</b>/100</span><span class="orgbt">${n?n+(n===1?' sugerencia':' sugerencias')+' para esta semana':'Semana bien organizada'}</span><span style="flex:1"></span>${n?'<button class="btn sm ghost" data-goview="hoy">Ver</button>':''}<button class="btn sm primary" data-orgrun="semana">Organizar la semana</button></div>`}
 
 /* ---------- Toast ---------- */
 let toastT;
@@ -2381,6 +2586,7 @@ function admView(){const D=ADM.data,U=D.users,t=ADM.tab;const errBox=ADM.err?`<d
     ${T('wMant','Modo mantenimiento','Nadie puede usar la app salvo el administrador.',!!CFG.mantenimiento)}
     <label>Correo de contacto (sale en la política de privacidad)<input class="field" id="wCont" type="email" value="${esc(CFG.contacto||'')}" placeholder="tucorreo@gmail.com"></label>
     <label>Mensaje de mantenimiento<input class="field" id="wMantTx" value="${esc(CFG.mensajeMant||'')}"></label>
+    <label>Clave de IA para las órdenes del organizador (Google AI Studio, opcional)<input class="field" id="wIa" type="password" autocomplete="off" value="${esc(CFG.iaKey||'')}" placeholder="Pega aquí la clave"></label>
     <label>Colores por defecto para cuentas nuevas<select class="field" id="wPal">${PALETTES.map(p=>`<option value="${p[0]}" ${CFG.paletaDefecto===p[0]?'selected':''}>${p[1]}</option>`).join('')}</select></label>
     <div class="ubtns"><button class="btn primary" data-wsave>Guardar cambios</button></div></div>`}
   if(t==='mensajes')return `<h2>Enviar mensaje</h2><p class="hint" style="margin-top:-8px">Le saldrá en una ventana la próxima vez que abra la app (o al momento si la tiene abierta).</p><div class="aform">
@@ -2421,7 +2627,7 @@ document.addEventListener('click',async e=>{if(!e.target.closest('#adminApp'))re
   else if(b.hasAttribute('data-ajsave')&&u){let st;try{st=JSON.parse($('#ajsonTx').value)}catch(x){toast('El texto no es válido');return}st.updatedAt=Date.now();st.rev=(st.rev||0)+1000;await fdb().ref('dietari/'+u.uid).update({json:JSON.stringify(st),updatedAt:st.updatedAt,rev:st.rev});await admLoad();admRender();toast('Datos guardados')}
   else if(b.hasAttribute('data-ansave')){await fdb().ref('config/anuncio').set({texto:$('#anTx').value.trim(),tipo:$('#anTp').value,activo:$('#anOn').checked});toast('Anuncio publicado')}
   else if(b.hasAttribute('data-anoff')){await fdb().ref('config/anuncio/activo').set(false);admRender();toast('Anuncio quitado')}
-  else if(b.hasAttribute('data-wsave')){await fdb().ref('config').update({contacto:($('#wCont')||{value:''}).value.trim(),nombreApp:$('#wName').value.trim()||'MCF Calendar',bienvenida:$('#wWel').value.trim(),registroAbierto:$('#wReg').checked,google:$('#wG').checked,apple:$('#wA').checked,compartir:$('#wShare').checked,mantenimiento:$('#wMant').checked,mensajeMant:$('#wMantTx').value.trim(),paletaDefecto:$('#wPal').value});toast('Ajustes guardados')}
+  else if(b.hasAttribute('data-wsave')){await fdb().ref('config').update({contacto:($('#wCont')||{value:''}).value.trim(),nombreApp:$('#wName').value.trim()||'MCF Calendar',bienvenida:$('#wWel').value.trim(),registroAbierto:$('#wReg').checked,google:$('#wG').checked,apple:$('#wA').checked,compartir:$('#wShare').checked,mantenimiento:$('#wMant').checked,mensajeMant:$('#wMantTx').value.trim(),paletaDefecto:$('#wPal').value,iaKey:($('#wIa')||{value:CFG.iaKey||''}).value.trim()});toast('Ajustes guardados')}
   else if(b.hasAttribute('data-msend')){const to=$('#mTo').value,tx=$('#mTx').value.trim();if(!tx){toast('Escribe el mensaje');return}const ids=to==='*'?D.users.map(x=>x.uid):[to];const upd={};ids.forEach(id=>{upd['mensajes/'+id+'/'+fdb().ref().push().key]={texto:tx,fecha:Date.now()}});await fdb().ref().update(upd);$('#mTx').value='';toast('Enviado a '+ids.length+(ids.length===1?' persona':' personas'))}
   else if(b.hasAttribute('data-aexport')){const g=p=>fdb().ref(p).get().then(s=>s.val()).catch(()=>null);const out={fecha:new Date().toISOString()};for(const p of ['config','cuentas','dietari','usuarios','amigos','compartidos','expulsados'])out[p]=await g(p);
     const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(out,null,2)],{type:'application/json'}));a.download='mcf-copia-'+todayS()+'.json';document.body.appendChild(a);a.click();a.remove()}
