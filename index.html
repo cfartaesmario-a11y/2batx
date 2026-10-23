@@ -13,7 +13,7 @@ try{var pl=localStorage.getItem("2batx.palette");if(pl){document.documentElement
 <meta name="apple-mobile-web-app-title" content="MCF Calendar">
 <meta name="application-name" content="MCF Calendar">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-npw/HSVmU8f4wZfxqI/fzDGQLKipBWI4CjFn4AfE4AY=' 'sha256-KgjeWVmq1l3kfumzR6pWf4mTG87HJa+wIV3kTvbuqUw=' https://www.gstatic.com https://apis.google.com https://www.google.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleusercontent.com https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com https://www.google.com; frame-src https://*.firebaseapp.com https://accounts.google.com https://appleid.apple.com https://www.google.com https://recaptcha.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-npw/HSVmU8f4wZfxqI/fzDGQLKipBWI4CjFn4AfE4AY=' 'sha256-oZVV4S2cp5dLbZaAD2t9r0481IByz/8jlScGHY9U4uw=' https://www.gstatic.com https://apis.google.com https://www.google.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleusercontent.com https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com https://www.google.com; frame-src https://*.firebaseapp.com https://accounts.google.com https://appleid.apple.com https://www.google.com https://recaptcha.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MCF Calendar</title>
@@ -1177,7 +1177,7 @@ const kindName=k=>{if(!k)return'';for(const m of Object.values(TX)){const f=m.ki
 const HIDDEN_VIEWS=()=>MODE()==='personal'?['examenes','notas','curso','horario']:[];
 const viewLabel=(k,l)=>({deberes:TT().tareas,examenes:TT().examenes,notas:TT().notas,horario:TT().horario}[k]||l);
 
-const VIEWS=[['hoy','Hoy','today'],['deberes','Deberes','tasks'],['examenes','Exámenes','exams'],['notas','Notas','grade'],['curso','Curso','cal'],['amigos','Amigos','users'],['plan','Planificador','plan'],['horario','Horario de clases','classes'],['progreso','Progreso','stats'],['ajustes','Ajustes','settings']];
+const VIEWS=[['hoy','Hoy','today'],['deberes','Deberes','tasks'],['examenes','Exámenes','exams'],['notas','Notas','grade'],['curso','Curso','cal'],['amigos','Amigos','users'],['plan','Planificador','plan'],['ia','MCF IA','wand'],['horario','Horario de clases','classes'],['progreso','Progreso','stats'],['ajustes','Ajustes','settings']];
 
 /* ---------- MCF Workspace: menú de apps ---------- */
 const WS_B='https://cfartaesmario-a11y.github.io';
@@ -1222,7 +1222,7 @@ function render(){
   const wa=$('#whoami');if(wa){const nm=CUR.displayName||CUR.email.split('@')[0];wa.innerHTML=`<span class="av">${esc(nm.charAt(0).toUpperCase())}</span><b>${esc(nm)}</b><button class="btn sm ghost" data-logout>Salir</button>`}
   applyTheme();renderNav();
   const m=$('#main');
-  const fn={hoy:vHoy,deberes:vDeberes,examenes:vExamenes,plan:vPlan,horario:vHorario,progreso:vProgreso,ajustes:vAjustes,notas:vNotas,curso:vCurso,amigos:vAmigos}[UI.view];
+  const fn={hoy:vHoy,deberes:vDeberes,examenes:vExamenes,plan:vPlan,horario:vHorario,progreso:vProgreso,ajustes:vAjustes,ia:vIA,notas:vNotas,curso:vCurso,amigos:vAmigos}[UI.view];
   m.innerHTML=anuncioHTML()+fn();
   if(UI.view==='plan')bindPlanner();
   lastView=UI.view;
@@ -1285,7 +1285,6 @@ function vHoy(){
     <div class="hero-r"><div class="clock num" id="clock">${pad(n.getHours())}:${pad(n.getMinutes())}<small>${pad(n.getSeconds())}</small></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-new="block">${I.plus}Bloque de estudio</button><button class="btn" data-new="exam">${I.plus}Examen</button><button class="btn primary" data-new="task">${I.plus}Deber</button></div></div>
   </div>
   ${reqHTML()}
-  ${orgHTML('hoy')}
   <section class="panel" style="margin-bottom:18px">
     <h2>Las próximas dos semanas</h2>
     <div class="strip">${stripHTML()}</div>
@@ -1823,7 +1822,7 @@ function oRunAll(scope){checkpoint();let n=0;const today=todayS();
 function oFixOne(i){const it=ORG.items[i];if(!it||!it.fix)return;checkpoint();let n=0;try{n=+it.fix()||0}catch(e){}if(!n){HIST.pop();toast('No he encontrado hueco libre para eso');return}save();render();toast(n===1?'Hecho':`Hecho: ${n} cambios`,undoLast)}
 
 /* Panel */
-function orgHTML(where){const A=oAnalyze();ORG.items=A.items;const items=A.items;const show=ORG.all?items:items.slice(0,where==='plan'?3:5);
+function orgHTML(where){const A=oAnalyze();ORG.items=A.items;const items=A.items;const show=ORG.all||where==='ia'?items:items.slice(0,5);
   const col=A.score>=80?'var(--ok,#2F9E5F)':A.score>=55?'#E8A200':'var(--red)';
   return `<section class="panel orgp" style="margin-bottom:18px"><div class="orgh"><h2 style="margin:0"><span class="orgsp">✦</span>Organizador</h2><span class="orgsc" style="--c:${col}"><b>${A.score}</b>/100 semana</span><span style="flex:1"></span><button class="btn sm ghost" data-orgprefs title="Preferencias">${I.settings}</button></div>
   <form class="orgcmd" data-orgcmd><input type="text" id="orgIn" placeholder="${CFG.iaKey?'Pídele algo: «libérame el sábado», «pasa física al jueves»…':'Pídele algo: «organiza la semana», «organiza hoy»…'}" autocomplete="off" enterkeyhint="go"><button class="btn primary sm" type="submit">${ORG.busy?'<span class="orgdots"><i></i><i></i><i></i></span>':'Hacer'}</button></form>
@@ -1889,8 +1888,9 @@ document.addEventListener('click',e=>{const t=e.target;
   const rn=t.closest('[data-orgrun]');if(rn){oRunAll(rn.dataset.orgrun);return}
   if(t.closest('[data-orgall]')){ORG.all=!ORG.all;render();return}
   if(t.closest('[data-orgprefs]')){orgPrefs();return}});
+function vIA(){return `<div class="topbar"><h1>MCF IA<span class="sub">Revisa tu semana con técnicas de estudio reales, te avisa de lo que va mal y lo arregla. Si algo no te gusta, Ctrl+Z.</span></h1></div>${orgHTML('ia')}`}
 function orgBarHTML(){const A=oAnalyze();const n=A.items.length;const col=A.score>=80?'var(--ok,#2F9E5F)':A.score>=55?'#E8A200':'var(--red)';
-  return `<div class="orgbar"><span class="orgsp">✦</span><span class="orgsc" style="--c:${col}"><b>${A.score}</b>/100</span><span class="orgbt">${n?n+(n===1?' sugerencia':' sugerencias')+' para esta semana':'Semana bien organizada'}</span><span style="flex:1"></span>${n?'<button class="btn sm ghost" data-goview="hoy">Ver</button>':''}<button class="btn sm primary" data-orgrun="semana">Organizar la semana</button></div>`}
+  return `<div class="orgbar"><span class="orgsp">✦</span><span class="orgsc" style="--c:${col}"><b>${A.score}</b>/100</span><span class="orgbt">${n?n+(n===1?' sugerencia':' sugerencias')+' para esta semana':'Semana bien organizada'}</span><span style="flex:1"></span>${n?'<button class="btn sm ghost" data-goview="ia">Ver</button>':''}<button class="btn sm primary" data-orgrun="semana">Organizar la semana</button></div>`}
 
 /* ---------- Toast ---------- */
 let toastT;
