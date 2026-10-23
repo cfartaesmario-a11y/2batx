@@ -13,7 +13,7 @@ try{var pl=localStorage.getItem("2batx.palette");if(pl){document.documentElement
 <meta name="apple-mobile-web-app-title" content="MCF Calendar">
 <meta name="application-name" content="MCF Calendar">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-npw/HSVmU8f4wZfxqI/fzDGQLKipBWI4CjFn4AfE4AY=' 'sha256-N23tV7VqEURD7OrEDivSTHV1eUebqeZLOVGt2R9zhzs=' https://www.gstatic.com https://apis.google.com https://www.google.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleusercontent.com https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com https://www.google.com; frame-src https://*.firebaseapp.com https://accounts.google.com https://appleid.apple.com https://www.google.com https://recaptcha.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-npw/HSVmU8f4wZfxqI/fzDGQLKipBWI4CjFn4AfE4AY=' 'sha256-vkAidYnkYxziy6n6o3ldx6wE8bg35IsBpypAm3PtD5Q=' https://www.gstatic.com https://apis.google.com https://www.google.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.googleusercontent.com https://www.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com https://www.google.com; frame-src https://*.firebaseapp.com https://accounts.google.com https://appleid.apple.com https://www.google.com https://recaptcha.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MCF Calendar</title>
@@ -2591,13 +2591,25 @@ function askPin(title,twice){return new Promise(res=>{const d=document.createEle
 let ADM_IDLE=null;function admIdleReset(){clearTimeout(ADM_IDLE);if($('#adminApp')&&!$('#adminApp').hidden||SUPPORT)ADM_IDLE=setTimeout(()=>{toast('Sesión de administrador cerrada por inactividad');adminExit()},30*60000)}
 ['pointerdown','keydown','scroll'].forEach(ev=>document.addEventListener(ev,()=>{if(ADM_IDLE)admIdleReset()},{passive:true,capture:true}));
 
+function pickCurrentKey(){return new Promise(res=>{const d=document.createElement('div');d.className='scrim';d.style.zIndex='130';
+  d.innerHTML=`<form class="modal" novalidate style="width:min(440px,100%)"><h3>Crear archivo de clave nuevo</h3><p class="hint" style="margin:-8px 0 12px">Para crear uno nuevo necesitas el <b>archivo de clave actual</b> y su <b>PIN</b>. Así, aunque alguien entre en tu cuenta, no puede quitarte el acceso. Los archivos anteriores dejarán de funcionar.</p>
+   <input type="file" accept=".mcfkey,.json,.txt" hidden><div class="aerr" id="kfErr"></div>
+   <div class="mfoot"><button type="button" class="btn ghost" data-x>Cancelar</button><button type="button" class="btn primary" data-pick>Elegir archivo actual</button></div></form>`;
+  document.body.appendChild(d);const inp=d.querySelector('input[type=file]');
+  d.querySelector('[data-x]').onclick=()=>{d.remove();res(null)};d.querySelector('[data-pick]').onclick=()=>inp.click();
+  inp.onchange=async()=>{const fl=inp.files[0];inp.value='';if(!fl)return;let key='';try{const t=await fl.text();try{key=JSON.parse(t).key||''}catch(x){key=t.trim()}}catch(x){}
+    if(!key||key.length<20){d.querySelector('#kfErr').textContent='Ese archivo no es una clave de administrador.';return}d.remove();res(key)}})}
 async function makeKeyFile(){
-  if(!confirm('Se creará un archivo de clave nuevo. Los archivos anteriores dejarán de funcionar. ¿Seguir?'))return;
-  const pin=await askPin('PIN de administrador',true);if(!pin)return;
-  const k=randKey(),h=await sha256hex(k+':'+pin);try{await fdb().ref('secret/adminKey').set(h);await fdb().ref('adminSessions').remove().catch(()=>{})}catch(e){toast('No tienes permiso para crear la clave');return}
+  const me=firebase.auth().currentUser;if(!me){toast('Inicia sesión primero');return}
+  const cur=await pickCurrentKey();if(!cur)return;
+  const pin0=await askPin('PIN del archivo actual',false);if(!pin0)return;
+  // Firebase comprueba que el archivo y el PIN son los buenos: si no, no deja crear la sesión
+  try{await fdb().ref('adminSessions/'+me.uid).set({key:await sha256hex(cur+':'+pin0),t:firebase.database.ServerValue.TIMESTAMP})}catch(e){toast('El archivo de clave o el PIN no son correctos');return}
+  const pin=await askPin('PIN nuevo',true);if(!pin){fdb().ref('adminSessions/'+me.uid).remove().catch(()=>{});return}
+  const k=randKey(),h=await sha256hex(k+':'+pin);try{await fdb().ref('secret/adminKey').set(h);await fdb().ref('adminSessions').remove().catch(()=>{})}catch(e){fdb().ref('adminSessions/'+me.uid).remove().catch(()=>{});toast('No tienes permiso para crear la clave');return}
   const blob=new Blob([JSON.stringify({app:'MCF Calendar',tipo:'clave-admin',creada:new Date().toISOString(),key:k},null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='MCF-admin.mcfkey';document.body.appendChild(a);a.click();a.remove();
-  toast('Archivo de clave descargado. Guárdalo en un sitio seguro.')}
+  toast('Archivo de clave nuevo descargado. El anterior ya no sirve.');if(me.isAnonymous)setTimeout(()=>adminExit(),1500)}
 document.addEventListener('click',e=>{if(e.target.closest('[data-mkkey]'))makeKeyFile();if(e.target.closest('[data-askmail]'))askEmail()});
 document.addEventListener('click',e=>{if(e.target.closest('[data-adminkey]'))$('#keyFile').click()});
 document.addEventListener('change',async e=>{if(e.target.id!=='keyFile')return;const fl=e.target.files[0];e.target.value='';if(!fl)return;
